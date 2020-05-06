@@ -24,3 +24,11 @@
 
 - **CodeBot**
     * Retorna a resposta dos comando enviados
+
+## Communication between systems
+
+* Websockets
+* Pub / Sub
+* WebRTC
+* Queue RabbitMQ
+* gRPC
