@@ -1,3 +1,0 @@
-
-
-//# sourceMappingURL=SpatialColumnOptions.js.map

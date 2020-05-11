@@ -1,3 +1,0 @@
-
-
-//# sourceMappingURL=UpdateEvent.js.map

@@ -1,3 +1,0 @@
-
-
-//# sourceMappingURL=NativescriptConnectionOptions.js.map

@@ -26,14 +26,17 @@
     "@nestjs/core": "^7.0.0",
     "@nestjs/jwt": "^7.0.0",
     "@nestjs/platform-express": "^7.0.0",
+    "@nestjs/typeorm": "^7.0.0",
     "bcryptjs": "^2.4.3",
     "class-validator": "^0.12.2",
     "dotenv": "^8.2.0",
     "import": "0.0.6",
+    "pg": "^8.1.0",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^6.5.4",
-    "slug": "^2.1.1"
+    "slug": "^2.1.1",
+    "typeorm": "^0.2.24"
   },
   "devDependencies": {
     "@nestjs/cli": "^7.0.0",
