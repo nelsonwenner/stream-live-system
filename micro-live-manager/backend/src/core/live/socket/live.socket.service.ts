@@ -1,7 +1,7 @@
 import { SubscribeMessage, WebSocketGateway, OnGatewayInit, WebSocketServer, ConnectedSocket, MessageBody } from '@nestjs/websockets';
-import { RepositoriesService } from '../repositories/repositories.service';
-import { LiveStatus } from '../../database/entities/live.entity';
-import { SlugOTG } from '../../database/models/live.tdo';
+import { RepositoriesService } from '../../repositories/repositories.service';
+import { LiveStatus } from '../../../database/entities/live.entity';
+import { SlugOTG } from '../../../database/models/live.tdo';
 import { ConfigService } from '@nestjs/config';
 import { Socket, Server } from 'socket.io';
 import { Logger } from '@nestjs/common';

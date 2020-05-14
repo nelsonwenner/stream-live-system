@@ -1,5 +1,4 @@
 import { RepositoriesModule } from './core/repositories/repositories.module';
-import { LiveSocketService } from './core/socket/live.socket.service';
 import { HttpErrorFilter } from './core/shared/http.error.filter';
 import { LiveModule } from './core/live/live.module';
 import * as ormOptions from './config/ormconfig';
@@ -18,7 +17,6 @@ import { Module } from '@nestjs/common';
       provide: APP_FILTER,
       useClass: HttpErrorFilter
     },
-    LiveSocketService
   ]
 })
 
