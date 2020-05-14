@@ -15,3 +15,8 @@ export class LiveOTG {
   @IsOptional()
   status: string;
 }
+
+export class SlugOTG {
+  @IsString()
+  slug: string;
+}

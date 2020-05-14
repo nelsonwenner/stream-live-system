@@ -45,4 +45,8 @@ export class LiveEntity {
     return await bcrypt.compare(attempt, this.password);
   }
 
+  serializer() {
+    const { id, slug, title, description, status, created_at } = this;
+    return { id, slug, title, description, status, created_at }
+  }
 }

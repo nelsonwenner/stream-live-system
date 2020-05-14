@@ -21,7 +21,7 @@ services:
     ports: 
       - "5431:5432"
     volumes: 
-      - ./backend/docker/postgres/data:/var/lib/postgresql/data
+      - ./backend/.docker/database/data:/var/lib/postgresql/data
     environment:
       - POSTGRES_USER=root
       - POSTGRES_PASSWORD=root@123
@@ -30,7 +30,15 @@ services:
     tty: true
     networks: 
       - app-network
-
+  
+  redis:
+    image: redis:alpine
+    container_name: micro-live-manager-redis
+    volumes:
+      - ./backend/.docker/redisdata:/data
+    networks:
+      - app-network
+  
   adminer:
     container_name: adminer-container
     image: adminer
