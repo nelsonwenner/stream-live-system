@@ -7,11 +7,12 @@ export class LiveService {
   constructor(private repoService: RepositoriesService) {}
 
   async findAll() {
-    return await this.repoService.liveRepository.find({
+    const lives = await this.repoService.liveRepository.find({
       order: {
         created_at: 'DESC'
       }
     });
+    return lives.map(live => live.serializer());
   }
 
   async showlive(slug: string) {
