@@ -1,12 +1,11 @@
 import { RepositoriesModule } from './core/repositories/repositories.module';
+import { LiveSocketService } from './core/socket/live.socket.service';
 import { HttpErrorFilter } from './core/shared/http.error.filter';
-import { SocketGateway } from './core/socket/socket.gateway';
 import { LiveModule } from './core/live/live.module';
 import * as ormOptions from './config/ormconfig';
 import { TypeOrmModule } from "@nestjs/typeorm";
 import { APP_FILTER } from '@nestjs/core';
 import { Module } from '@nestjs/common';
-
 
 @Module({
   imports: [
@@ -19,7 +18,7 @@ import { Module } from '@nestjs/common';
       provide: APP_FILTER,
       useClass: HttpErrorFilter
     },
-    SocketGateway
+    LiveSocketService
   ]
 })
 
