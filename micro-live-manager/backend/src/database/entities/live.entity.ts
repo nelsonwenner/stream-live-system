@@ -18,6 +18,9 @@ export class LiveEntity {
 
   @Column()
   description: string;
+  
+  @Column({type: "timestamp"})
+  date: string;
 
   @Column()
   password: string;
