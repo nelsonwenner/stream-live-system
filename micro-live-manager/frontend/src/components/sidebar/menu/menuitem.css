@@ -1,0 +1,34 @@
+.container-menuitem {
+  width: 100%;
+  padding: 0.3rem;
+  padding-left: 4rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-bottom: 1rem;
+  transition: 0.2s all ease-in-out;
+  cursor: pointer;
+}
+
+.container-menuitem:hover {
+  background-color: rgba(0, 0, 0, 0.1)
+}
+
+.container-menuitem h1 {
+  font-weight: 300;
+  font-size: 15px;
+}
+
+.icon-home::before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f015';
+  font-weight: 900;
+  color: #FFF;
+  font-size: 14px;
+}
+
+.mt-icon {
+  position: relative;
+  right: 15px;
+}

@@ -1,13 +1,13 @@
 import React from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-import Live from '../pages/Live/live';
+import Dashboard from '../pages/Dashboard/dashboard';
 
 const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ Live } />
+        <Route exact path="/" component={ Dashboard } />
       </Switch>
     </BrowserRouter>
   );
