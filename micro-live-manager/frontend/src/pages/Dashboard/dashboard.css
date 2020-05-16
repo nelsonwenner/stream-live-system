@@ -38,3 +38,8 @@
   align-items: center;
   justify-content: center;
 }
+
+.error {
+  position: relative;
+  top: 15px;
+}

@@ -7,6 +7,8 @@ import CustomButton from '../../components/common/custom-button/CustomButton';
 import CustomInput from '../../components/common/custom-input/CustomInput';
 import SortingBar from '../../components/common/sorting-bar/SortingBar';
 import Sidebar from '../../components/sidebar/sidebar';
+import redirect from '../../routes/redirect';
+import Api from '../../service/Api';
 
 import Modal from 'react-modal';
 
@@ -18,8 +20,46 @@ class Dashboard extends Component {
     super();
 
     this.state = {
-      modal: false
+      modal: false,
+      title: '',
+      description: '',
+      date: '',
+      password: '',
+      error: ''
     }
+  }
+
+  handleChange = (event) => {
+    event.preventDefault();
+    this.setState({ [event.target.name]: event.target.value});
+  }
+
+  onSubmit = (event) => {
+    event.preventDefault();
+
+    const { title, description, date, password } = this.state;
+
+    if(!title || !password || !description || !date) {
+      this.setState(() => ({ error: 'Fill in all the fields' }));
+    } else {
+      Api.post('/api/lives', {title, description, date, password})
+      .then((res) => {
+        
+        this.onSubmitClean();
+
+        redirect('/');
+
+      })
+      .catch(() => this.onSubmitFailure());
+    }
+  }
+
+  onSubmitFailure() {
+    this.setState({ error: "Request Failed" });
+  }
+
+  onSubmitClean() {
+    this.setState({title: '', description: '', date: '', password: '', error: ''});
   }
 
   openModal = () => {
@@ -31,6 +71,8 @@ class Dashboard extends Component {
   }
 
   render() {
+    const { title, description, date, password, error} = this.state;
+    console.log(error)
     return (
       <>
         <Sidebar/>
@@ -48,7 +90,7 @@ class Dashboard extends Component {
             onRequestClose={this.closeModal}
             contentLabel="Example Modal">
 
-            <form>
+            <form onSubmit={this.onSubmit}>
               <div className="container-form">
                 <h1 style={{ fontWeight: 800, fontSize: 26 }}>New live</h1>
 
@@ -56,32 +98,53 @@ class Dashboard extends Component {
                   classs={'mt-40'}
                   type={'text'}
                   placeholder={'Title'}
+                  value={title}
+                  name={'title'}
+                  onChange={this.handleChange}
                 />
 
                 <CustomInput
                   classs={'mt-40'}
                   type={'text'}
                   placeholder={'Description'}
+                  value={description}
+                  name={'description'}
+                  onChange={this.handleChange}
                 />
 
                 <CustomInput
                   classs={'mt-40'}
                   type={'text'}
                   placeholder={'Date DD/MM/AAAA'}
+                  value={date}
+                  name={'date'}
+                  onChange={this.handleChange}
                 />
 
                 <CustomInput
                   classs={'mt-40'}
                   type={'password'}
                   placeholder={'Password'}
+                  value={password}
+                  name={'password'}
+                  onChange={this.handleChange}
                 />
 
+                {
+                  error && (
+
+                    <div className="error">
+                      <p style={{color: 'red'}}>{ error }</p>
+                    </div>
+
+                  )
+                }
+            
                 <CreateButton
+                  typeBtn="submit"
                   className={'btn btn-outlined purple-btn'}
                   children={'Create'}
-
                 />
-
               </div>
             </form>
           </Modal>
