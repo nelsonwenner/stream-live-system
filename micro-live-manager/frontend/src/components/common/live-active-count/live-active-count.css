@@ -1,0 +1,28 @@
+.title {
+  font-weight: 400;
+  color: #FFF;
+  font-size: 1.3rem;
+  display: flex;
+  align-items: center;
+}
+
+.constainer-active {
+  margin-left: 1rem;
+  font-size: 1rem;
+  background-color: #585380;
+  color: #FFF;
+  width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 20px;
+}
+
+.container-lives {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 7rem;
+}

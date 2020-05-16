@@ -9,6 +9,9 @@ export class LiveOTG {
   description: string;
 
   @IsString()
+  date: string;
+
+  @IsString()
   password: string;
 
   @IsString()

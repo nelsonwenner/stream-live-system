@@ -1,0 +1,29 @@
+.container {
+  background-color: #2C2839;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 16rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.icon-broadcast::before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f519';
+  font-weight: 900;
+  color: #FFF;
+  font-size: 40px;
+}
+
+.mt {
+  margin-top: 90px;
+}
+
+h1 {
+  font-weight: 300;
+  font-size: 20px;
+}

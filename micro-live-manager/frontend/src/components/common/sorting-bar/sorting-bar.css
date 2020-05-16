@@ -1,0 +1,48 @@
+.header-bar {
+  display: flex;
+  background-color: rgb(59, 56, 69);
+  padding: 0.4rem 1rem;
+  margin: 2rem 0px;
+  border-radius: 5px;
+  position: relative;
+  top: 180px;
+}
+
+.text {
+  font-size: 0.6rem;
+  font-weight: 600;
+  color: #FFF;
+  display: block;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.uuid {
+  width: 25%;
+}
+
+.title-bar {
+  width: 20%;
+}
+
+.date {
+  width: 15%;
+}
+
+.status {
+  width: 10%;
+}
+
+.actions {
+  width: 20%;
+}
+
+.create-live {
+  width: 12%;
+}
+
+.invite { 
+  width: 10%;
+}

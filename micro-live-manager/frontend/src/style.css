@@ -1,0 +1,15 @@
+@import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
+@import url('https://use.fontawesome.com/releases/v5.7.0/css/all.css');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+body {
+  background: #302C40;
+  color: #FFF;
+  transition: all 0.25s linear;
+}
