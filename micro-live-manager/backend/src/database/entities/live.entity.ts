@@ -49,7 +49,7 @@ export class LiveEntity {
   }
 
   serializer() {
-    const { id, slug, title, description, status, created_at } = this;
-    return { id, slug, title, description, status, created_at }
+    const { id, slug, title, description, date, status, created_at } = this;
+    return { id, slug, title, description, date, status, created_at }
   }
 }

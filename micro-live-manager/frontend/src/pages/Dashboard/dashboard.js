@@ -6,10 +6,10 @@ import CreateButton from '../../components/common/create-button/CreateButton';
 import CustomButton from '../../components/common/custom-button/CustomButton';
 import CustomInput from '../../components/common/custom-input/CustomInput';
 import SortingBar from '../../components/common/sorting-bar/SortingBar';
+import Listlive from '../../components/common/list-live/Listlive';
 import Sidebar from '../../components/sidebar/sidebar';
 import redirect from '../../routes/redirect';
 import Api from '../../service/Api';
-
 import Modal from 'react-modal';
 
 Modal.setAppElement('body');
@@ -25,13 +25,19 @@ class Dashboard extends Component {
       description: '',
       date: '',
       password: '',
-      error: ''
+      error: '',
+      lives: []
     }
   }
 
   handleChange = (event) => {
     event.preventDefault();
     this.setState({ [event.target.name]: event.target.value});
+  }
+
+  async componentWillMount() {
+    const { data } = await Api.get('/api/lives');
+    this.setState(() => ({lives: data}));
   }
 
   onSubmit = (event) => {
@@ -71,8 +77,8 @@ class Dashboard extends Component {
   }
 
   render() {
-    const { title, description, date, password, error} = this.state;
-    console.log(error)
+    const { title, description, date, password, error, lives } = this.state;
+    console.log(lives)
     return (
       <>
         <Sidebar/>
@@ -81,9 +87,13 @@ class Dashboard extends Component {
             <CustomButton
               onClick={ this.openModal }
             />
-            <LiveActiveCount count={2} />
+            <LiveActiveCount count={ lives.length } />
           </div>
           <SortingBar/>
+          
+          <Listlive
+            lives={ lives }
+          />
 
           <Modal
             isOpen={this.state.modal}
@@ -114,8 +124,8 @@ class Dashboard extends Component {
 
                 <CustomInput
                   classs={'mt-40'}
-                  type={'text'}
-                  placeholder={'Date DD/MM/AAAA'}
+                  type={'date'}
+                  placeholder={''}
                   value={date}
                   name={'date'}
                   onChange={this.handleChange}
