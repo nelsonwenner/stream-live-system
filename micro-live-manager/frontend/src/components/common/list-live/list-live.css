@@ -58,5 +58,9 @@
   background-color: rgb(48, 44, 64);
   padding: 1rem 0px;
   border-bottom: 1px solid rgba(190, 190, 190, 0.22);
-  transition: all 300ms ease-in-out 0s;
+
+}
+
+.card:hover {
+  background-color: rgba(0, 0, 0, 0.1)
 }

@@ -12,6 +12,10 @@
   cursor: pointer;
 }
 
+.btn-circle:hover {
+  background-color: rgb(28, 184, 119);
+}
+
 .cruz {
   color: #FFF;
   font-size: 30px;
