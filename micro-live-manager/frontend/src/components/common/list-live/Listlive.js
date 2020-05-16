@@ -11,7 +11,7 @@ const Listlive = ({ lives }) => {
           <div className="card" key={live.id}>
             <div className="uuid-live">{live.id}</div>
             <div className="title-live">{live.title}</div>
-            <div className="date-live">{ format(parseISO(live.date), 'dd/MM/yyyy HH:mm')}</div>
+            <div className="date-live">{ format(parseISO(live.created_at), 'dd/MM/yyyy HH:mm')}</div>
             <div className="status-live">{live.status}</div>
             <div className="create-link-live"> create live </div>
             <div className="invite-live"> invite </div>
