@@ -78,7 +78,7 @@ class Dashboard extends Component {
 
   render() {
     const { title, description, date, password, error, lives } = this.state;
-    console.log(lives)
+    console.log("current data -> ", this.state)
     return (
       <>
         <Sidebar/>
@@ -100,7 +100,7 @@ class Dashboard extends Component {
             onRequestClose={this.closeModal}
             contentLabel="Example Modal">
 
-            <form onSubmit={this.onSubmit}>
+            <form method="post" onSubmit={ this.onSubmit }>
               <div className="container-form">
                 <h1 style={{ fontWeight: 800, fontSize: 26 }}>New live</h1>
 
@@ -142,14 +142,14 @@ class Dashboard extends Component {
 
                 {
                   error && (
-
+                    
                     <div className="error">
                       <p style={{color: 'red'}}>{ error }</p>
                     </div>
 
                   )
                 }
-            
+
                 <CreateButton
                   typeBtn="submit"
                   className={'btn btn-outlined purple-btn'}

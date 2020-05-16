@@ -3,9 +3,9 @@ version: "3.7"
 services:
   backend:
     container_name: "micro-live-manager-backend"
-    image: node:10.16-slim
+    build: 
+      context: ./backend
     entrypoint: ./.docker/entrypoint.sh
-    working_dir: /backend/src
     volumes:
       - ./backend:/backend/src
     ports: 
@@ -30,6 +30,19 @@ services:
     tty: true
     networks: 
       - app-network
+
+  frontend:
+    build: 
+      context: ./frontend
+    entrypoint: ./.docker/entrypoint.sh
+    container_name: micro-live-manager-frontend
+    ports:
+      - 8000:8000
+    volumes:
+      - ./frontend:/frontend/src
+    networks:
+      - app-network
+    tty: true
   
   redis:
     image: redis:alpine
@@ -37,14 +50,6 @@ services:
     volumes:
       - ./backend/.docker/redisdata:/data
     networks:
-      - app-network
-  
-  adminer:
-    container_name: adminer-container
-    image: adminer
-    ports:
-      - 8080:8080
-    networks: 
       - app-network
 
 networks:
