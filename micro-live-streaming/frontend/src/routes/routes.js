@@ -7,7 +7,7 @@ const Routes = () => {
   return (
     <BrowserRouter>
       <Switch>
-        <Route exact path="/" component={ Broadcast } />
+        <Route exact path="/broadcast/:slug" component={ Broadcast } />
       </Switch>
     </BrowserRouter>
   );

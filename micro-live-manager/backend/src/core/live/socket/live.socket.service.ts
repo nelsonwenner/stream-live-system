@@ -4,7 +4,6 @@ import { LiveStatus } from '../../../database/entities/live.entity';
 import { SlugOTG } from '../../../database/models/live.tdo';
 import { ConfigService } from '@nestjs/config';
 import { Socket, Server } from 'socket.io';
-import { Logger } from '@nestjs/common';
 import { promisify } from 'util';
 
 @WebSocketGateway({namespace: 'live'})

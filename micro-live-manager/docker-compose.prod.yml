@@ -3,8 +3,8 @@ version: "3.7"
 services:
   backend:
     container_name: "micro-live-manager-backend"
-    image: node:10.16-slim
-    working_dir: /backend/src
+    build: 
+      context: ./backend
     entrypoint: ./.docker/entrypoint.sh
     volumes:
       - ./backend:/backend/src
@@ -30,12 +30,12 @@ services:
     tty: true
     networks: 
       - app-network
-  
+
   frontend:
-    container_name: micro-live-manager-frontend
-    image: node:10.16-slim
-    working_dir: /frontend/src
+    build: 
+      context: ./frontend
     entrypoint: ./.docker/entrypoint.sh
+    container_name: micro-live-manager-frontend
     ports:
       - 8000:8000
     volumes:
