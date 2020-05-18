@@ -80,15 +80,12 @@ class Broadcast extends Component {
 
     console.log('initialize peer connection');
 
-    const iceServers = getIceServers();
-   
     const currentPeer = new Peer({
-      ...(iceServers !== null && {config: {iceServers: [...iceServers]}}),
       host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
       port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
-    })
+    });
 
-    console.log('Peer: ', currentPeer);
+    console.log(currentPeer)
   }
 
   broadcast = (socket) => {

@@ -19,17 +19,21 @@ const createPeerServer = async () => {
         : callback(new Error('Not allowed by CORS'));
     }
   }
-
+  
   const expressAPP = express();
   const server = http.createServer(expressAPP);
   expressAPP.use(cors(corsOptions));
 
-  const peerServer = ExpressPeerServer(server);
+  const peerServer = ExpressPeerServer(server)
   expressAPP.use(peerServer);
 
   server.listen(process.env.PEER_SERVER_PORT, () => {
     Logger.log(`Server Peer running on http://localhost:${process.env.PEER_SERVER_PORT}`, 'Bootstrap');
   })
+
+  peerServer.on('connection', (client) => {
+    console.log(`[X] Client connected on peer server: ${client}`);
+  });
 }
 
 const bootstrap = async () => {
@@ -37,6 +41,8 @@ const bootstrap = async () => {
   app.useWebSocketAdapter(new RedisIoAdapter(app));
   app.setGlobalPrefix('api');
   
+  await app.startAllMicroservicesAsync();
+
   await app.listen(process.env.SERVER_PORT, () => {
     Logger.log(`Server running on http://localhost:${process.env.SERVER_PORT}`, 'Bootstrap');
   });
