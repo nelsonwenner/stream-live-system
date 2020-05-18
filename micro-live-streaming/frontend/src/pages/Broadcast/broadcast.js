@@ -9,6 +9,7 @@ import getIceServers from '../../utils/get.ice.server';
 import { base, getLive } from '../../service/Api';
 import Modal from 'react-modal';
 
+
 import socket from "socket.io-client";
 import Peer from "peerjs";
 
@@ -74,39 +75,34 @@ class Broadcast extends Component {
     this.setState({modal: false});
   }
 
-  componentWillMount() {
+  componentWillMount() { 
+    this.initSocketAndPeer();
+  }
+
+  initSocketAndPeer = () => { 
+    console.log('Initialize [socket] [peer] connection...');
+
     const currentSocket = socket(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
-    this.setState(() => ({socket: currentSocket}));
-
-    console.log('initialize peer connection');
-
+  
     const currentPeer = new Peer({
       host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
       port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
     });
 
-    console.log(currentPeer)
+    this.setState(() => ({socket: currentSocket, peer: currentPeer}));
   }
 
   broadcast = (socket) => {
-
+    const { slug } = this.props.match.params;
+   
     socket.on('connect', () => {
 
-      socket.emit('join', {slug: 'perceguindo-seus-sonhos-fso9ln'});
+      socket.emit('join', {slug: `${slug}`});
 
       socket.on('count-users', (count) => {
         this.setState(() => ({countUsers: count}));
       });
     });
-
-    /*
-    this.setState(() => ({peer: new Peer({
-      ...(iceServers !== null && {config: {iceServers: iceServers}}),
-      host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
-      port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
-    })}))
-    */
-
   }
 
   render() {
@@ -114,6 +110,7 @@ class Broadcast extends Component {
     const { name, email, password, socket } =  this.state;
     
     this.broadcast(socket);
+
     console.log('Amount Users: ', this.state.countUsers);
   
     return (
