@@ -36,6 +36,8 @@ export class LiveSocketService implements OnGatewayInit {
 
       this.validadeView(slug);
 
+      client.join(slug);
+
       console.log(`\n[X] join: ${client.id}`);
 
       await redisSet(client.id, slug);
@@ -43,7 +45,7 @@ export class LiveSocketService implements OnGatewayInit {
       const client_id = await redisGet(slug);
 
       client.emit('get-broadcaster', {client_id: client_id});
-
+      console.log('\nTESTS -> ', client.adapter.rooms[slug])
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
@@ -155,6 +157,6 @@ export class LiveSocketService implements OnGatewayInit {
   }
 
   getUsersConnected(client: Socket, room: string) {
-    return room in client.adapter.rooms ? client.adapter.rooms[room] : null;
+    return room in client.adapter.rooms ? client.adapter.rooms[room].length : 0;
   }
 }

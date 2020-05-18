@@ -25,7 +25,8 @@ class Broadcast extends Component {
       email: '',
       password: '',
       error: '',
-      socket: null
+      socket: null,
+      countUsers: 0
     }
   }
 
@@ -72,21 +73,31 @@ class Broadcast extends Component {
     this.setState({modal: false});
   }
 
-  async componentWillMount() {
-    console.log(process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL)
-    const currentSocket = socket(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/api/live`);
-    console.log(currentSocket)
-    //this.setState(() => ({socket: currentSocket}));
+  componentWillMount() {
+    const currentSocket = socket(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
+    this.setState(() => ({socket: currentSocket}));
   }
 
-  broadcast = async () => {
+  broadcast = (socket) => {
+
+    socket.on('connect', () => {
+
+      socket.on('count-users', (count) => {
+        console.log(count);
+      });
+
+      socket.emit('join', {slug: 'perceguindo-seus-sonhos-fso9ln'});
+
+    });
 
   }
 
   render() {
 
-    const { name, email, password } =  this.state;
-    //console.log('Socket -> ', this.state.socket);
+    const { name, email, password, socket } =  this.state;
+    
+    this.broadcast(socket);
+  
     return (
       <div>
         <NavBroadcast />
