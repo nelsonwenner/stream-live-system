@@ -4,7 +4,6 @@ import { LiveStatus } from '../../../database/entities/live.entity';
 import { SlugOTG } from '../../../database/models/live.tdo';
 import { ConfigService } from '@nestjs/config';
 import { Socket, Server } from 'socket.io';
-import { Logger } from '@nestjs/common';
 import { promisify } from 'util';
 
 @WebSocketGateway({namespace: 'live'})
@@ -37,6 +36,8 @@ export class LiveSocketService implements OnGatewayInit {
 
       this.validadeView(slug);
 
+      client.join(slug);
+
       console.log(`\n[X] join: ${client.id}`);
 
       await redisSet(client.id, slug);
@@ -44,7 +45,7 @@ export class LiveSocketService implements OnGatewayInit {
       const client_id = await redisGet(slug);
 
       client.emit('get-broadcaster', {client_id: client_id});
-
+      
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
@@ -156,6 +157,6 @@ export class LiveSocketService implements OnGatewayInit {
   }
 
   getUsersConnected(client: Socket, room: string) {
-    return room in client.adapter.rooms ? client.adapter.rooms[room] : null;
+    return room in client.adapter.rooms ? client.adapter.rooms[room].length : 0;
   }
 }
