@@ -45,7 +45,7 @@ export class LiveSocketService implements OnGatewayInit {
       const client_id = await redisGet(slug);
 
       client.emit('get-broadcaster', {client_id: client_id});
-      console.log('\nTESTS -> ', client.adapter.rooms[slug])
+      
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
