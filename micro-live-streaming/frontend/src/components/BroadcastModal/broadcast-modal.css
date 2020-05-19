@@ -25,6 +25,13 @@
   background-color: rgba(59, 56, 69, 0.664) !important;
 }
 
+.container-form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
 .error { 
   position: absolute;
   top: 310px;

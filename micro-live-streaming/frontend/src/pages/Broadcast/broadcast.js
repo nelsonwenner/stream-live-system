@@ -3,7 +3,7 @@ import './broadcast.css';
 
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
-import NavBroadcast from '../../components/nav/NavBroadcast';
+import NavBroadcast from '../../components/common/nav/NavBroadcast';
 import useBroadcast from '../../hooks/useBroadcast';
 import Modal from 'react-modal';
 

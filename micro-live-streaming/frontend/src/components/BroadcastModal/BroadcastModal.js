@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import './broadcast-modal.css';
 
-import CustomButton from '../CustomButton/CustomButton';
-import CustomInput from '../CustomInput/CustomInput';
+import CustomButton from '../common/CustomButton/CustomButton';
+import CustomInput from '../common/CustomInput/CustomInput';
 
 import Modal from 'react-modal';
 Modal.setAppElement('body');
