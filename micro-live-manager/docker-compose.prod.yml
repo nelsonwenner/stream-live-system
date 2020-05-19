@@ -10,6 +10,7 @@ services:
       - ./backend:/backend/src
     ports: 
       - "3333:3333"
+      - "9000:9000"
     depends_on: 
       - database
     networks:
