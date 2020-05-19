@@ -93,7 +93,7 @@ export class LiveSocketService implements OnGatewayInit {
       
       const { redisGet, redisSet  } = LiveSocketService.redisClient(client);
       const slug = await redisGet(client.id);
-
+      
       if (!slug) {
         throw new Error('Not authorized');
       }
@@ -138,8 +138,8 @@ export class LiveSocketService implements OnGatewayInit {
 
   private async validadeBroadcast(slug: string, password: string){
     const obj = await this.repoLive.liveRepository.findOne({where: {slug: slug}});
-
-    if (obj && (await obj.comparePassword(password))) { throw new Error('Not Authorized'); }
+  
+    if (!obj || !(await obj.comparePassword(password))) { throw new Error('Not Authorized'); }
 
     if (obj.status !== LiveStatus.PENDING) { throw new Error('The live status must be pending'); }
 
