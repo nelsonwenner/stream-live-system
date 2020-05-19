@@ -16,7 +16,7 @@ export class LiveService {
   }
 
   async showlive(slug: string) {
-    return this.repoService.liveRepository.findOneOrFail({where: {slug: slug}});
+    return (await this.repoService.liveRepository.findOneOrFail({where: {slug: slug}})).serializer();
   }
 
   async create(data) {
