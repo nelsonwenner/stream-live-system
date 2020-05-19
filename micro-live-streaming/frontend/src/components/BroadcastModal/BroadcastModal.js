@@ -12,11 +12,15 @@ const BroadcastModal = ({open, onClose}) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
+  const [error, setError] = useState('');
 
   const handlerClose = () => {
+    if (!name || !email || !password) {
+      return setError('Fill in all the fields');
+    }
     onClose({name, email, password});
   }
-
+  
   return (
     <Modal
       isOpen={ open }
@@ -33,7 +37,7 @@ const BroadcastModal = ({open, onClose}) => {
             placeholder={'Name'}
             name={'name'}
             value={name}
-            onChange={(event) => setName(event.target.value)}
+            onChange={ (event) => setName(event.target.value) }
           />
 
           <CustomInput
@@ -42,7 +46,7 @@ const BroadcastModal = ({open, onClose}) => {
             placeholder={'E-mail'}
             name={'email'}
             value={email}
-            onChange={(event) => setEmail(event.target.value)}
+            onChange={ (event) => setEmail(event.target.value) }
           />
 
           <CustomInput
@@ -51,14 +55,22 @@ const BroadcastModal = ({open, onClose}) => {
             placeholder={'Password'}
             name={'password'}
             value={password}
-            onChange={(event) => setPassword(event.target.value)}
+            onChange={ (event) => setPassword(event.target.value) }
           />
+
+          {
+            error && (
+              <div className="error">
+                <p style={{color: 'red'}}>{ error }</p>
+              </div>
+            )
+          }
 
           <CustomButton
             typeBtn="button"
             className={'btn btn-outlined purple-btn'}
             children={'Done'}
-            onClick={handlerClose}
+            onClick={ handlerClose }
           />
         </div>
       </form>

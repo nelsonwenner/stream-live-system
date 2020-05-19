@@ -5,7 +5,7 @@ import Peer from "peerjs";
 const useBroadcast = (data) => {
 
   const { start, stop, liveSlug, password, videoRef } = data;
-  
+
   const [error, setError] = useState({message: '', name: ''});
   const [usersConnected, setUserConnected] = useState(0);
   const peerRef = useRef();
@@ -22,7 +22,7 @@ const useBroadcast = (data) => {
 
     socket.on('connect', () => {
 
-      //socket.emit('join', {slug: liveSlug});
+      socket.emit('join', {slug: liveSlug, password: password});
 
       socket.on('count-users', (count) => {
         setUserConnected(count);
