@@ -1,10 +1,10 @@
 import React from 'react'
 import './custom-button.css';
 
-const CreateButton = ({ typeBtn, children, className = '' }) => (
-  <button type={typeBtn} className={`${className}`}>
+const CustomButton = ({ typeBtn, children, onClick, className = '' }) => (
+  <button type={typeBtn} className={`${className}`} onClick={onClick}>
     {children}
   </button>
 )
 
-export default CreateButton;
+export default CustomButton;

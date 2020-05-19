@@ -2,62 +2,37 @@ import React, { useState, useEffect } from 'react';
 import './broadcast.css';
 
 import ContainerVideo from '../../components/container-video/ContainerVideo';
-import CustomButton from '../../components/CustomButton/CustomButton';
-import CustomInput from '../../components/CustomInput/CustomInput';
+import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
 import NavBroadcast from '../../components/nav/NavBroadcast';
 import Modal from 'react-modal';
 
 Modal.setAppElement('body');
 
 const Broadcast = () => {
+  const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(true);
 
-  const [openModal, setOpenModal] = useState(false);
+  const [userInfo, setUserInfo] = useState({
+    name: "",
+    email: "",
+    password: "",
+    is_broadcaster: true
+  });
 
   return (
-    <div>
+    <>
+      {console.log(userInfo)}
       <NavBroadcast />
       <ContainerVideo />
 
-      <Modal
-        isOpen={ openModal }
-        onRequestClose={ setOpenModal(true) }
-        contentLabel="Example Modal">
-        
-        <form >
-          <div className="container-form">
-            <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Broadcast live</h1>
-
-            <CustomInput
-              classs={'mt-40'}
-              type={'text'}
-              placeholder={'Name'}
-              name={'name'}
-            />
-
-            <CustomInput
-              classs={'mt-40'}
-              type={'text'}
-              placeholder={'E-mail'}
-              name={'email'}
-            />
-
-            <CustomInput
-              classs={'mt-40'}
-              type={'password'}
-              placeholder={'Password'}
-              name={'password'}
-            />
-
-            <CustomButton
-              typeBtn="submit"
-              className={'btn btn-outlined purple-btn'}
-              children={'Done'}
-            />
-            
-          </div>
-        </form>
-      </Modal>
-    </div>
+      <BroadcastModal
+        open={openBroadcasterDialog}
+        onClose={(formData) => {
+          setUserInfo((prevState) => ({...prevState, ...formData}));
+          setOpenBroadcasterDialog(false)
+        }}
+      />
+      
+    </>
   )
 }
 

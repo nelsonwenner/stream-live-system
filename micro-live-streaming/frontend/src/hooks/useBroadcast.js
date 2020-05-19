@@ -5,7 +5,7 @@ import Peer from "peerjs";
 const useBroadcast = (data) => {
 
   const { start, stop, liveSlug, password, videoRef } = data;
-
+  
   const [error, setError] = useState({message: '', name: ''});
   const [usersConnected, setUserConnected] = useState(0);
   const peerRef = useRef();
