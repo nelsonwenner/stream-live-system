@@ -31,7 +31,7 @@ const useBroadcast = (data) => {
       }
     }
     load();
-  }, [liveSlug, error])
+  }, [liveSlug, error]);
   
   useEffect(() => {
 
@@ -47,6 +47,23 @@ const useBroadcast = (data) => {
     });
 
   }, [liveSlug, socket]);
+
+  useEffect(() => {
+
+    if (!streamRef || !start || !socket || !peerRef.current) { return }
+
+    console.log('Initialized peer connection...');
+
+    peerRef.current = new Peer({
+      host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
+      port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
+    });
+
+    peerRef.current.on('open', (peer_id) => {
+      console.log('BoradcastPeer id: ', peer_id);
+      socket.emit('set-broadcaster', {client_id: peer_id, password: password});
+    });
+  });
 
   return { usersConnected }
 }

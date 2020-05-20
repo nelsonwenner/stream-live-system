@@ -16,7 +16,7 @@ const Broadcast = (props) => {
   const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
   
   const { usersConnected } = useBroadcast({start: userInfo.name !== '', liveSlug: slug })
-
+  
   console.log('Users Connected: ', usersConnected);
   return (
     <>
