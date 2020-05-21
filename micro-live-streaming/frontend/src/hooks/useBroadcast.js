@@ -24,7 +24,6 @@ const useBroadcast = (data) => {
     if (error) { return }
 
     const load = async () => {
-      console.log("oi")
       try {
         setLive(await getLive(liveSlug));
       } catch (error) {

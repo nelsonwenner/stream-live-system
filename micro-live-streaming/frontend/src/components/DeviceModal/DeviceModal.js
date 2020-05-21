@@ -3,9 +3,12 @@ import './device-modal.css';
 
 import CustomButton from '../common/CustomButton/CustomButton';
 
-const DeviceModal = (props) => {
-  const { open, onChange, onClose } = props;
+import Modal from 'react-modal';
 
+Modal.setAppElement('body');
+
+const DeviceModal = ({ open, onChange, onClose }) => {
+ 
   const [audioInputId, setAudioInputid] = useState('');
   const [videoId, setVideoId] = useState('');
   const [devices, setDevices] = useState({audioInputs: [], videos: []});

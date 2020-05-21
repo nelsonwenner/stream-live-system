@@ -1,7 +1,7 @@
 import React from 'react';
 import './nav-broadcast.css';
 
-const NavBroadcast = ({}) => {
+const NavBroadcast = ({setOpenDevicesDialog}) => {
   return (
     <header>
       <div className="header">
@@ -10,7 +10,7 @@ const NavBroadcast = ({}) => {
         <ul className="nav">
           <li>stop</li>
           <li>
-            <div className="options">
+            <div className="options" onClick={() => (setOpenDevicesDialog(true)) }>
               <span></span>
               <span></span>
               <span></span>
