@@ -9,7 +9,13 @@ const NavBroadcast = ({}) => {
         
         <ul className="nav">
           <li>stop</li>
-          <li>options</li>
+          <li>
+            <div className="options">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </li>
         </ul>
       </div>
     </header>

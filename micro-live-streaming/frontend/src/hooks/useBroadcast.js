@@ -9,6 +9,7 @@ const useBroadcast = (data) => {
 
   const [error, setError] = useState('');
   const [usersConnected, setUserConnected] = useState(0);
+  const [stream, setStream] = useState();
   const [live, setLive] = useState({});
   const peerRef = useRef();
   const streamRef = useRef();
@@ -23,6 +24,7 @@ const useBroadcast = (data) => {
     if (error) { return }
 
     const load = async () => {
+      console.log("oi")
       try {
         setLive(await getLive(liveSlug));
       } catch (error) {
@@ -63,9 +65,35 @@ const useBroadcast = (data) => {
       console.log('BoradcastPeer id: ', peer_id);
       socket.emit('set-broadcaster', {client_id: peer_id, password: password});
     });
-  });
 
-  return { usersConnected }
+    peerRef.current.on('connection', (connect) => {
+      const call = peerRef.current.call(connect.peer, streamRef.current);
+      if (call) {
+        console.log('new call: ', call);
+      }
+    });
+  }, [start, password, stream, socket, peerRef]);
+
+  const loadStream = useCallback(({audioInputId, videoId}) => {
+    navigator
+    .mediaDevices
+    .getUserMedia({
+      audio: {
+        deviceId: {exact: audioInputId}
+      },
+      video: {
+        deviceId: {exact: videoId}, width: {ideal: 1280}, height: {ideal: 720}
+      }
+    })
+    .then((streaming => {
+      if (!streaming) { return }
+      streamRef.current = streaming;
+      setStream(streaming)
+      videoRef.current.srcObject = streaming;
+    })).catch(console.error);
+  }, [videoRef]);
+  
+  return { live, usersConnected, loadStream }
 }
 
 export default useBroadcast;

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import './broadcast.css';
 
 import ContainerVideo from '../../components/container-video/ContainerVideo';
@@ -11,12 +11,21 @@ Modal.setAppElement('body');
 
 const Broadcast = (props) => {
   const { slug } = props.match.params;
-  const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(true);
+  const videoRef = useRef(null);
+  const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
 
   const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
   
-  const { usersConnected } = useBroadcast({start: userInfo.name !== '', liveSlug: slug })
-  
+  const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', liveSlug: slug, videoRef: videoRef });
+
+  useEffect(() => {
+    setOpenBroadcasterDialog(false);
+  }, [live]);
+
+  const onDevicesChange = useCallback((devices) => {    
+    loadStream(devices);
+  }, [loadStream]);
+
   console.log('Users Connected: ', usersConnected);
   return (
     <>
