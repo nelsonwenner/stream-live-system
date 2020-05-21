@@ -29,7 +29,7 @@ const BroadcastModal = ({open, onClose}) => {
       
       <form >
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Broadcast live</h1>
+          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center', marginBottom: 19 }}>Broadcast live</h1>
 
           <CustomInput
             classs={'mt-40'}

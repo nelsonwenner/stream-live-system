@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './device-modal.css';
 
 import CustomButton from '../common/CustomButton/CustomButton';
@@ -13,6 +13,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   const [videoId, setVideoId] = useState('');
   const [devices, setDevices] = useState({audioInputs: [], videos: []});
   const [captureStream, setCaptureStream] = useState({captureStream: []});
+  const [isCaptureStream, setIsCaptureStream] = useState(false);
 
   useEffect(() => {
     navigator
@@ -27,21 +28,33 @@ const DeviceModal = ({ open, onChange, onClose }) => {
       const audioInputs = devices.filter(device => device.kind === 'audioinput');
       const videos = devices.filter(device => device.kind === 'videoinput');
       
-      if (!!audioInputs && !!videos) {
-        const captureStream = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
-        setCaptureStream({captureStream: captureStream});
-        const video = document.getElementById('video')
-        video.srcObject = captureStream; 
-        console.log('srcObject: ', video.srcObject)
-      }
-
       setDevices({audioInputs: audioInputs, videos: videos});
     } catch (error) {
       console.error(error);
     }
   }
+
+  useEffect(() => {
+
+    if (isCaptureStream) {
+      const load =  async () => {
+        const captureStreaming = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
+        setCaptureStream({captureStream: captureStreaming});
+      }
+      load();
+    } 
+  }, [isCaptureStream]);
   
   useEffect(() => {
+
+    if (isCaptureStream) {
+      onChange({captureStream: captureStream});
+    }
+
+  }, [captureStream])
+  
+  useEffect(() => {
+
     if (devices.audioInputs.length && audioInputId === '') {
       setAudioInputid(devices.audioInputs[0].deviceId);
     }
@@ -51,12 +64,13 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   }, [devices, audioInputId, videoId]);
 
   useEffect(() => {
+    
     if (audioInputId === '' || videoId === '') {
-      return onChange({captureStream});
+      return;
     }
 
     onChange({audioInputId, videoId});
-  }, [onChange, audioInputId, videoId, captureStream]);
+  }, [onChange, audioInputId, videoId]);
 
   const handlerClose = () => {
     onClose();
@@ -86,6 +100,11 @@ const DeviceModal = ({ open, onChange, onClose }) => {
             onChange={ (selected) => setVideoId(selected) }
           />
 
+          <DeviceSelect
+            label={'Capture Streaming'}
+            onChange={ (selected) => setIsCaptureStream(selected === 'Capture Streaming') }
+          />
+
           <CustomButton
             typeBtn="button"
             className={'btn btn-outlined purple-btn'}
@@ -106,11 +125,23 @@ const DeviceSelect = ({value, label ,devices, onChange}) => {
         <div className="label">{label}</div>
         <select className="select mt-30" onChange={(event) => onChange(event.target.value) } value={ value }>
           {
-            devices.map((device, key) => (
-              <option value={ device.deviceId } key={ key }>
-                { device.label }
-              </option>
-            ))
+            devices 
+              ? devices.map((device, key) => (
+                <option value={ device.deviceId } key={ key }>
+                  { device.label }
+                </option>
+              ))
+
+              : (
+                  <>
+                    <option defaultValue={'Not selected'} value={ 'Not selected' }>
+                      { 'Not selected' }
+                    </option>
+                    <option value={ value }>
+                      { label }
+                    </option>
+                  </>
+                )
           }
         </select>
       </label>

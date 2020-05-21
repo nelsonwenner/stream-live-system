@@ -75,9 +75,9 @@ const useBroadcast = (data) => {
 
   const loadStream = useCallback((props) => {
     const {audioInputId, videoId, captureStream} = props;
-
+    
     if ((audioInputId === undefined || videoId === undefined) && !!captureStream.captureStream.id) {
-      videoRef.current =  captureStream;
+      videoRef.current = captureStream.captureStream;
       setStream(captureStream)
       return
     }
@@ -93,10 +93,9 @@ const useBroadcast = (data) => {
       }
     })
     .then((streaming => {
-      if (!streaming) { return }
       streamRef.current = streaming;
       setStream(streaming)
-      videoRef.current.srcObject = streaming;
+      videoRef.current = streaming;
     })).catch(console.error);
   }, [videoRef]);
   

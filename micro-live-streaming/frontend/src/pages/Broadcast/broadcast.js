@@ -24,20 +24,22 @@ const Broadcast = (props) => {
     setOpenBroadcasterDialog(live !== null);
   }, [live]);
 
-  const onDevicesChange = useCallback((devices) => {    
+  const onDevicesChange = useCallback((devices) => {
+  
     loadStream(devices);
+
   }, [loadStream]);
 
   console.log('Users Connected: ', usersConnected);
-  console.log('VideoRef -> ', videoRef.current)
+ 
   return (
     <>
       <NavBroadcast
         setOpenDevicesDialog={ setOpenDevicesDialog }
       />
 
-      <ContainerVideo
-      
+      <ContainerVideo 
+        videoRef={ videoRef.current }
       />
 
       <DeviceModal 
