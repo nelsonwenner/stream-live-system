@@ -21,7 +21,7 @@ const Broadcast = (props) => {
   const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', liveSlug: slug, videoRef: videoRef });
 
   useEffect(() => {
-    setOpenBroadcasterDialog(false);
+    setOpenBroadcasterDialog(live !== null);
   }, [live]);
 
   const onDevicesChange = useCallback((devices) => {    
@@ -36,7 +36,7 @@ const Broadcast = (props) => {
       />
 
       <ContainerVideo />
-      
+
       <DeviceModal 
         open={ openDevicesDialog }
         onChange={ onDevicesChange }

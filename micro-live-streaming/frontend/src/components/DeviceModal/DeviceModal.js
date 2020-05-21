@@ -60,7 +60,21 @@ const DeviceModal = ({ open, onChange, onClose }) => {
       
       <form >
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Broadcast live</h1>
+          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Devices Audio and Video</h1>
+
+          <DeviceSelect
+            label={'Microphone'}
+            value={ audioInputId }
+            devices={ devices.audioInputs }
+            onChange={ (selected) => setAudioInputid(selected) }
+          />
+
+          <DeviceSelect
+            label={'Camera'}
+            value={ videoId }
+            devices={ devices.videos }
+            onChange={ (selected) => setVideoId(selected) }
+          />
 
           <CustomButton
             typeBtn="button"
@@ -68,9 +82,29 @@ const DeviceModal = ({ open, onChange, onClose }) => {
             children={'Done'}
             onClick={ handlerClose }
           />
+
         </div>
       </form>
     </Modal>
+  )
+}
+
+const DeviceSelect = ({value, label ,devices, onChange}) => {
+  return (
+    <div>
+      <label>
+        <div className="label">{label}</div>
+        <select className="select mt-30" onChange={(event) => onChange(event.target.value) } value={ value }>
+          {
+            devices.map((device, key) => (
+              <option value={ device.deviceId } key={ key }>
+                { device.label }
+              </option>
+            ))
+          }
+        </select>
+      </label>
+    </div>
   )
 }
 
