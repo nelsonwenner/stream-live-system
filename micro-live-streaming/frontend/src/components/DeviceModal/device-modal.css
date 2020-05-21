@@ -31,3 +31,26 @@
   align-items: center;
   justify-content: center;
 }
+
+.select {
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1;
+  width: 550px;
+  color: #495057;
+  background-color: #e9ecef;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  border-width: 1px;
+}
+
+.mt-30 {
+  margin-top: 30px;
+}
+
+.label {
+  position: relative;
+  top: 30px;
+  font-size: 12px;
+}

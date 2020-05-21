@@ -1,14 +1,19 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import './device-modal.css';
 
 import CustomButton from '../common/CustomButton/CustomButton';
 
-const DeviceModal = (props) => {
-  const { open, onChange, onClose } = props;
+import Modal from 'react-modal';
 
+Modal.setAppElement('body');
+
+const DeviceModal = ({ open, onChange, onClose }) => {
+ 
   const [audioInputId, setAudioInputid] = useState('');
   const [videoId, setVideoId] = useState('');
   const [devices, setDevices] = useState({audioInputs: [], videos: []});
+  const [captureStream, setCaptureStream] = useState({captureStream: []});
+  const [isCaptureStream, setIsCaptureStream] = useState(false);
 
   useEffect(() => {
     navigator
@@ -22,6 +27,7 @@ const DeviceModal = (props) => {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const audioInputs = devices.filter(device => device.kind === 'audioinput');
       const videos = devices.filter(device => device.kind === 'videoinput');
+      
       setDevices({audioInputs: audioInputs, videos: videos});
     } catch (error) {
       console.error(error);
@@ -29,6 +35,26 @@ const DeviceModal = (props) => {
   }
 
   useEffect(() => {
+
+    if (isCaptureStream) {
+      const load =  async () => {
+        const captureStreaming = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
+        setCaptureStream({captureStream: captureStreaming});
+      }
+      load();
+    } 
+  }, [isCaptureStream]);
+  
+  useEffect(() => {
+
+    if (isCaptureStream) {
+      onChange({captureStream: captureStream});
+    }
+
+  }, [captureStream])
+  
+  useEffect(() => {
+
     if (devices.audioInputs.length && audioInputId === '') {
       setAudioInputid(devices.audioInputs[0].deviceId);
     }
@@ -38,6 +64,7 @@ const DeviceModal = (props) => {
   }, [devices, audioInputId, videoId]);
 
   useEffect(() => {
+    
     if (audioInputId === '' || videoId === '') {
       return;
     }
@@ -57,7 +84,26 @@ const DeviceModal = (props) => {
       
       <form >
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Broadcast live</h1>
+          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Devices Audio and Video</h1>
+
+          <DeviceSelect
+            label={'Microphone'}
+            value={ audioInputId }
+            devices={ devices.audioInputs }
+            onChange={ (selected) => setAudioInputid(selected) }
+          />
+
+          <DeviceSelect
+            label={'Camera'}
+            value={ videoId }
+            devices={ devices.videos }
+            onChange={ (selected) => setVideoId(selected) }
+          />
+
+          <DeviceSelect
+            label={'Capture Streaming'}
+            onChange={ (selected) => setIsCaptureStream(selected === 'Capture Streaming') }
+          />
 
           <CustomButton
             typeBtn="button"
@@ -65,9 +111,41 @@ const DeviceModal = (props) => {
             children={'Done'}
             onClick={ handlerClose }
           />
+
         </div>
       </form>
     </Modal>
+  )
+}
+
+const DeviceSelect = ({value, label ,devices, onChange}) => {
+  return (
+    <div>
+      <label>
+        <div className="label">{label}</div>
+        <select className="select mt-30" onChange={(event) => onChange(event.target.value) } value={ value }>
+          {
+            devices 
+              ? devices.map((device, key) => (
+                <option value={ device.deviceId } key={ key }>
+                  { device.label }
+                </option>
+              ))
+
+              : (
+                  <>
+                    <option defaultValue={'Not selected'} value={ 'Not selected' }>
+                      { 'Not selected' }
+                    </option>
+                    <option value={ value }>
+                      { label }
+                    </option>
+                  </>
+                )
+          }
+        </select>
+      </label>
+    </div>
   )
 }
 

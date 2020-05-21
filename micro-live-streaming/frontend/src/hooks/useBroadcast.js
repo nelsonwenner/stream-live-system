@@ -24,7 +24,6 @@ const useBroadcast = (data) => {
     if (error) { return }
 
     const load = async () => {
-      console.log("oi")
       try {
         setLive(await getLive(liveSlug));
       } catch (error) {
@@ -74,7 +73,15 @@ const useBroadcast = (data) => {
     });
   }, [start, password, stream, socket, peerRef]);
 
-  const loadStream = useCallback(({audioInputId, videoId}) => {
+  const loadStream = useCallback((props) => {
+    const {audioInputId, videoId, captureStream} = props;
+    
+    if ((audioInputId === undefined || videoId === undefined) && !!captureStream.captureStream.id) {
+      videoRef.current = captureStream.captureStream;
+      setStream(captureStream)
+      return
+    }
+    
     navigator
     .mediaDevices
     .getUserMedia({
@@ -86,10 +93,9 @@ const useBroadcast = (data) => {
       }
     })
     .then((streaming => {
-      if (!streaming) { return }
       streamRef.current = streaming;
       setStream(streaming)
-      videoRef.current.srcObject = streaming;
+      videoRef.current = streaming;
     })).catch(console.error);
   }, [videoRef]);
   
