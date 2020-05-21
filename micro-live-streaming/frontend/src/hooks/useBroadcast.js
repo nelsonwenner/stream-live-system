@@ -73,7 +73,15 @@ const useBroadcast = (data) => {
     });
   }, [start, password, stream, socket, peerRef]);
 
-  const loadStream = useCallback(({audioInputId, videoId}) => {
+  const loadStream = useCallback((props) => {
+    const {audioInputId, videoId, captureStream} = props;
+
+    if ((audioInputId === undefined || videoId === undefined) && !!captureStream.captureStream.id) {
+      videoRef.current =  captureStream;
+      setStream(captureStream)
+      return
+    }
+    
     navigator
     .mediaDevices
     .getUserMedia({

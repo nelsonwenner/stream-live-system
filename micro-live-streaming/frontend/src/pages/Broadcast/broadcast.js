@@ -29,13 +29,16 @@ const Broadcast = (props) => {
   }, [loadStream]);
 
   console.log('Users Connected: ', usersConnected);
+  console.log('VideoRef -> ', videoRef.current)
   return (
     <>
       <NavBroadcast
         setOpenDevicesDialog={ setOpenDevicesDialog }
       />
 
-      <ContainerVideo />
+      <ContainerVideo
+      
+      />
 
       <DeviceModal 
         open={ openDevicesDialog }

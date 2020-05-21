@@ -10,7 +10,7 @@ const NavBroadcast = ({setOpenDevicesDialog}) => {
         <ul className="nav">
           <li>stop</li>
           <li>
-            <div className="options" onClick={() => (setOpenDevicesDialog(true)) }>
+            <div className="options" onClick={() => setOpenDevicesDialog(true) }>
               <span></span>
               <span></span>
               <span></span>

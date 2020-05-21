@@ -12,6 +12,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   const [audioInputId, setAudioInputid] = useState('');
   const [videoId, setVideoId] = useState('');
   const [devices, setDevices] = useState({audioInputs: [], videos: []});
+  const [captureStream, setCaptureStream] = useState({captureStream: []});
 
   useEffect(() => {
     navigator
@@ -25,12 +26,21 @@ const DeviceModal = ({ open, onChange, onClose }) => {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const audioInputs = devices.filter(device => device.kind === 'audioinput');
       const videos = devices.filter(device => device.kind === 'videoinput');
+      
+      if (!!audioInputs && !!videos) {
+        const captureStream = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
+        setCaptureStream({captureStream: captureStream});
+        const video = document.getElementById('video')
+        video.srcObject = captureStream; 
+        console.log('srcObject: ', video.srcObject)
+      }
+
       setDevices({audioInputs: audioInputs, videos: videos});
     } catch (error) {
       console.error(error);
     }
   }
-
+  
   useEffect(() => {
     if (devices.audioInputs.length && audioInputId === '') {
       setAudioInputid(devices.audioInputs[0].deviceId);
@@ -42,11 +52,11 @@ const DeviceModal = ({ open, onChange, onClose }) => {
 
   useEffect(() => {
     if (audioInputId === '' || videoId === '') {
-      return;
+      return onChange({captureStream});
     }
 
     onChange({audioInputId, videoId});
-  }, [onChange, audioInputId, videoId]);
+  }, [onChange, audioInputId, videoId, captureStream]);
 
   const handlerClose = () => {
     onClose();
