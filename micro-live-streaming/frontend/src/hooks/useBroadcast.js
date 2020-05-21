@@ -9,6 +9,7 @@ const useBroadcast = (data) => {
 
   const [error, setError] = useState('');
   const [usersConnected, setUserConnected] = useState(0);
+  const [stream, setStream] = useState();
   const [live, setLive] = useState({});
   const peerRef = useRef();
   const streamRef = useRef();
@@ -23,6 +24,7 @@ const useBroadcast = (data) => {
     if (error) { return }
 
     const load = async () => {
+      console.log("oi")
       try {
         setLive(await getLive(liveSlug));
       } catch (error) {
@@ -31,7 +33,7 @@ const useBroadcast = (data) => {
       }
     }
     load();
-  }, [liveSlug, error])
+  }, [liveSlug, error]);
   
   useEffect(() => {
 
@@ -48,7 +50,50 @@ const useBroadcast = (data) => {
 
   }, [liveSlug, socket]);
 
-  return { usersConnected }
+  useEffect(() => {
+
+    if (!streamRef || !start || !socket || !peerRef.current) { return }
+
+    console.log('Initialized peer connection...');
+
+    peerRef.current = new Peer({
+      host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
+      port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
+    });
+
+    peerRef.current.on('open', (peer_id) => {
+      console.log('BoradcastPeer id: ', peer_id);
+      socket.emit('set-broadcaster', {client_id: peer_id, password: password});
+    });
+
+    peerRef.current.on('connection', (connect) => {
+      const call = peerRef.current.call(connect.peer, streamRef.current);
+      if (call) {
+        console.log('new call: ', call);
+      }
+    });
+  }, [start, password, stream, socket, peerRef]);
+
+  const loadStream = useCallback(({audioInputId, videoId}) => {
+    navigator
+    .mediaDevices
+    .getUserMedia({
+      audio: {
+        deviceId: {exact: audioInputId}
+      },
+      video: {
+        deviceId: {exact: videoId}, width: {ideal: 1280}, height: {ideal: 720}
+      }
+    })
+    .then((streaming => {
+      if (!streaming) { return }
+      streamRef.current = streaming;
+      setStream(streaming)
+      videoRef.current.srcObject = streaming;
+    })).catch(console.error);
+  }, [videoRef]);
+  
+  return { live, usersConnected, loadStream }
 }
 
 export default useBroadcast;

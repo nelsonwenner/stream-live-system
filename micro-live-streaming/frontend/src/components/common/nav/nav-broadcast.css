@@ -18,9 +18,34 @@
 }
 
 .nav > li {
-  margin-left: 15px;
+  margin-left: 30px;
 }
 
 a {
   text-decoration: none;
+}
+
+.options {
+  position: relative;
+}
+
+span {
+  background-color: white;
+  width: 5px;
+  height: 5px;
+  position: absolute;
+  top: 0;
+  border-radius: 50%;
+}
+
+span:nth-child(1) {
+  top: 0.45rem;
+}
+
+span:nth-child(2) {
+  top: 1.05rem;
+}
+
+span:nth-child(3) {
+  top: 1.65rem;
 }
