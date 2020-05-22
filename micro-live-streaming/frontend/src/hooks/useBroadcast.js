@@ -45,7 +45,7 @@ const useBroadcast = (data) => {
     socket.on('connect', () => {
 
       socket.emit('join', {slug: liveSlug, password: password});
-      console.log('kkkkkkkk', {slug: liveSlug, password: password})
+    
       socket.on('authorization', (data) => {
       
         if (data.socket === socket.id) {
