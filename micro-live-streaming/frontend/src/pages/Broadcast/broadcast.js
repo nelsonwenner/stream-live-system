@@ -17,13 +17,15 @@ const Broadcast = (props) => {
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
 
   const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
-  
-  const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', liveSlug: slug, videoRef: videoRef });
+
+  const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', password: userInfo.password, liveSlug: slug, videoRef: videoRef });
 
   useEffect(() => {
-    setOpenBroadcasterDialog(live !== null);
-  }, [live]);
 
+    setOpenBroadcasterDialog(live !== null);
+    
+  }, [live]);
+  
   const onDevicesChange = useCallback((devices) => {
   
     loadStream(devices);

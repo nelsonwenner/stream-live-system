@@ -28,7 +28,7 @@ const useBroadcast = (data) => {
         setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
-        setError(error)
+        setError(error);
       }
     }
     load();
@@ -50,8 +50,8 @@ const useBroadcast = (data) => {
   }, [liveSlug, socket]);
 
   useEffect(() => {
-
-    if (!streamRef || !start || !socket || !peerRef.current) { return }
+   
+    if (!stream || !start || !socket || peerRef.current) { return }
 
     console.log('Initialized peer connection...');
 
@@ -78,8 +78,9 @@ const useBroadcast = (data) => {
     
     if ((audioInputId === undefined || videoId === undefined) && !!captureStream.captureStream.id) {
       videoRef.current = captureStream.captureStream;
-      setStream(captureStream)
-      return
+      streamRef.current = captureStream.captureStream;
+      setStream(captureStream.captureStream);
+      return;
     }
     
     navigator
@@ -93,10 +94,17 @@ const useBroadcast = (data) => {
       }
     })
     .then((streaming => {
+
+      if (!streaming) { return }
+
       streamRef.current = streaming;
-      setStream(streaming)
       videoRef.current = streaming;
-    })).catch(console.error);
+      setStream(streaming);
+    }))
+    .catch((error) => {
+      console.log(error);
+    });
+
   }, [videoRef]);
   
   return { live, usersConnected, loadStream }
