@@ -34,6 +34,17 @@
   color: white;
 }
 
+.start-icon:before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f04d';
+  font-weight: 900;
+  display: flex;
+  position: relative;
+  top: 10px;
+  color: white;
+}
+
 .nav > li {
   margin-left: 30px;
 }
