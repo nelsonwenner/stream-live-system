@@ -19,8 +19,11 @@ const DeviceModal = ({ open, onChange, onClose }) => {
     navigator
     .mediaDevices
     .getUserMedia({audio: true, video: true})
-    .finally(() => loadDevices());
-  }, [])
+    .then(() => loadDevices())
+    .catch((error) => {
+      console.log(error);
+    });
+  }, []);
 
   const loadDevices = async () => {
     try {
@@ -35,14 +38,17 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   }
 
   useEffect(() => {
-
-    if (isCaptureStream) {
-      const load =  async () => {
-        const captureStreaming = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
-        setCaptureStream({captureStream: captureStreaming});
-      }
-      load();
-    } 
+    try {
+      if (isCaptureStream) {
+        const load =  async () => {
+          const captureStreaming = await navigator.mediaDevices.getDisplayMedia({video: {cursor: "always"}, audio: false});
+          setCaptureStream({captureStream: captureStreaming});
+        }
+        load();
+      } 
+    } catch (error) {
+      console.error(error);
+    }
   }, [isCaptureStream]);
   
   useEffect(() => {
@@ -58,9 +64,11 @@ const DeviceModal = ({ open, onChange, onClose }) => {
     if (devices.audioInputs.length && audioInputId === '') {
       setAudioInputid(devices.audioInputs[0].deviceId);
     }
+
     if (devices.videos.length && videoId === '') {
       setVideoId(devices.videos[0].deviceId);
     }
+    
   }, [devices, audioInputId, videoId]);
 
   useEffect(() => {
@@ -70,6 +78,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
     }
 
     onChange({audioInputId, videoId});
+
   }, [onChange, audioInputId, videoId]);
 
   const handlerClose = () => {
