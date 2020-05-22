@@ -33,8 +33,8 @@ export class LiveSocketService implements OnGatewayInit {
     try {
       const { slug } = data;
       const { redisGet, redisSet } = LiveSocketService.redisClient(client);
-
-      this.validadeView(slug);
+    
+      await this.validadeBroadcast(slug, data.password);
 
       client.join(slug);
 
@@ -49,6 +49,8 @@ export class LiveSocketService implements OnGatewayInit {
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
+
+      this.socket.to(slug).emit('authorization', {socket: client.id, auth: true});
 
       client.broadcast.to(slug).emit('count-users', countUsers);
 
@@ -138,8 +140,10 @@ export class LiveSocketService implements OnGatewayInit {
 
   private async validadeBroadcast(slug: string, password: string){
     const obj = await this.repoLive.liveRepository.findOne({where: {slug: slug}});
-  
-    if (!obj || !(await obj.comparePassword(password))) { throw new Error('Not Authorized'); }
+    
+    if (!obj) { throw new Error('Live not found'); }
+
+    if (!(await obj.comparePassword(password))) { throw new Error('Not Authorized'); }
 
     if (obj.status !== LiveStatus.PENDING) { throw new Error('The live status must be pending'); }
 
@@ -149,7 +153,7 @@ export class LiveSocketService implements OnGatewayInit {
   private async validadeView(slug: string) {
     const obj = await this.repoLive.liveRepository.findOne({where: {slug: slug}});
 
-    if (!obj) { throw new Error('Not authorized'); }
+    if (!obj) { throw new Error('Live not found'); }
 
     if (obj.status !== LiveStatus.PENDING) { throw new Error('The live status must be pending'); }
 

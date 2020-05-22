@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import './broadcast-modal.css';
 
 import CustomButton from '../common/CustomButton/CustomButton';
@@ -7,8 +7,8 @@ import CustomInput from '../common/CustomInput/CustomInput';
 import Modal from 'react-modal';
 Modal.setAppElement('body');
 
-const BroadcastModal = ({open, onClose}) => {
- 
+const BroadcastModal = ({open, onClose, errorRequests}) => {
+  
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -18,6 +18,7 @@ const BroadcastModal = ({open, onClose}) => {
     if (!name || !email || !password) {
       return setError('Fill in all the fields');
     }
+
     onClose({name, email, password});
   }
   
@@ -59,9 +60,17 @@ const BroadcastModal = ({open, onClose}) => {
           />
 
           {
-            error && (
+            error && (errorRequests === null) && (
               <div className="error">
                 <p style={{color: 'red'}}>{ error }</p>
+              </div>
+            )
+          }
+
+          {
+            errorRequests && (
+              <div className="error">
+                <p style={{color: 'red'}}>{ errorRequests.message } { errorRequests.name }</p>
               </div>
             )
           }

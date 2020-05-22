@@ -2,3 +2,16 @@
   padding-left: 60px;
   padding-top: 60px;
 }
+
+.countViews {
+  position: relative;
+  top: 20px;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.countViews > a {
+  position: relative;
+  left: 6px;
+  top: 1px;
+}
