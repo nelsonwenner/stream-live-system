@@ -6,11 +6,11 @@ const NavBroadcast = ({setOpenDevicesDialog}) => {
     <header>
       <div className="header">
         <a className="logo">Streaming Broadcast</a>
-        
+
         <ul className="nav">
-          <li>stop</li>
-          <li>
-            <div className="options" onClick={() => setOpenDevicesDialog(true) }>
+          <li className="stop-icon" onClick={ () => console.log('Stop...') }></li>
+          <li onClick={ () => setOpenDevicesDialog(true) }>
+            <div className="options">
               <span></span>
               <span></span>
               <span></span>

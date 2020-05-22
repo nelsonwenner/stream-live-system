@@ -15,6 +15,23 @@
 .nav {
   display: flex;
   justify-content: flex-start;
+  margin-bottom: 10px;
+}
+
+.stop {
+  position: relative;
+  top: 5px;
+}
+
+.stop-icon:before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f04b';
+  font-weight: 900;
+  display: flex;
+  position: relative;
+  top: 10px;
+  color: white;
 }
 
 .nav > li {
@@ -31,15 +48,14 @@ a {
 
 span {
   background-color: white;
-  width: 5px;
-  height: 5px;
+  width: 7px;
+  height: 7px;
   position: absolute;
-  top: 0;
   border-radius: 50%;
 }
 
 span:nth-child(1) {
-  top: 0.45rem;
+  top: 0.30rem;
 }
 
 span:nth-child(2) {
@@ -47,5 +63,5 @@ span:nth-child(2) {
 }
 
 span:nth-child(3) {
-  top: 1.65rem;
+  top: 1.80rem;
 }

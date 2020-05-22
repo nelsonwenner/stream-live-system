@@ -106,8 +106,43 @@ const useBroadcast = (data) => {
     });
 
   }, [videoRef]);
+
+  const stopStream = () => {
+    if (streamRef.current) {
+      const tracks = streamRef.current.getTracks();
+      tracks.forEach((track) => track.strop());
+    }
+  }
+
+  useEffect(() => {
+
+    if (error || !socket) { return; }
+
+    socket.on('error', (error) => {
+      console.log(error);
+
+      if (!error) { setError(error) }
+
+      stopStream();
+
+      if (peerRef.current) {
+        peerRef.current.disconnect();
+      }
+
+      if (videoRef.current) {
+        videoRef.current = null;
+      }
+    });
+
+    return () => {
+      
+      if (socket.connected) {
+        socket.disconnect();
+      }
+    }
+  }, [socket, peerRef, videoRef, error]);
   
-  return { live, usersConnected, loadStream }
+  return { live, error, usersConnected, loadStream }
 }
 
 export default useBroadcast;

@@ -15,10 +15,11 @@ const Broadcast = (props) => {
   const videoRef = useRef(null);
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
+  const [stopLive, setStopLive] = useState(false);
 
   const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
 
-  const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', password: userInfo.password, liveSlug: slug, videoRef: videoRef });
+  const { live, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', stop: stopLive, password: userInfo.password, liveSlug: slug, videoRef: videoRef });
 
   useEffect(() => {
 
@@ -51,7 +52,7 @@ const Broadcast = (props) => {
       />
 
       <BroadcastModal
-        open={openBroadcasterDialog}
+        open={ openBroadcasterDialog }
         onClose={(formData) => {
           setUserInfo((prevState) => ({...prevState, ...formData}));
           setOpenBroadcasterDialog(false)
