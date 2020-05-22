@@ -1,14 +1,16 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
+import { handleLiveError } from '../utils/handler.error';
 import { getLive } from '../service/Api';
 import io from "socket.io-client";
 import Peer from "peerjs";
 
 const useBroadcast = (data) => {
-
+  
   const { start, stop, liveSlug, password, videoRef } = data;
 
-  const [error, setError] = useState('');
+  const [error, setError] = useState(null);
   const [usersConnected, setUserConnected] = useState(0);
+  const [isAuth, setIsAuth] = useState(false);
   const [stream, setStream] = useState();
   const [live, setLive] = useState({});
   const peerRef = useRef();
@@ -17,7 +19,7 @@ const useBroadcast = (data) => {
   const socket = useMemo(() => {
     if (!start) { return null; }
     return io(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
-  }, [start]);
+  }, [start, password]);
 
   useEffect(() => {
 
@@ -28,10 +30,12 @@ const useBroadcast = (data) => {
         setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
-        setError(error);
+        setError(handleLiveError(error));
       }
     }
+
     load();
+
   }, [liveSlug, error]);
   
   useEffect(() => {
@@ -41,13 +45,21 @@ const useBroadcast = (data) => {
     socket.on('connect', () => {
 
       socket.emit('join', {slug: liveSlug, password: password});
+      console.log('kkkkkkkk', {slug: liveSlug, password: password})
+      socket.on('authorization', (data) => {
+      
+        if (data.socket === socket.id) {
+          setIsAuth(data.auth);
+        }
+
+      });
 
       socket.on('count-users', (count) => {
         setUserConnected(count);
       });
     });
 
-  }, [liveSlug, socket]);
+  }, [liveSlug, password, socket]);
 
   useEffect(() => {
    
@@ -106,8 +118,45 @@ const useBroadcast = (data) => {
     });
 
   }, [videoRef]);
+
+  const stopStream = () => {
+    if (streamRef.current) {
+      const tracks = streamRef.current.getTracks();
+      tracks.forEach((track) => track.strop());
+    }
+  }
+
+  useEffect(() => {
+
+    if (error || !socket) { return; }
+
+    socket.on('error', (error) => {
+      console.log(error);
+
+      if (error) {
+        setError(error);
+      }
+
+      stopStream();
+
+      if (peerRef.current) {
+        peerRef.current.disconnect();
+      }
+
+      if (videoRef.current) {
+        videoRef.current = null;
+      }
+    });
+
+    return () => {
+      
+      if (socket.connected) {
+        socket.disconnect();
+      }
+    }
+  }, [socket, peerRef, videoRef, error]);
   
-  return { live, usersConnected, loadStream }
+  return { isAuth, live, error, usersConnected, loadStream }
 }
 
 export default useBroadcast;

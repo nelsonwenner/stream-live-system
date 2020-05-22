@@ -33,7 +33,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
       
       setDevices({audioInputs: audioInputs, videos: videos});
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }
 
@@ -47,7 +47,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
         load();
       } 
     } catch (error) {
-      console.error(error);
+      console.log(error);
     }
   }, [isCaptureStream]);
   
@@ -108,9 +108,9 @@ const DeviceModal = ({ open, onChange, onClose }) => {
             devices={ devices.videos }
             onChange={ (selected) => setVideoId(selected) }
           />
-
+          
           <DeviceSelect
-            label={'Capture Streaming'}
+            label={'Capture Screen Streaming'}
             onChange={ (selected) => setIsCaptureStream(selected === 'Capture Streaming') }
           />
 

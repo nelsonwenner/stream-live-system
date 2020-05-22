@@ -22,4 +22,7 @@ export class LiveOTG {
 export class SlugOTG {
   @IsString()
   slug: string;
+
+  @IsString()
+  password: string;
 }
