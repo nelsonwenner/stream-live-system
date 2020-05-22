@@ -108,9 +108,9 @@ const DeviceModal = ({ open, onChange, onClose }) => {
             devices={ devices.videos }
             onChange={ (selected) => setVideoId(selected) }
           />
-
+          
           <DeviceSelect
-            label={'Capture Streaming'}
+            label={'Capture Screen Streaming'}
             onChange={ (selected) => setIsCaptureStream(selected === 'Capture Streaming') }
           />
 
