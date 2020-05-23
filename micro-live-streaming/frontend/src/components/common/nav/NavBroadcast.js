@@ -11,8 +11,8 @@ const NavBroadcast = ({setOpenDevicesDialog}) => {
 
         <ul className="nav">
           <li className={`${handlerIcon}`} onClick={ () => setHandlerIcon(handlerIcon == 'start-icon' ? 'stop-icon' : 'start-icon') }></li>
-          <li onClick={ () => setOpenDevicesDialog(true) }>
-            <div className="options">
+          <li>
+            <div className="options" onClick={ () => setOpenDevicesDialog(true) }>
               <span></span>
               <span></span>
               <span></span>
