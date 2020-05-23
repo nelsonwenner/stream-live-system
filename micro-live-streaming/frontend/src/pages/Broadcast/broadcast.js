@@ -17,9 +17,12 @@ const Broadcast = (props) => {
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
   const [stopLive, setStopLive] = useState(false);
 
-  const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
+  const [userInfo, setUserInfo] = useState({
+  name: '', email: '', password: '', is_broadcaster: true});
 
-  const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', stop: stopLive, password: userInfo.password, liveSlug: slug, videoRef: videoRef });
+  const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
+  start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
+  liveSlug: slug, videoRef: videoRef });
  
   useEffect(() => {
 
@@ -49,7 +52,8 @@ const Broadcast = (props) => {
         setOpenDevicesDialog={ setOpenDevicesDialog }
       />
 
-      <ContainerVideo 
+      <ContainerVideo
+        titleVideo={ live.title } 
         videoRef={ videoRef.current }
         countViews={ usersConnected }
       />
