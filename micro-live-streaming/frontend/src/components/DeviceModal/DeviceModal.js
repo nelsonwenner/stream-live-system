@@ -111,7 +111,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
           
           <DeviceSelect
             label={'Capture Screen Streaming'}
-            onChange={ (selected) => setIsCaptureStream(selected === 'Capture Streaming') }
+            onChange={ (selected) => setIsCaptureStream(selected === 'Capture Screen Streaming') }
           />
 
           <CustomButton

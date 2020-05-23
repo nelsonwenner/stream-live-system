@@ -10,6 +10,7 @@ const useBroadcast = (data) => {
 
   const [error, setError] = useState(null);
   const [usersConnected, setUserConnected] = useState(0);
+  const [viewers, setViewers] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
   const [stream, setStream] = useState();
   const [live, setLive] = useState({});
@@ -30,6 +31,7 @@ const useBroadcast = (data) => {
         setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
+        stopStream();
         setError(handleLiveError(error));
       }
     }
@@ -81,6 +83,7 @@ const useBroadcast = (data) => {
       const call = peerRef.current.call(connect.peer, streamRef.current);
       if (call) {
         console.log('new call: ', call);
+        setViewers((prevState) => [...prevState, call]);
       }
     });
   }, [start, password, stream, socket, peerRef]);
@@ -125,6 +128,20 @@ const useBroadcast = (data) => {
       tracks.forEach((track) => track.strop());
     }
   }
+
+  /*
+  useEffect(() => {
+
+    if (!peerRef.current || !stop || peerRef.current.disconnected || !socket) {
+      return;
+    }
+
+    socket.emit('finish-live', { password });
+
+    peerRef.current.disconnect();
+
+  }, [peerRef, stop, socket, password]);
+  */
 
   useEffect(() => {
 
