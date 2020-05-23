@@ -88,6 +88,35 @@ const useBroadcast = (data) => {
     });
   }, [start, password, stream, socket, peerRef]);
 
+  useEffect(() => {
+    
+    if (!peerRef.current || !stream || !viewers.length) {
+      return;
+    }
+
+    const viewersConnected = [];
+    let hasNewCall = false;
+
+    for(const viewer of viewers) {
+      const { localStream } = viewer;
+      
+      if (localStream && localStream.id === stream.id) {
+        viewersConnected.push(viewer);
+        break;
+      }
+
+      const call = peerRef.current.call(viewer.peer, stream);
+      if (call) {
+        hasNewCall = true;
+        viewersConnected.push(call);
+      }
+    }
+
+    if (hasNewCall) {
+      setViewers(viewersConnected);
+    }
+  }, [peerRef, viewers, stream]);
+
   const loadStream = useCallback((props) => {
     const {audioInputId, videoId, captureStream} = props;
     
