@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { handleLiveError } from '../utils/handler.error';
+import {useSnackbar} from "notistack";
 import { getLive } from '../service/Api';
 import io from "socket.io-client";
 import Peer from "peerjs";
@@ -9,6 +10,7 @@ const useViewer = (data) => {
   const { start, liveSlug, videoRef } = data;
   const [usersConnected, setUserConnected] = useState(0);
   const [error, setError] = useState(null);
+  const {enqueueSnackbar} = useSnackbar();
   const [live, setLive] = useState({});
   const peerRef = useRef();
 
@@ -77,5 +79,64 @@ const useViewer = (data) => {
     load();
 
   }, [liveSlug, error]);
+
+  useEffect(() => {
+
+    if (!start || !socket) { return; }
+
+    socket.on('connect', () => {
+
+      socket.on('get-broadcaster', (data) => {
+        connectBroadcaster(data);
+      });
+
+      socket.on('count-users', (count) => {
+        setUserConnected(count);
+      });
+
+      socket.on('finish-live', (live) => {
+        setLive(live);
+        enqueueSnackbar('The live finished', {variant: 'success'});
+        peerRef.current.disconnect();
+        socket.disconnect();
+      });
+
+      socket.emit('join', {slug: liveSlug});
+    });
+    return () => {
+      
+      if (socket.connected) {
+        socket.disconnect();
+      }
+    }
+  }, [start, socket, peerRef, liveSlug, connectBroadcaster, enqueueSnackbar]);
+
+  useEffect(() => {
+
+    if (error || !socket) { return; }
+
+    socket.on('error', (error) => {
+      console.log(error);
+
+      if (error) {
+        setError(error);
+      }
+
+      if (peerRef.current) {
+        peerRef.current.disconnect();
+      }
+
+      if (videoRef.current) {
+        videoRef.current = null;
+      }
+    });
+  }, [socket, peerRef, videoRef, error]);
+
+  const unload = useCallback(() => {
+    
+    if (socket && socket.connected) {
+      socket.emit('leave');
+    }
+  }, [socket]);
 
 }
