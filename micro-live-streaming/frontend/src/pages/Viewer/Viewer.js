@@ -3,6 +3,7 @@ import './viewer.css';
 
 import NavView from '../../components/common/nav/Nav';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
+import useViewer from '../../hooks/useViewer';
 
 const Viewer = (props) => {
   const [openUserInfoDialog, setOpenUserInfoDialog] = useState(false);
@@ -10,8 +11,19 @@ const Viewer = (props) => {
   const videoRef = useRef();
   
   const [userInfo, setUserInfo] = useState({
-    name: '', email: '', is_broadcaster: false}); 
+  name: '', email: '', is_broadcaster: false});
   
+  const { live, error, usersConnected } = useViewer({
+  start: true, liveSlug: slug, videoRef: videoRef});
+  
+  useEffect(() => {
+
+    if (videoRef.current) {
+      videoRef.current.play();
+    }
+
+  }, [userInfo, videoRef]);
+
   return (
     <>
       <NavView 
@@ -20,9 +32,9 @@ const Viewer = (props) => {
       />
 
       <ContainerVideo
-        titleVideo={ 'Test' } 
+        titleVideo={ live.title } 
         videoRef={ videoRef.current }
-        countViews={ 0 }
+        countViews={ usersConnected }
       />
       
     </>

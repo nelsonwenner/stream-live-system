@@ -46,7 +46,7 @@ const useBroadcast = (data) => {
 
     socket.on('connect', () => {
 
-      socket.emit('join', {slug: liveSlug, password: password});
+      socket.emit('join', {slug: liveSlug, password: password, isBroadcaster: true});
     
       socket.on('authorization', (data) => {
       

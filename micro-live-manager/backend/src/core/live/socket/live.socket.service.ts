@@ -31,10 +31,13 @@ export class LiveSocketService implements OnGatewayInit {
   async onJoin(@ConnectedSocket() client: Socket, @MessageBody() data: SlugOTG) {
 
     try {
-      const { slug } = data;
+      const { slug, password, isBroadcaster } = data;
       const { redisGet, redisSet } = LiveSocketService.redisClient(client);
-    
-      await this.validadeBroadcast(slug, data.password);
+      
+      if (isBroadcaster) {
+        await this.validadeBroadcast(slug, password);
+        this.socket.to(slug).emit('authorization', {socket: client.id, auth: true});
+      }
 
       client.join(slug);
 
@@ -44,13 +47,11 @@ export class LiveSocketService implements OnGatewayInit {
 
       const client_id = await redisGet(slug);
 
-      client.emit('get-broadcaster', {client_id: client_id});
+      client.emit('get-broadcaster', {peer_id: client_id});
       
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
-
-      this.socket.to(slug).emit('authorization', {socket: client.id, auth: true});
 
       client.broadcast.to(slug).emit('count-users', countUsers);
 

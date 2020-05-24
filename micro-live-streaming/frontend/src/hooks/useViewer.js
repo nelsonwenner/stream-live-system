@@ -1,6 +1,5 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { handleLiveError } from '../utils/handler.error';
-import {useSnackbar} from "notistack";
 import { getLive } from '../service/Api';
 import io from "socket.io-client";
 import Peer from "peerjs";
@@ -10,10 +9,8 @@ const useViewer = (data) => {
   const { start, liveSlug, videoRef } = data;
   const [usersConnected, setUserConnected] = useState(0);
   const [error, setError] = useState(null);
-  const {enqueueSnackbar} = useSnackbar();
   const [live, setLive] = useState({});
   const peerRef = useRef();
-
 
   const socket = useMemo(() => {
     if (!start) { return null; }
@@ -71,7 +68,6 @@ const useViewer = (data) => {
         setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
-        stopStream();
         setError(handleLiveError(error));
       }
     }
@@ -83,25 +79,24 @@ const useViewer = (data) => {
   useEffect(() => {
 
     if (!start || !socket) { return; }
-
+    
     socket.on('connect', () => {
-
       socket.on('get-broadcaster', (data) => {
         connectBroadcaster(data);
       });
 
       socket.on('count-users', (count) => {
+        console.log(count);
         setUserConnected(count);
       });
 
       socket.on('finish-live', (live) => {
         setLive(live);
-        enqueueSnackbar('The live finished', {variant: 'success'});
         peerRef.current.disconnect();
         socket.disconnect();
       });
 
-      socket.emit('join', {slug: liveSlug});
+      socket.emit('join', {slug: liveSlug, isBroadcaster: false});
     });
     return () => {
       
@@ -109,7 +104,7 @@ const useViewer = (data) => {
         socket.disconnect();
       }
     }
-  }, [start, socket, peerRef, liveSlug, connectBroadcaster, enqueueSnackbar]);
+  }, [start, socket, peerRef, liveSlug, connectBroadcaster]);
 
   useEffect(() => {
 
@@ -139,4 +134,15 @@ const useViewer = (data) => {
     }
   }, [socket]);
 
+  useEffect(() => {
+    window.addEventListener('beforeunload', unload);
+    return () => {
+      unload();
+      window.removeEventListener('beforeunload', unload);
+    }
+  }, [unload, socket]);
+
+  return { live, error, usersConnected }
 }
+
+export default useViewer;
