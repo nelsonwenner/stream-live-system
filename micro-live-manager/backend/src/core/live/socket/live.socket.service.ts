@@ -36,7 +36,6 @@ export class LiveSocketService implements OnGatewayInit {
       
       if (isBroadcaster) {
         await this.validadeBroadcast(slug, password);
-        this.socket.to(slug).emit('authorization', {socket: client.id, auth: true});
       }
 
       client.join(slug);
@@ -52,6 +51,8 @@ export class LiveSocketService implements OnGatewayInit {
       const countUsers = this.getUsersConnected(client, slug);
 
       client.emit('count-users', countUsers);
+
+      this.socket.to(slug).emit('authorization', {socket: client.id, auth: true});
 
       client.broadcast.to(slug).emit('count-users', countUsers);
 

@@ -6,12 +6,12 @@ import Peer from "peerjs";
 
 const useViewer = (data) => {
 
-  const { start, liveSlug, videoRef } = data;
+  const { start, liveSlug, videoRefViewer } = data;
   const [usersConnected, setUserConnected] = useState(0);
   const [error, setError] = useState(null);
   const [live, setLive] = useState({});
   const peerRef = useRef();
-
+  
   const socket = useMemo(() => {
     if (!start) { return null; }
     return io(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
@@ -19,7 +19,7 @@ const useViewer = (data) => {
 
   const connectBroadcaster = useCallback((data) => {
     console.log(data);
-    if (data.peer_id) { return; }
+    if (!data.peer_id) { return; }
 
     console.log('New broadcaster', data.peer_id);
 
@@ -52,12 +52,14 @@ const useViewer = (data) => {
       call.on('stream', (stream) => {
         console.log('New stream received: ', stream);
 
-        if (!videoRef.current || videoRef.current.id !== stream.id) {
-          videoRef.current = stream;
+        if (!videoRefViewer.current || videoRefViewer.current.id !== stream.id) {
+          videoRefViewer.current = stream;
+          const video = document.getElementById('video');
+          video.srcObject = stream; 
         }
       });
     });
-  }, [peerRef, videoRef]);
+  }, [peerRef, videoRefViewer]);
 
   useEffect(() => {
 
@@ -86,7 +88,6 @@ const useViewer = (data) => {
       });
 
       socket.on('count-users', (count) => {
-        console.log(count);
         setUserConnected(count);
       });
 
@@ -121,11 +122,11 @@ const useViewer = (data) => {
         peerRef.current.disconnect();
       }
 
-      if (videoRef.current) {
-        videoRef.current = null;
+      if (videoRefViewer.current) {
+        videoRefViewer.current = null;
       }
     });
-  }, [socket, peerRef, videoRef, error]);
+  }, [socket, peerRef, videoRefViewer, error]);
 
   const unload = useCallback(() => {
     

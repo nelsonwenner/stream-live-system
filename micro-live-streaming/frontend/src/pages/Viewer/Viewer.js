@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useCallback } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import './viewer.css';
 
 import NavView from '../../components/common/nav/Nav';
@@ -8,21 +8,21 @@ import useViewer from '../../hooks/useViewer';
 const Viewer = (props) => {
   const [openUserInfoDialog, setOpenUserInfoDialog] = useState(false);
   const { slug } = props.match.params;
-  const videoRef = useRef();
+  const videoRefViewer = useRef(null);
   
   const [userInfo, setUserInfo] = useState({
   name: '', email: '', is_broadcaster: false});
   
   const { live, error, usersConnected } = useViewer({
-  start: true, liveSlug: slug, videoRef: videoRef});
+  start: true, liveSlug: slug, videoRefViewer: videoRefViewer});
   
   useEffect(() => {
 
-    if (videoRef.current) {
-      videoRef.current.play();
+    if (videoRefViewer.current) {
+      videoRefViewer.current.play();
     }
 
-  }, [userInfo, videoRef]);
+  }, [userInfo, videoRefViewer]);
 
   return (
     <>
@@ -33,7 +33,7 @@ const Viewer = (props) => {
 
       <ContainerVideo
         titleVideo={ live.title } 
-        videoRef={ videoRef.current }
+        videoRef={ videoRefViewer.current }
         countViews={ usersConnected }
       />
       
