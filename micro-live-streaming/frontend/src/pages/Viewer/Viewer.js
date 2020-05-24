@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import './viewer.css';
 
 import NavView from '../../components/common/nav/Nav';
+import ViewerModal from '../../components/ViewerModal/ViewerModal';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import useViewer from '../../hooks/useViewer';
 
@@ -17,12 +18,12 @@ const Viewer = (props) => {
   start: true, liveSlug: slug, videoRefViewer: videoRefViewer});
   
   useEffect(() => {
-
-    if (videoRefViewer.current) {
-      videoRefViewer.current.play();
+    
+    if (live !== null && !error && userInfo.name === "") {
+      setOpenUserInfoDialog(true);
     }
 
-  }, [userInfo, videoRefViewer]);
+  }, [live, error, userInfo]);
 
   return (
     <>
@@ -35,6 +36,10 @@ const Viewer = (props) => {
         titleVideo={ live.title } 
         videoRef={ videoRefViewer.current }
         countViews={ usersConnected }
+      />
+
+      <ViewerModal
+        open={ openUserInfoDialog } 
       />
       
     </>
