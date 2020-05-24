@@ -4,7 +4,7 @@ import './broadcast.css';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
 import DeviceModal from '../../components/DeviceModal/DeviceModal';
-import NavBroadcast from '../../components/common/nav/NavBroadcast';
+import NavBroadcast from '../../components/common/nav/Nav';
 import useBroadcast from '../../hooks/useBroadcast';
 import Modal from 'react-modal';
 
@@ -50,6 +50,8 @@ const Broadcast = (props) => {
     <>
       <NavBroadcast
         setOpenDevicesDialog={ setOpenDevicesDialog }
+        titleLogo={ 'Streaming Broadcaster' }
+        isBroadcaster={ true }
       />
 
       <ContainerVideo
