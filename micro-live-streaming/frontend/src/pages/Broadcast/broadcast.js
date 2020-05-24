@@ -23,7 +23,7 @@ const Broadcast = (props) => {
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
   start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
   liveSlug: slug, videoRef: videoRef });
- 
+
   useEffect(() => {
 
     if (live) {

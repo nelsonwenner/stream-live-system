@@ -1,4 +1,5 @@
-import { IsString, IsOptional } from 'class-validator';
+import { IsString, IsOptional, IsBoolean } from 'class-validator';
+
 
 export class LiveOTG {
   @IsString()
@@ -25,4 +26,7 @@ export class SlugOTG {
 
   @IsString()
   password: string;
+
+  @IsBoolean()
+  isBroadcaster: boolean;
 }
