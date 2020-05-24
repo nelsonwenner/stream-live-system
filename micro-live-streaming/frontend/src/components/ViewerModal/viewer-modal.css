@@ -1,6 +1,6 @@
 .ReactModal__Content_viewer {
   width: 700px;
-  height: 330px;
+  height: 340px;
   margin-top: 300px;
   left: 2.5rem;
   right: 2.5rem;
@@ -33,5 +33,5 @@
 
 .error { 
   position: absolute;
-  top: 295px;
+  top: 520px;
 }

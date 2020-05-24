@@ -12,7 +12,7 @@ const ViewerModal = ({open, onClose }) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [error, setError] = useState('');
-
+  
   const handlerClose = () => {
     if (!name || !email) {
       return setError('Fill in all the fields');

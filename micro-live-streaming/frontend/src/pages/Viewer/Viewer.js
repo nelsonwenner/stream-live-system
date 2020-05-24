@@ -16,9 +16,9 @@ const Viewer = (props) => {
   
   const { live, error, usersConnected } = useViewer({
   start: true, liveSlug: slug, videoRefViewer: videoRefViewer});
-  
+  console.log(userInfo)
   useEffect(() => {
-    
+
     if (live !== null && !error && userInfo.name === "") {
       setOpenUserInfoDialog(true);
     }
@@ -39,9 +39,13 @@ const Viewer = (props) => {
       />
 
       <ViewerModal
-        open={ openUserInfoDialog } 
+        open={ openUserInfoDialog }
+        onClose={ (formData) => {
+          setUserInfo((prevState) => ({...prevState, ...formData}));
+          setOpenUserInfoDialog(false);
+        }}
       />
-      
+
     </>
   )
 }
