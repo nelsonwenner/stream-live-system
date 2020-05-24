@@ -158,7 +158,6 @@ const useBroadcast = (data) => {
     }
   }
 
-  /*
   useEffect(() => {
 
     if (!peerRef.current || !stop || peerRef.current.disconnected || !socket) {
@@ -167,10 +166,11 @@ const useBroadcast = (data) => {
 
     socket.emit('finish-live', { password });
 
+    viewers.forEach(viewer => viewer.close());
+
     peerRef.current.disconnect();
 
-  }, [peerRef, stop, socket, password]);
-  */
+  }, [peerRef, stop, socket, password, viewers]);
 
   useEffect(() => {
 
