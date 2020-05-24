@@ -8,7 +8,7 @@ const Viewer = (props) => {
   const [openUserInfoDialog, setOpenUserInfoDialog] = useState(false);
   const { slug } = props.match.params;
   const videoRef = useRef();
-
+  
   const [userInfo, setUserInfo] = useState({
     name: '', email: '', is_broadcaster: false}); 
   
