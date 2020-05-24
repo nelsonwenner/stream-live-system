@@ -1,4 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
+import { handleLiveError } from '../utils/handler.error';
+import { getLive } from '../service/Api';
+import io from "socket.io-client";
+import Peer from "peerjs";
 
 const useViewer = (data) => {
 
@@ -56,5 +60,22 @@ const useViewer = (data) => {
     });
   }, [peerRef, videoRef]);
 
+  useEffect(() => {
+
+    if (error) { return }
+
+    const load = async () => {
+      try {
+        setLive(await getLive(liveSlug));
+      } catch (error) {
+        console.log(error);
+        stopStream();
+        setError(handleLiveError(error));
+      }
+    }
+
+    load();
+
+  }, [liveSlug, error]);
 
 }
