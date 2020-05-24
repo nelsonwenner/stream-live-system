@@ -4,7 +4,7 @@ import './broadcast.css';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
 import DeviceModal from '../../components/DeviceModal/DeviceModal';
-import NavBroadcast from '../../components/common/nav/NavBroadcast';
+import NavBroadcast from '../../components/common/nav/Nav';
 import useBroadcast from '../../hooks/useBroadcast';
 import Modal from 'react-modal';
 
@@ -17,9 +17,12 @@ const Broadcast = (props) => {
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
   const [stopLive, setStopLive] = useState(false);
 
-  const [userInfo, setUserInfo] = useState({name: '', email: '', password: '', is_broadcaster: true});
+  const [userInfo, setUserInfo] = useState({
+  name: '', email: '', password: '', is_broadcaster: true});
 
-  const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({start: userInfo.name !== '', stop: stopLive, password: userInfo.password, liveSlug: slug, videoRef: videoRef });
+  const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
+  start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
+  liveSlug: slug, videoRef: videoRef });
  
   useEffect(() => {
 
@@ -47,9 +50,12 @@ const Broadcast = (props) => {
     <>
       <NavBroadcast
         setOpenDevicesDialog={ setOpenDevicesDialog }
+        titleLogo={ 'Streaming Broadcaster' }
+        isBroadcaster={ true }
       />
 
-      <ContainerVideo 
+      <ContainerVideo
+        titleVideo={ live.title } 
         videoRef={ videoRef.current }
         countViews={ usersConnected }
       />

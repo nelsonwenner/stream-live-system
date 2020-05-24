@@ -3,14 +3,23 @@
   padding-top: 60px;
 }
 
-.countViews {
+.title-video {
   position: relative;
-  top: 20px;
-  font-size: 20px;
+  top: 5px;
+  font-size: 22px;
   font-weight: 400;
 }
 
-.countViews > a {
+.countViews {
+  position: relative;
+  top: 5px;
+  font-size: 16px;
+  font-weight: 400;
+  width: 1100px;
+  border-bottom: 0.01em solid rgba(204, 204, 204, 0.986);
+}
+
+.countViews a {
   position: relative;
   left: 6px;
   top: 1px;

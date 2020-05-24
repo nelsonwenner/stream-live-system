@@ -10,6 +10,7 @@ const useBroadcast = (data) => {
 
   const [error, setError] = useState(null);
   const [usersConnected, setUserConnected] = useState(0);
+  const [viewers, setViewers] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
   const [stream, setStream] = useState();
   const [live, setLive] = useState({});
@@ -30,6 +31,7 @@ const useBroadcast = (data) => {
         setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
+        stopStream();
         setError(handleLiveError(error));
       }
     }
@@ -81,9 +83,39 @@ const useBroadcast = (data) => {
       const call = peerRef.current.call(connect.peer, streamRef.current);
       if (call) {
         console.log('new call: ', call);
+        setViewers((prevState) => [...prevState, call]);
       }
     });
   }, [start, password, stream, socket, peerRef]);
+
+  useEffect(() => {
+    
+    if (!peerRef.current || !stream || !viewers.length) {
+      return;
+    }
+
+    const viewersConnected = [];
+    let hasNewCall = false;
+
+    for(const viewer of viewers) {
+      const { localStream } = viewer;
+      
+      if (localStream && localStream.id === stream.id) {
+        viewersConnected.push(viewer);
+        break;
+      }
+
+      const call = peerRef.current.call(viewer.peer, stream);
+      if (call) {
+        hasNewCall = true;
+        viewersConnected.push(call);
+      }
+    }
+
+    if (hasNewCall) {
+      setViewers(viewersConnected);
+    }
+  }, [peerRef, viewers, stream]);
 
   const loadStream = useCallback((props) => {
     const {audioInputId, videoId, captureStream} = props;
@@ -125,6 +157,20 @@ const useBroadcast = (data) => {
       tracks.forEach((track) => track.strop());
     }
   }
+
+  useEffect(() => {
+
+    if (!peerRef.current || !stop || peerRef.current.disconnected || !socket) {
+      return;
+    }
+
+    socket.emit('finish-live', { password });
+
+    viewers.forEach(viewer => viewer.close());
+
+    peerRef.current.disconnect();
+
+  }, [peerRef, stop, socket, password, viewers]);
 
   useEffect(() => {
 

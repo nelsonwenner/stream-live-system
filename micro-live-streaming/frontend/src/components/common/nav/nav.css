@@ -18,6 +18,11 @@
   margin-bottom: 10px;
 }
 
+.logo {
+  font-size: 23px;
+  font-weight: 400;
+}
+
 .stop {
   position: relative;
   top: 5px;
@@ -54,7 +59,12 @@ a {
 }
 
 .options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   position: relative;
+  width: 25px;
+  height: 40px;
 }
 
 span {
