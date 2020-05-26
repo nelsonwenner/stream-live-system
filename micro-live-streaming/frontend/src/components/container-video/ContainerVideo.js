@@ -9,7 +9,7 @@ const ContainerVideo = ({ videoRef, countViews, titleVideo, live }) => {
     const video = document.getElementById('video');
     video.srcObject = videoRef; 
   }
-  console.log(live)
+  
   return (
     <div className="video">
       <video id='video' width='1000px'height='600px' autoPlay muted controls style={{display: 'inline-block', verticalAlign: 'top', marginLeft: 0}} />
