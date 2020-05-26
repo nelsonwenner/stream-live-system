@@ -32,7 +32,7 @@
 .stop-icon:before {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
-  content: '\f04b';
+  content: '\f04d';
   font-weight: 900;
   display: flex;
   position: relative;
@@ -43,7 +43,7 @@
 .start-icon:before {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
-  content: '\f04d';
+  content: '\f04b';
   font-weight: 900;
   display: flex;
   position: relative;

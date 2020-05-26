@@ -64,10 +64,10 @@ const useViewer = (data) => {
   useEffect(() => {
 
     if (error) { return }
-
+    
     const load = async () => {
       try {
-        setLive(await getLive(liveSlug));
+        setLive(await getLive(liveSlug, false));
       } catch (error) {
         console.log(error);
         setError(handleLiveError(error));
@@ -77,7 +77,7 @@ const useViewer = (data) => {
     load();
 
   }, [liveSlug, error]);
-
+  
   useEffect(() => {
 
     if (!start || !socket) { return; }

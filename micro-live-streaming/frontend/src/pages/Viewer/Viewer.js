@@ -31,8 +31,9 @@ const Viewer = (props) => {
         titleLogo={ 'Streaming Viewer' }
         isBroadcaster={ false }
       />
-
+    
       <ContainerVideo
+        live={ live }
         titleVideo={ live.title } 
         videoRef={ videoRefViewer.current }
         countViews={ usersConnected }
