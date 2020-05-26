@@ -25,10 +25,10 @@ const useBroadcast = (data) => {
   useEffect(() => {
 
     if (error) { return }
-
+    
     const load = async () => {
       try {
-        setLive(await getLive(liveSlug));
+        setLive(await getLive(liveSlug, true));
       } catch (error) {
         console.log(error);
         stopStream();

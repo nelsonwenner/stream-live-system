@@ -17,7 +17,7 @@ const Nav = ({setOpenDevicesDialog, titleLogo, isBroadcaster, closeLive, stopLiv
     }
 
   }, [stopLive]);
-
+  
   return (
     <header>
       <div className="header">

@@ -20,7 +20,7 @@ const Broadcast = (props) => {
 
   const [userInfo, setUserInfo] = useState({
   name: '', email: '', password: '', is_broadcaster: true});
-
+  
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
   start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
   liveSlug: slug, videoRef: videoRef });
