@@ -15,6 +15,7 @@ const Broadcast = (props) => {
   const videoRef = useRef(null);
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
+
   const [stopLive, setStopLive] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
@@ -23,7 +24,7 @@ const Broadcast = (props) => {
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
   start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
   liveSlug: slug, videoRef: videoRef });
-
+  
   useEffect(() => {
 
     if (live) {
@@ -45,13 +46,21 @@ const Broadcast = (props) => {
     loadStream(devices);
 
   }, [loadStream]);
- 
+
   return (
     <>
       <NavBroadcast
+        stopLive={ error }
         setOpenDevicesDialog={ setOpenDevicesDialog }
         titleLogo={ 'Streaming Broadcaster' }
         isBroadcaster={ true }
+        closeLive={ (stop) => {
+
+          if (stop) {
+            setStopLive(true);
+          }
+
+        }}
       />
 
       <ContainerVideo
