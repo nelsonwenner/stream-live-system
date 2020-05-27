@@ -19,5 +19,5 @@
 
 ### Frontend
 
-- React
+- Reactjs
   * Single Page Application
