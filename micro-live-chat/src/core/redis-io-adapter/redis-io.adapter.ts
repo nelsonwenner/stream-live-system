@@ -1,5 +1,6 @@
 import { IoAdapter } from '@nestjs/platform-socket.io';
 import * as redisIoAdapter from 'socket.io-redis';
+import 'dotenv/config';
 
 const redisAdapter = redisIoAdapter({
   host: process.env.REDIS_HOST,
@@ -7,6 +8,7 @@ const redisAdapter = redisIoAdapter({
 });
 
 export class RedisIoAdapter extends IoAdapter {
+  
   createIOServer(port: number, options?: any): any {
     const server = super.createIOServer(port, options);
     server.adapter(redisAdapter);

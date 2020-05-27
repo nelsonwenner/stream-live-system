@@ -2,6 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, CreateDateColumn } from 'typeor
 
 @Entity({name: 'chat_messages'})
 export class ChatMessageEntity {
+  
   @PrimaryGeneratedColumn('uuid')
   id: string;
   
@@ -19,7 +20,7 @@ export class ChatMessageEntity {
 
   @Column()
   is_broadcaster: boolean;
-
+  
   @CreateDateColumn({type: "timestamp"})
   created_at: Date;
 }

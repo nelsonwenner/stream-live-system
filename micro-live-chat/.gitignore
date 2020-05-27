@@ -35,3 +35,7 @@ lerna-debug.log*
 
 #enviroment
 .env
+
+# docker
+.docker/database
+.docker/redisdata

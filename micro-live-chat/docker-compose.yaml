@@ -7,7 +7,7 @@ services:
     working_dir: /backend/src
     entrypoint: ./.docker/entrypoint.sh
     volumes:
-      - .:/backend/src
+      - ./:/backend/src
     ports: 
       - "4444:4444"
     depends_on: 
@@ -19,7 +19,7 @@ services:
     container_name: "micro-live-chat-database"
     image: library/postgres:9.6-alpine
     ports: 
-      - "5433:5434"
+      - "5433:5432"
     volumes: 
       - ./.docker/database/data:/var/lib/postgresql/data
     environment:
@@ -30,7 +30,7 @@ services:
     tty: true
     networks: 
       - app-network
-
+      
   redis:
     image: redis:alpine
     container_name: micro-live-chat-redis
@@ -38,7 +38,7 @@ services:
       - ./.docker/redisdata:/data
     networks:
       - app-network
-
+    
 networks:
   app-network:
     driver: bridge
