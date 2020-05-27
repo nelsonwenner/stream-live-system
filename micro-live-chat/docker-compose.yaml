@@ -14,6 +14,7 @@ services:
       - database
     networks:
       - app-network
+      - rabbitmq_queue-live
   
   database:
     container_name: "micro-live-chat-database"
@@ -42,4 +43,5 @@ services:
 networks:
   app-network:
     driver: bridge
- 
+  rabbitmq_queue-live:
+    external: true
