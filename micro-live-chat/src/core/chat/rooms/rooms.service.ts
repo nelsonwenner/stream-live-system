@@ -121,6 +121,39 @@ export class RoomsService implements OnGatewayInit {
     }
   }
 
+  @SubscribeMessage('finish-room')
+  async finishRoom(@ConnectedSocket() client: Socket, @MessageBody() data) {
+  
+    console.log('finish-room: ', client.id);
+
+    try {
+      
+      const { redisGet, redisSet } = RoomsService.redisClient(client);
+      const value =  await redisGet(client.id);
+
+      if (!value) {
+        throw new Error('Not authorized');
+      }
+
+      const { is_broadcaster, live_slug } = JSON.parse(value);
+      const live = await this.getLive(client, live_slug);
+
+      if (!is_broadcaster || live.status === 'done') {
+        throw new Error('Not authorized');
+      }
+
+      await redisSet(live_slug, JSON.stringify({...live, status: 'done'}));
+      client.broadcast.to(live_slug).emit('finish-room');
+
+      console.log('Room finished...');
+    } catch (error) {
+      console.error(error);
+      if (error.name === 'NotAuthorized') {
+          this.disconnectClient(client, error);
+      }
+    }
+  }
+
   private async getLive(client: Socket, liveSlug) {
     const {redisGet, redisSet} = RoomsService.redisClient(client);
 
