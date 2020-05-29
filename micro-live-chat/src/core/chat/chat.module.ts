@@ -1,6 +1,7 @@
 import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
 import { Module } from '@nestjs/common';
 import { RoomsService } from './rooms/rooms.service';
+import { SaveChatMessageService } from './save-chat-message/save-chat-message.service';
 import 'dotenv/config';
 
 @Module({
@@ -15,7 +16,8 @@ import 'dotenv/config';
     }),
   ],
   providers: [
-    RoomsService
+    RoomsService,
+    SaveChatMessageService
   ]
 })
 

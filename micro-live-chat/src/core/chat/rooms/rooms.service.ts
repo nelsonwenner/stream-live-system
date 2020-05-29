@@ -116,7 +116,7 @@ export class RoomsService implements OnGatewayInit {
     } catch (error) {
       console.error(error);
       if (error.name === 'NotAuthorized') {
-          this.disconnectClient(client, error);
+        this.disconnectClient(client, error);
       }
     }
   }
@@ -149,7 +149,7 @@ export class RoomsService implements OnGatewayInit {
     } catch (error) {
       console.error(error);
       if (error.name === 'NotAuthorized') {
-          this.disconnectClient(client, error);
+        this.disconnectClient(client, error);
       }
     }
   }
