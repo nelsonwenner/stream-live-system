@@ -81,6 +81,46 @@ export class RoomsService implements OnGatewayInit {
     }
   }
 
+  @SubscribeMessage('send-message')
+  async sendMessage(@ConnectedSocket() client: Socket, @MessageBody() data: {content: string}) {
+    
+    try {
+      
+      const { redisGet } = RoomsService.redisClient(client);
+      const value =  await redisGet(client.id);
+
+      if (!value) {
+        throw new Error('Not authorized');
+      }
+
+      const { user_name, email, is_broadcaster, live_slug } = JSON.parse(value);
+      const live =  await this.getLive(client, live_slug);
+      this.validateIsPending(live);
+
+      client.broadcast.to(live_slug).emit('new-message', {
+        user_name,
+        email, 
+        content: data.content,
+        is_broadcaster
+      });
+
+      await this.amqpConnection.publish('chat-message', '', {
+        user_name,
+        email, 
+        content: data.content,
+        is_broadcaster
+      });
+
+      console.log('Message sent...')
+
+    } catch (error) {
+      console.error(error);
+      if (error.name === 'NotAuthorized') {
+          this.disconnectClient(client, error);
+      }
+    }
+  }
+
   private async getLive(client: Socket, liveSlug) {
     const {redisGet, redisSet} = RoomsService.redisClient(client);
 
