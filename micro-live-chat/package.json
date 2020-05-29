@@ -24,6 +24,7 @@
   "dependencies": {
     "@golevelup/nestjs-rabbitmq": "^1.15.1",
     "@nestjs/common": "^7.0.0",
+    "@nestjs/config": "^0.5.0",
     "@nestjs/core": "^7.0.0",
     "@nestjs/microservices": "^7.1.0",
     "@nestjs/platform-express": "^7.0.0",
@@ -32,6 +33,7 @@
     "@nestjs/websockets": "^7.1.0",
     "@types/amqplib": "^0.5.13",
     "dotenv": "^8.2.0",
+    "grpc": "^1.24.2",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",

@@ -1,5 +1,6 @@
-import { Module } from '@nestjs/common';
 import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
+import { Module } from '@nestjs/common';
+import { RoomsService } from './rooms/rooms.service';
 import 'dotenv/config';
 
 @Module({
@@ -12,6 +13,9 @@ import 'dotenv/config';
         ]
       }),
     }),
+  ],
+  providers: [
+    RoomsService
   ]
 })
 
