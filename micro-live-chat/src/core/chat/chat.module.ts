@@ -1,7 +1,9 @@
-import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
-import { Module } from '@nestjs/common';
-import { RoomsService } from './rooms/rooms.service';
 import { SaveChatMessageService } from './save-chat-message/save-chat-message.service';
+import { ClientsModule, Transport } from "@nestjs/microservices";
+import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
+import { RoomsService } from './rooms/rooms.service';
+import { Module } from '@nestjs/common';
+import { join } from "path";
 import 'dotenv/config';
 
 @Module({
@@ -14,6 +16,21 @@ import 'dotenv/config';
         ]
       }),
     }),
+    new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(ClientsModule.register([
+          {
+            name: 'LIVE_PACKAGE',
+            transport: Transport.GRPC,
+            options: {
+              url: process.env.MICRO_LIVE_GENERATOR_GRPC_URL,
+              package: 'live',
+              protoPath: join(__dirname, '../../shared/proto/live.proto')
+            },
+          },
+        ]))
+      }, 500)
+  })
   ],
   providers: [
     RoomsService,

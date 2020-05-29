@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+package live;
+
+service LiveService {
+  rpc FindOne (SlugRequest) returns (LiveResponse) {}
+  rpc Validate(CredentialRequest) returns (LiveResponse) {}
+}
+
+message CredentialRequest {
+  string slug = 1;
+  string password = 2;
+}
+
+message SlugRequest {
+  string slug = 1;
+}
+
+message LiveResponse {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  string date = 4;
+  string slug = 5;
+  string status = 6;
+  string created_at = 7;
+}
