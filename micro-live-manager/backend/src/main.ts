@@ -7,7 +7,6 @@ import { Logger } from '@nestjs/common';
 import express = require('express');
 import http = require('http');
 import cors = require('cors');
-import { join }  from 'path';
 import 'dotenv/config';
 
 const createPeerServer = async () => {
@@ -50,10 +49,10 @@ const bootstrap = async () => {
     options: {
       url: process.env.GRPC_SERVER_URL,
       package: 'live',
-      protoPath: join(__dirname, './core/shared/proto/live.proto'),
+      protoPath: process.cwd() + "/src/core/shared/proto/live.proto",
     },
   });
-  
+    
   await app.startAllMicroservicesAsync();
 
   await app.listen(process.env.SERVER_PORT, () => {

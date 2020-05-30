@@ -2,8 +2,8 @@ import { SaveChatMessageService } from './save-chat-message/save-chat-message.se
 import { ClientsModule, Transport } from "@nestjs/microservices";
 import { RabbitMQModule } from "@golevelup/nestjs-rabbitmq";
 import { RoomsService } from './rooms/rooms.service';
+import { ConfigService } from "@nestjs/config";
 import { Module } from '@nestjs/common';
-import { join } from "path";
 import 'dotenv/config';
 
 @Module({
@@ -25,7 +25,7 @@ import 'dotenv/config';
             options: {
               url: process.env.MICRO_LIVE_GENERATOR_GRPC_URL,
               package: 'live',
-              protoPath: join(__dirname, '../../shared/proto/live.proto')
+              protoPath: process.cwd() + "/src/shared/proto/live.proto",
             },
           },
         ]))
@@ -34,6 +34,7 @@ import 'dotenv/config';
   ],
   providers: [
     RoomsService,
+    ConfigService,
     SaveChatMessageService
   ]
 })
