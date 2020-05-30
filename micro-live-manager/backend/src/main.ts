@@ -1,4 +1,5 @@
 import { RedisIoAdapter } from './core/redis-io-adapter/redis.io.adapter';
+import { MicroserviceOptions, Transport } from "@nestjs/microservices";
 const { ExpressPeerServer } = require('peer');
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
@@ -42,7 +43,16 @@ const bootstrap = async () => {
   const app = await NestFactory.create(AppModule, {cors: true});
   app.useWebSocketAdapter(new RedisIoAdapter(app));
   app.setGlobalPrefix('api');
-  
+
+  app.connectMicroservice<MicroserviceOptions>({
+    transport: Transport.GRPC,
+    options: {
+      url: process.env.GRPC_SERVER_URL,
+      package: 'live',
+      protoPath: process.cwd() + "/src/core/shared/proto/live.proto",
+    },
+  });
+    
   await app.startAllMicroservicesAsync();
 
   await app.listen(process.env.SERVER_PORT, () => {
