@@ -14,6 +14,7 @@ services:
       - database
     networks:
       - app-network
+      - micro-live-manager_app-network
       - rabbitmq_queue-live
   
   database:
@@ -43,5 +44,7 @@ services:
 networks:
   app-network:
     driver: bridge
+  micro-live-manager_app-network:
+    external: true
   rabbitmq_queue-live:
     external: true
