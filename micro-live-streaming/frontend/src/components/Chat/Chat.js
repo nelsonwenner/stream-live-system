@@ -23,7 +23,7 @@ const Chat = (props) => {
     if (!socket || socket.connected || !user || user.name === "" || user.email === "") {
       return;
     }
-    
+
     socket.on('connect', () => {
       console.log("Chat connected!");
       
@@ -61,6 +61,29 @@ const Chat = (props) => {
     }, 500)
   }, [socket, finishRoom]);
 
+  const sendMessage = () => {
+    const message = messageRef.current.value;
+
+    if (!user || message === "" || !socket) {
+      return;
+    }
+
+    socket.emit('send-message', {content: message});
+
+    messageRef.current.value = "";
+
+    setChatMessages(prevState => [
+        ...prevState,
+        {
+          user_name: user.name,
+          email: user.email,
+          content: message,
+          is_broadcaster: user.is_broadcaster
+        }
+      ]
+    );
+  }
+
   return (
     <div className="card">
       <div className="card-header">
@@ -68,8 +91,9 @@ const Chat = (props) => {
       </div>
       <ScrollToBottom className="scroll-message">
         {
-          chatMessages.map(message => (
-            <Message 
+          chatMessages.map((message, key )=> (
+            <Message
+              key={ key } 
               msg={ message }
             />
           ))
@@ -78,6 +102,8 @@ const Chat = (props) => {
       <Input
         name={ user.name }
         email={ user.email }
+        messageRef={ messageRef }
+        sendMessage={ sendMessage }
       />
     </div>
   )

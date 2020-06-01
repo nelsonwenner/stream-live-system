@@ -3,16 +3,16 @@ import './message.css';
 
 import Avatar from '../Avatar/Avatar';
 
-const Message = ({ name, msg }) => {
+const Message = ({ user_name, email, content, is_broadcaster }) => {
   return (
     <div className="container-message">
       <div className="message">
         <Avatar
           classes={ 'circle-avatar' } 
-          email={ 'nelsondiasdemedeiros@gmail.com' }
+          email={ email }
         />
-        <a className="name-chat">{ msg }</a>
-        <a className="text-chat">{ 'oiiii' }</a>
+        <a className="name-chat">{ user_name }</a>
+        <a className="text-chat">{ content }</a>
       </div>
     </div>
   )

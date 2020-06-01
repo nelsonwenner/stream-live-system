@@ -3,7 +3,7 @@ import './input.css';
 
 import Avatar from '../Avatar/Avatar';
 
-const Input = ({ setMessage, sendMessage, message, name, email }) => (
+const Input = ({ sendMessage, messageRef, name, email }) => (
   <form className="form">
     <Avatar
       classes={ 'circle' } 
@@ -13,10 +13,9 @@ const Input = ({ setMessage, sendMessage, message, name, email }) => (
     <input
       className="input-line"
       type="text"
+      ref={ messageRef }
       placeholder="Type a message..."
-      value={message}
-      onChange={ setMessage }
-      onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
+      onKeyPress={event => event.key === 'Enter' ? sendMessage : null}
     />
     <span className="send-icon" onClick={ sendMessage }></span>
   </form>
