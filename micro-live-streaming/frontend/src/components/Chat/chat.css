@@ -1,0 +1,56 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  left: 1100px;
+  bottom: 656px;
+  max-width: 450px;
+  width: 100%;
+  height: 597px;
+  border: 1px solid #dbdbdb;
+  background: rgb(38, 39, 40);
+}
+
+.card-header {
+  font-size: 18px;
+  font-weight: 400;
+  height: 35px;
+  width: 100%;
+  text-align: center;
+  background-color: rgb(25, 25, 25);
+  border-bottom: 1px solid #dbdbdb;
+}
+
+.scroll-message {
+  height: 480px;
+}
+
+.message {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-bottom: 3px;
+}
+
+.form {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #D3D3D3;
+}
+
+.input-line {
+  margin-top: 30px;
+  margin-left: 50px;
+  width: 85%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.input-line:focus {
+  border-bottom: 2px solid #11998e;
+}

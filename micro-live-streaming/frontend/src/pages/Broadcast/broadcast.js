@@ -6,6 +6,7 @@ import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
 import DeviceModal from '../../components/DeviceModal/DeviceModal';
 import NavBroadcast from '../../components/common/nav/Nav';
 import useBroadcast from '../../hooks/useBroadcast';
+import Chat from '../../components/Chat/Chat';
 import Modal from 'react-modal';
 
 Modal.setAppElement('body');
@@ -67,6 +68,13 @@ const Broadcast = (props) => {
         titleVideo={ live.title } 
         videoRef={ videoRef.current }
         countViews={ usersConnected }
+      />
+
+      <Chat 
+        messages={ ['nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 
+        'nelson', 'felipe', 'carlos',
+        'nelson', 'felipe', 'carlos',
+        'nelson', 'felipe', 'carlos'] }
       />
 
       <DeviceModal 
