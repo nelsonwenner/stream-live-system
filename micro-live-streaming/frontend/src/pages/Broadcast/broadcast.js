@@ -48,7 +48,7 @@ const Broadcast = (props) => {
     loadStream(devices);
 
   }, [loadStream]);
-
+  
   return (
     <>
       <NavBroadcast

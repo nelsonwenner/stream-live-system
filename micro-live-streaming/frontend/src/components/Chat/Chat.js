@@ -16,14 +16,14 @@ const Chat = (props) => {
     if (!user || user.name === "" || user.email === "") {
       return null;
     }
-    return io(`${process.env.REACT_APP_MICRO_CHAT_URL}/room`)
-  });
+    return io(`${process.env.REACT_APP_MICRO_CHAT_URL}/room`);
+  }, [user]);
 
   useEffect(() => {
     if (!socket || socket.connected || !user || user.name === "" || user.email === "") {
       return;
     }
-
+    
     socket.on('connect', () => {
       console.log("Chat connected!");
       
