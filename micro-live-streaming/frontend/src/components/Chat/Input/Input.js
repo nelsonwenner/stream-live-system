@@ -1,6 +1,7 @@
 import React from 'react';
+import './input.css';
 
-import Avatar from './Avatar/Avatar';
+import Avatar from '../Avatar/Avatar';
 
 const Input = ({ setMessage, sendMessage, message }) => (
   <form className="form">

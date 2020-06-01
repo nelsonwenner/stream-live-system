@@ -2,8 +2,8 @@ import React, {  } from 'react';
 import './chat.css';
 
 import ScrollToBottom from 'react-scroll-to-bottom';
-import Message from './Message';
-import Input from './Input';
+import Message from './Message/Message';
+import Input from './Input/Input';
 
 const Chat = ({messages}) => {
   return (
