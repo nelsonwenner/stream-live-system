@@ -28,7 +28,7 @@ const useBroadcast = (data) => {
     
     const load = async () => {
       try {
-        setLive(await getLive(liveSlug, true));
+        setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
         stopStream();

@@ -56,9 +56,10 @@ const Broadcast = (props) => {
         titleLogo={ 'Streaming Broadcaster' }
         isBroadcaster={ true }
         closeLive={ (stop) => {
-
+          
           if (stop) {
             setStopLive(true);
+            setFinishRoom(true);
           }
 
         }}

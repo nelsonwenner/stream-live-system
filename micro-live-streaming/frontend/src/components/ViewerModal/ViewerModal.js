@@ -7,7 +7,7 @@ import CustomInput from '../common/CustomInput/CustomInput';
 import Modal from 'react-modal';
 Modal.setAppElement('body');
 
-const ViewerModal = ({open, onClose }) => {
+const ViewerModal = ({open, onClose, errorRequests }) => {
   
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
@@ -52,9 +52,17 @@ const ViewerModal = ({open, onClose }) => {
           />
 
           {
-            error && (
+            error && (errorRequests === null) && (
               <div className="error">
                 <p style={{color: 'red'}}>{ error }</p>
+              </div>
+            )
+          }
+
+          {
+            errorRequests && (
+              <div className="error">
+                <p style={{color: 'red'}}>{ errorRequests.message } { errorRequests.name }</p>
               </div>
             )
           }

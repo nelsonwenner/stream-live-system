@@ -14,7 +14,7 @@ const Input = ({ sendMessage, messageRef, name, email }) => (
       className="input-line"
       type="text"
       ref={ messageRef }
-      placeholder="Type a message..."
+      placeholder="Type a message, press enter..."
       onKeyPress={event => event.key === 'Enter' ? send(event, sendMessage) : null}
     />
     <span className="send-icon" onClick={ sendMessage }></span>

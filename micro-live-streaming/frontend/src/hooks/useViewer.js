@@ -67,7 +67,7 @@ const useViewer = (data) => {
     
     const load = async () => {
       try {
-        setLive(await getLive(liveSlug, false));
+        setLive(await getLive(liveSlug));
       } catch (error) {
         console.log(error);
         setError(handleLiveError(error));

@@ -9,7 +9,6 @@ import io from "socket.io-client";
 const Chat = (props) => {
   const { user, room, finishRoom } = props;
   const [chatMessages, setChatMessages] = useState([]);
-  const messagesContainerRef = useRef();
   const messageRef = useRef();
 
   const socket = useMemo(() => {
@@ -56,6 +55,7 @@ const Chat = (props) => {
       return;
     }
     socket.emit('finish-room', {});
+
     setTimeout(() => {
       socket.disconnect();
     }, 500)
@@ -102,12 +102,16 @@ const Chat = (props) => {
           ))
         }
       </ScrollToBottom>
-      <Input
-        name={ user.name }
-        email={ user.email }
-        messageRef={ messageRef }
-        sendMessage={ sendMessage }
-      />
+      {
+        !finishRoom && (
+          <Input
+            name={ user.name }
+            email={ user.email }
+            messageRef={ messageRef }
+            sendMessage={ sendMessage }
+          />
+        )
+      }
     </div>
   )
 }
