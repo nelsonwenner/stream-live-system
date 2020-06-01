@@ -15,10 +15,15 @@ const Input = ({ sendMessage, messageRef, name, email }) => (
       type="text"
       ref={ messageRef }
       placeholder="Type a message..."
-      onKeyPress={event => event.key === 'Enter' ? sendMessage : null}
+      onKeyPress={event => event.key === 'Enter' ? send(event, sendMessage) : null}
     />
     <span className="send-icon" onClick={ sendMessage }></span>
   </form>
 )
+
+const send = (event, sendMessage) => {
+  event.preventDefault();
+  sendMessage();
+}
 
 export default Input;

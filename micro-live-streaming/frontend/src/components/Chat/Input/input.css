@@ -19,7 +19,7 @@
 }
 
 .input-line:focus {
-  border-bottom: 2px solid #11998e;
+  border-bottom: 2px solid #fff;
 }
 
 .send-icon:before  {
@@ -31,7 +31,7 @@
   font-size: 22px;
   right: 25px;
   top: 25px;
-  color: #11998e;
+  color: #fff;
 }
 
 .name-input {
@@ -39,6 +39,6 @@
   left: 55px;
   margin-top: 5px;
   font-size: 12px;
-  font-weight: 100;
+  font-weight: 500;
   color: #9b9b9b;
 }
