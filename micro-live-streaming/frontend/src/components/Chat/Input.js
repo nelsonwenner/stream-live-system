@@ -1,7 +1,12 @@
 import React from 'react';
 
+import Avatar from './Avatar/Avatar';
+
 const Input = ({ setMessage, sendMessage, message }) => (
   <form className="form">
+    <Avatar 
+      email={ 'nelsondiasdemedeiros@gmail.com' }
+    />
     <input
       className="input-line"
       type="text"
