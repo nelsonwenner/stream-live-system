@@ -54,3 +54,15 @@
 .input-line:focus {
   border-bottom: 2px solid #11998e;
 }
+
+.send-icon:before  {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f061';
+  font-weight: 900;
+  position: relative;
+  font-size: 22px;
+  left: 405px;
+  top: 530px;
+  color: #11998e;
+}
