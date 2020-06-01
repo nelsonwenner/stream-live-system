@@ -48,7 +48,7 @@ export class RoomsService implements OnGatewayInit {
       const liveRpc: LiveRpc = this.liveRpc.getService('LiveService');
       const { user_name, email, password, room } = data;
       const { redisSet } = RoomsService.redisClient(client);
-
+    
       if (password) {
         await liveRpc.validate({slug: room, password}).toPromise();
       }
@@ -56,9 +56,10 @@ export class RoomsService implements OnGatewayInit {
       const live = await this.getLive(client, room);
 
       this.validateIsPending(live);
-
+   
       client.join(room);
       console.log('Join: ', client.id);
+
       await redisSet(client.id, JSON.stringify({
         user_name, 
         email, 
@@ -73,7 +74,7 @@ export class RoomsService implements OnGatewayInit {
 
       client.emit('get-messages', messages);
 
-      console.log('Client joined!!')
+      console.log('Client joined!!');
 
     } catch (error) {
       console.error(error);
@@ -88,13 +89,14 @@ export class RoomsService implements OnGatewayInit {
       
       const { redisGet } = RoomsService.redisClient(client);
       const value =  await redisGet(client.id);
-
       if (!value) {
         throw new Error('Not authorized');
       }
-
+      
       const { user_name, email, is_broadcaster, live_slug } = JSON.parse(value);
+      
       const live =  await this.getLive(client, live_slug);
+
       this.validateIsPending(live);
 
       client.broadcast.to(live_slug).emit('new-message', {
@@ -105,16 +107,17 @@ export class RoomsService implements OnGatewayInit {
       });
 
       await this.amqpConnection.publish('chat-message', '', {
-        user_name,
-        email, 
         content: data.content,
+        user_name,
+        email,
+        live_slug,
         is_broadcaster
       });
 
-      console.log('Message sent...')
-
+      console.log('Message sent...');
+    
     } catch (error) {
-      console.error(error);
+      console.log(error);
       if (error.name === 'NotAuthorized') {
         this.disconnectClient(client, error);
       }
@@ -154,17 +157,16 @@ export class RoomsService implements OnGatewayInit {
     }
   }
 
-  private async getLive(client: Socket, liveSlug) {
+  private async getLive(client: Socket, liveSlug: string) {
     const {redisGet, redisSet} = RoomsService.redisClient(client);
-
+    
     try {
 
       const result = await redisGet(liveSlug);
-
+   
       if (!result) {
-        throw new Error('Live not found in redis')
+        throw new Error('Live not found in redis');
       }
-
       return JSON.parse(result);
     } catch (e) {
       console.error(e);

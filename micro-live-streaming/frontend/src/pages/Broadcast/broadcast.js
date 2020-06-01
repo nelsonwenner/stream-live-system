@@ -17,7 +17,6 @@ const Broadcast = (props) => {
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
   const [finishRoom, setFinishRoom] = useState(false);
-
   const [stopLive, setStopLive] = useState(false);
 
   const [userInfo, setUserInfo] = useState({

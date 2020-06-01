@@ -13,6 +13,8 @@ export class SaveChatMessageService {
     queue: 'micro-live-chat/chat-message'
   })
   public async rpcHandler(message) {
+    console.log("RabbitMQ -> ", message)
+    /*
     const obj = this.repoService.chatRepository.create({
       content: message.content,
       user_name: message.user_name,
@@ -21,5 +23,6 @@ export class SaveChatMessageService {
       is_broadcaster: message.is_broadcaster
     });
     await this.repoService.chatRepository.save(obj);
+    */
   }
 }
