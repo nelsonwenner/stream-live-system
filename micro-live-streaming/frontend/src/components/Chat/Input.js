@@ -1,7 +1,12 @@
 import React from 'react';
 
+import Avatar from './Avatar/Avatar';
+
 const Input = ({ setMessage, sendMessage, message }) => (
   <form className="form">
+    <Avatar 
+      email={ 'nelsondiasdemedeiros@gmail.com' }
+    />
     <input
       className="input-line"
       type="text"
@@ -10,7 +15,7 @@ const Input = ({ setMessage, sendMessage, message }) => (
       onChange={ setMessage }
       onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
     />
-    <span className="sendButton" onClick={ sendMessage } />
+    <span className="send-icon" onClick={ sendMessage }></span>
   </form>
 )
 
