@@ -1,9 +1,9 @@
 .card {
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: absolute;
   left: 1100px;
-  bottom: 625px;
+  bottom: 97px;
   max-width: 450px;
   width: 100%;
   height: 750px;

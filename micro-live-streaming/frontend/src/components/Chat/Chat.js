@@ -83,18 +83,21 @@ const Chat = (props) => {
       ]
     );
   }
-
+  
   return (
     <div className="card">
       <div className="card-header">
         Chat
       </div>
       <ScrollToBottom className="scroll-message">
-        {
-          chatMessages.map((message, key )=> (
+        { 
+          chatMessages.map((message, key ) => (
             <Message
               key={ key } 
-              msg={ message }
+              user_name={ message.user_name }
+              email={ message.email }
+              content={ message.content }
+              is_broadcaster={ message.is_broadcaster }
             />
           ))
         }

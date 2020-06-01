@@ -4,7 +4,7 @@ import './avatar.css';
 
 const Avatar = ({email, classes}) => {
   return (
-    <img className={`${classes}`} src={`https://www.gravatar.com/avatar/${email}`} />
+    <img className={`${classes}`} src={`https://www.gravatar.com/avatar/${md5(email)}`} />
   )
 }
 

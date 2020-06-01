@@ -27,3 +27,11 @@
   height: 25px;
   background-position: center;
 }
+
+.broadcaster {
+  border-radius: 4px;
+  background-color: #fdd835;
+  padding-left: 2px;
+  padding-right: 2px;
+  color: black;
+}
