@@ -16,6 +16,7 @@ const Broadcast = (props) => {
   const videoRef = useRef(null);
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
+  const [finishRoom, setFinishRoom] = useState(false);
 
   const [stopLive, setStopLive] = useState(false);
 
@@ -71,10 +72,9 @@ const Broadcast = (props) => {
       />
 
       <Chat 
-        messages={ ['nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 
-        'nelson', 'felipe', 'carlos',
-        'nelson', 'felipe', 'carlos',
-        'nelson', 'felipe', 'carlos'] }
+        user={ userInfo }
+        room={ slug }
+        finishRoom={ finishRoom }
       />
 
       <DeviceModal 

@@ -33,3 +33,12 @@
   top: 25px;
   color: #11998e;
 }
+
+.name-input {
+  position: absolute;
+  left: 55px;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 100;
+  color: #9b9b9b;
+}

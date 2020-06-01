@@ -3,11 +3,13 @@ import './input.css';
 
 import Avatar from '../Avatar/Avatar';
 
-const Input = ({ setMessage, sendMessage, message }) => (
+const Input = ({ setMessage, sendMessage, message, name, email }) => (
   <form className="form">
-    <Avatar 
-      email={ 'nelsondiasdemedeiros@gmail.com' }
+    <Avatar
+      classes={ 'circle' } 
+      email={ email }
     />
+    <a className="name-input">{ name }</a>
     <input
       className="input-line"
       type="text"
