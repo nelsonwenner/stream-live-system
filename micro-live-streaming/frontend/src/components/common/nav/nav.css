@@ -68,7 +68,7 @@ a {
   height: 40px;
 }
 
-span {
+.options span {
   background-color: white;
   width: 7px;
   height: 7px;
@@ -76,14 +76,14 @@ span {
   border-radius: 50%;
 }
 
-span:nth-child(1) {
+.options span:nth-child(1) {
   top: 0.30rem;
 }
 
-span:nth-child(2) {
+.options span:nth-child(2) {
   top: 1.05rem;
 }
 
-span:nth-child(3) {
+.options span:nth-child(3) {
   top: 1.80rem;
 }
