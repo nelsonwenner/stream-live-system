@@ -49,8 +49,12 @@ const Viewer = (props) => {
         errorRequests={ error }
         open={ openUserInfoDialog }
         onClose={ (formData) => {
-          setUserInfo((prevState) => ({...prevState, ...formData}));
-          setOpenUserInfoDialog(false);
+          
+          if (live.status !== 'done') {
+            setUserInfo((prevState) => ({...prevState, ...formData}));
+            setOpenUserInfoDialog(false);
+          }
+
         }}
       />
 
