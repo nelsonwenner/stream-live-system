@@ -1,0 +1,44 @@
+.form {
+  display: flex;
+  flex-direction: row;
+  border-top: 1px solid #D3D3D3;
+}
+
+.input-line {
+  margin-top: 30px;
+  margin-left: 30px;
+  width: 85%;
+  border: 0;
+  border-bottom: 2px solid #9b9b9b;
+  outline: 0;
+  font-size: 14px;
+  color: #fff;
+  padding: 5px 0;
+  background: transparent;
+  transition: border-color 0.2s;
+}
+
+.input-line:focus {
+  border-bottom: 2px solid #fff;
+}
+
+.send-icon:before  {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f061';
+  font-weight: 900;
+  position: relative;
+  font-size: 22px;
+  right: 25px;
+  top: 25px;
+  color: #fff;
+}
+
+.name-input {
+  position: absolute;
+  left: 55px;
+  margin-top: 5px;
+  font-size: 12px;
+  font-weight: 500;
+  color: #9b9b9b;
+}

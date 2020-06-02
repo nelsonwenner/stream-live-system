@@ -4,6 +4,7 @@ import './viewer.css';
 import NavView from '../../components/common/nav/Nav';
 import ViewerModal from '../../components/ViewerModal/ViewerModal';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
+import Chat from '../../components/Chat/Chat';
 import useViewer from '../../hooks/useViewer';
 
 const Viewer = (props) => {
@@ -16,7 +17,7 @@ const Viewer = (props) => {
   
   const { live, error, usersConnected } = useViewer({
   start: true, liveSlug: slug, videoRefViewer: videoRefViewer});
-  console.log(userInfo)
+
   useEffect(() => {
 
     if (live !== null && !error && userInfo.name === "") {
@@ -39,11 +40,21 @@ const Viewer = (props) => {
         countViews={ usersConnected }
       />
 
+      <Chat 
+        user={ userInfo }
+        room={ slug }
+      />
+
       <ViewerModal
+        errorRequests={ error }
         open={ openUserInfoDialog }
         onClose={ (formData) => {
-          setUserInfo((prevState) => ({...prevState, ...formData}));
-          setOpenUserInfoDialog(false);
+          
+          if (live.status !== 'done') {
+            setUserInfo((prevState) => ({...prevState, ...formData}));
+            setOpenUserInfoDialog(false);
+          }
+
         }}
       />
 

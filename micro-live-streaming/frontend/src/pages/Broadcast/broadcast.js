@@ -16,7 +16,7 @@ const Broadcast = (props) => {
   const videoRef = useRef(null);
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
-
+  const [finishRoom, setFinishRoom] = useState(false);
   const [stopLive, setStopLive] = useState(false);
 
   const [userInfo, setUserInfo] = useState({
@@ -25,7 +25,7 @@ const Broadcast = (props) => {
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
   start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
   liveSlug: slug, videoRef: videoRef });
-  
+  console.log('main -> ', live)
   useEffect(() => {
 
     if (live) {
@@ -47,7 +47,7 @@ const Broadcast = (props) => {
     loadStream(devices);
 
   }, [loadStream]);
-
+  
   return (
     <>
       <NavBroadcast
@@ -56,25 +56,26 @@ const Broadcast = (props) => {
         titleLogo={ 'Streaming Broadcaster' }
         isBroadcaster={ true }
         closeLive={ (stop) => {
-
+          
           if (stop) {
             setStopLive(true);
+            setFinishRoom(true);
           }
 
         }}
       />
 
       <ContainerVideo
+        live={ live }
         titleVideo={ live.title } 
         videoRef={ videoRef.current }
         countViews={ usersConnected }
       />
 
       <Chat 
-        messages={ ['nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 'carlos', 'nelson', 'felipe', 
-        'nelson', 'felipe', 'carlos',
-        'nelson', 'felipe', 'carlos',
-        'nelson', 'felipe', 'carlos'] }
+        user={ userInfo }
+        room={ slug }
+        finishRoom={ finishRoom }
       />
 
       <DeviceModal 
@@ -87,7 +88,11 @@ const Broadcast = (props) => {
         errorRequests={ error }
         open={ openBroadcasterDialog }
         onClose={ (formData) => {
-          setUserInfo((prevState) => ({...prevState, ...formData}));
+
+          if (live.status !== 'done') {
+            setUserInfo((prevState) => ({...prevState, ...formData}));
+          }
+
         }}
       />
     </>

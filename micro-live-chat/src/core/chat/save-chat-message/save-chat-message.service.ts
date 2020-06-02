@@ -6,7 +6,7 @@ import { Injectable } from '@nestjs/common';
 export class SaveChatMessageService {
 
   constructor(private repoService: RepositoriesService) {}
-
+  
   @RabbitSubscribe({
     exchange: 'chat-message',
     routingKey: '',

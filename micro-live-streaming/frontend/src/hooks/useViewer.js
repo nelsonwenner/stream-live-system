@@ -67,7 +67,15 @@ const useViewer = (data) => {
     
     const load = async () => {
       try {
-        setLive(await getLive(liveSlug, false));
+        
+        const data = await getLive(liveSlug);
+        
+        setLive(data);
+
+        if (data.status === 'done') {
+          throw new Error('This live has already been held');
+        }
+
       } catch (error) {
         console.log(error);
         setError(handleLiveError(error));

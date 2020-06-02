@@ -7,10 +7,7 @@ export const base = Axios.create({
   }
 })
 
-export const getLive = async (liveSlug, isBroadcaster) => {
+export const getLive = async (liveSlug) => {
   const { data } = await base.get(`/lives/${liveSlug}`);
-  if (isBroadcaster && data.status === 'done') {
-    throw new Error('This live has already been held');
-  }
   return data;
 }

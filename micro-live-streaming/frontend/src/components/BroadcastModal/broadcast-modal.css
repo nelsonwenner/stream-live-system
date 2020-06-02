@@ -13,10 +13,11 @@
   margin-left: auto;
   margin-right: auto;
   background-color: #2C2839 !important;
+  z-index: 1001;
 }
 
 .ReactModal__Overlay {
-  z-index: 99;
+  z-index: 1000;
   position: absolute;
   left: 0;
   right: 0;
@@ -33,6 +34,6 @@
 }
 
 .error { 
-  position: absolute;
-  top: 295px;
+  position: relative;
+  top: 20px;
 }
