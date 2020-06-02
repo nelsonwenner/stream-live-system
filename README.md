@@ -15,15 +15,11 @@
     * Transmissão
     * Visualização
     * Exibição do chat e interação no `Chat`
-        * Envio de comando para o `CodeBot`
 
 - **Chat**
     * Comunicação em tempo real entre os participantes
     * Armazena as menssagens
     * Envia as menssagens para uma fila
-
-- **CodeBot**
-    * Retorna a resposta dos comando enviados
 
 ## Communication between systems
 
