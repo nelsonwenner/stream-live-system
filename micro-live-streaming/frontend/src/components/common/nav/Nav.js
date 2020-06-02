@@ -11,7 +11,7 @@ const Nav = ({setOpenDevicesDialog, titleLogo, isBroadcaster, closeLive, stopLiv
 
   useEffect(() => {
     const done = "This live has already been held";
-    
+  
     if (stopLive && stopLive.message === done) {
       setHandlerIcon('start-icon');
     }

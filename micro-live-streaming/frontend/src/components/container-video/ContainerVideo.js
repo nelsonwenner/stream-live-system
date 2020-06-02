@@ -4,7 +4,7 @@ import './container-video.css';
 import {format, parseISO} from 'date-fns';
 
 const ContainerVideo = ({ videoRef, countViews, titleVideo, live }) => {
-  console.log("oiii -> ", live)
+
   if (videoRef) {
     const video = document.getElementById('video');
     video.srcObject = videoRef; 

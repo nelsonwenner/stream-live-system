@@ -21,7 +21,7 @@ const createPeerServer = async () => {
         ? callback(null, true)
         : callback(new Error('Not allowed by CORS'));
     }
-};
+  };
 
   const expressAPP = express();
   const server = http.createServer(expressAPP);
