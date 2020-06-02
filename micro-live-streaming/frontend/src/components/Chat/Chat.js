@@ -10,7 +10,7 @@ const Chat = (props) => {
   const { user, room, finishRoom } = props;
   const [chatMessages, setChatMessages] = useState([]);
   const messageRef = useRef();
-
+  
   const socket = useMemo(() => {
     if (!user || user.name === "" || user.email === "") {
       return null;
@@ -33,6 +33,7 @@ const Chat = (props) => {
 
       socket.on('finish-room', () => {
         socket.disconnect();
+        window.location.reload(false);
       });
 
       socket.emit('join', {
@@ -54,11 +55,14 @@ const Chat = (props) => {
     if (!finishRoom || !socket) {
       return;
     }
+
     socket.emit('finish-room', {});
 
     setTimeout(() => {
       socket.disconnect();
-    }, 500)
+    }, 500);
+
+    window.location.reload(false);
   }, [socket, finishRoom]);
 
   const sendMessage = () => {
@@ -103,14 +107,12 @@ const Chat = (props) => {
         }
       </ScrollToBottom>
       {
-        !finishRoom && (
-          <Input
-            name={ user.name }
-            email={ user.email }
-            messageRef={ messageRef }
-            sendMessage={ sendMessage }
-          />
-        )
+        <Input
+          name={ user.name }
+          email={ user.email }
+          messageRef={ messageRef }
+          sendMessage={ sendMessage }
+        />
       }
     </div>
   )
