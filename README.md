@@ -2,6 +2,10 @@
     Microservices stream live
 </h1>
 
+## System architecture
+![export](https://user-images.githubusercontent.com/40550247/83696432-dc8a7c80-a5d2-11ea-81f1-85f67142654e.png)
+
+
 ## Features
 
 - **Gerador de lives**
