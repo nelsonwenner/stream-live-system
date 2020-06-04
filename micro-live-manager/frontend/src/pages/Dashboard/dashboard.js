@@ -6,6 +6,7 @@ import CustomButton from '../../components/common/custom-button/CustomButton';
 import SortingBar from '../../components/common/sorting-bar/SortingBar';
 import Listlive from '../../components/common/list-live/Listlive';
 import Sidebar from '../../components/sidebar/sidebar';
+import NavBar from '../../components/navbar/navbar';
 import Api from '../../service/Api';
 import Modal from 'react-modal';
 
@@ -40,9 +41,22 @@ const Dashboard = () => {
   }
 
   return (
-    <>
-      <Sidebar/>
-      <div className="container-dashboard"> 
+    <div className="full-container">
+      <NavBar />
+      <div className="row">
+        <div className="column xlarge-">
+      
+        </div>
+      </div>
+    </div>
+  )
+}
+
+export default Dashboard;
+
+/*
+<Sidebar/>
+ <div className="container-dashboard"> 
         <div className="container-live">
           <CustomButton
             onClick={ openModal }
@@ -62,8 +76,4 @@ const Dashboard = () => {
           closeModal={ closeModal }
         />
       </div>
-    </>
-  )
-}
-
-export default Dashboard;
+ */

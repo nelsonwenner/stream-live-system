@@ -30,14 +30,14 @@
 ## :loudspeaker: Communication between systems
 
 * Websockets
-* Pub / Sub
-* WebRTC
 * Queue RabbitMQ
+* Publish/Subscribe
+* WebRTC
 * gRPC
 
 ## :zap: Features
 
-- **generator of lives**
+- **Generator of lives**
     * Views of lives created
     * Creation of lives
     * Peers for WebRTC
