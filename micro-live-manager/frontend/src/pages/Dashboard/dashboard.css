@@ -43,3 +43,24 @@
   position: relative;
   top: 15px;
 }
+
+.hamburger::before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f0c9';
+  font-weight: 900;
+  color: #fff;
+  font-size: 2.2rem;
+  position: relative;
+  top: 15px;
+  left: 10px;
+}
+
+/*Media query*/
+@media only screen and (min-width:600px) { 
+  
+  .hamburger {
+    display: none;
+  }
+
+}

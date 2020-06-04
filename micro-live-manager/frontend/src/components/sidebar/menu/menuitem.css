@@ -1,22 +1,19 @@
 .container-menuitem {
   width: 100%;
   padding: 0.3rem;
-  padding-left: 4rem;
+  padding-right: 5rem;
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: center;
   margin-bottom: 1rem;
   transition: 0.2s all ease-in-out;
   cursor: pointer;
 }
 
-.container-menuitem:hover {
-  background-color: rgba(0, 0, 0, 0.1)
-}
-
 .container-menuitem h1 {
   font-weight: 300;
-  font-size: 15px;
+  font-size: 1.5rem;
 }
 
 .icon-home::before {

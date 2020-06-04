@@ -44,8 +44,12 @@ const Dashboard = () => {
     <div className="full-container">
       <NavBar />
       <div className="row">
-        <div className="column xlarge-">
-      
+        <div className="column xlarge-2 large-3 medium-4">
+          <Sidebar/>
+        </div>
+        <div className="column xlarge-10 large-9 medium-8 small-12">
+          <span className="hamburger" />
+          Main
         </div>
       </div>
     </div>
