@@ -26,21 +26,21 @@
 * Queue RabbitMQ
 * gRPC
 
-## Features
+## :zap: Features
 
-- **Gerador de lives**
-    * Visualisações das lives criadas
-    * Criação das lives
-    * Peers para WebRTC
+- **generator of lives**
+    * Views of lives created
+    * Creation of lives
+    * Peers for WebRTC
     * WebSockets
     * gRPC Server
 
 - **Streaming**
-    * Transmissão
-    * Visualização
-    * Exibição do chat e interação no `Chat`
+    * Live broadcast
+    * View
+    * Chat display and interaction on `Chat`
 
 - **Chat**
-    * Comunicação em tempo real entre os participantes
-    * Armazena as menssagens
-    * Envia as menssagens para uma fila
+    * Real-time communication between participants
+    * Stores messages
+    * Sends messages to a queue
