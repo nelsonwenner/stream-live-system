@@ -11,6 +11,9 @@
 
 ## :rocket: Technologies
 
+* [kubernetes](https://kubernetes.io/pt/docs/home/)
+* [Docker](https://www.docker.com/)
+* [Node](https://nodejs.org/en/)
 * [NestJS](https://nestjs.com/)
 * [ReactJS](https://reactjs.org/)
 * [Socket.io](https://socket.io/)
