@@ -21,6 +21,12 @@
 * [WebRTC](https://webrtc.org/)
 * [gRPC](https://grpc.io/docs/)
 
+## :toolbox: Prerequisites
+* Docker Compose version (1.25.4)
+* Docker version (19.03.9)
+* Node version (12.18.0)
+* Npm version (6.14.4)
+
 ## :loudspeaker: Communication between systems
 
 * Websockets
