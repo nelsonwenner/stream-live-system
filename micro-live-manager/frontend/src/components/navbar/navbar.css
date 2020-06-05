@@ -15,10 +15,19 @@
   font-weight: 600;
 }
 
-.power-plug::before {
+.light-plug::before {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   content: '\f185';
+  font-weight: 900;
+  color: #FFF;
+  font-size: 2.5rem;
+}
+
+.dark-plug::before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f186';
   font-weight: 900;
   color: #FFF;
   font-size: 2.5rem;

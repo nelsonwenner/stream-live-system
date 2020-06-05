@@ -11,7 +11,7 @@
 }
 
 .text {
-  font-size: 0.9rem;
+  font-size: 1rem;
   font-weight: 600;
   color: #FFF;
   display: block;
@@ -22,29 +22,34 @@
 }
 
 .uuid {
-  width: 25%;
+  width: 30%;
 }
 
 .title-bar {
-  width: 20%;
+  width: 25%;
 }
 
 .date {
-  width: 15%;
+  width: 20%;
+}
+
+.create-live {
+  width: 25%;
+}
+
+.invite { 
+  width: 20%;
 }
 
 .status {
   width: 10%;
 }
 
-.actions {
-  width: 20%;
-}
+/*Media query*/
+@media only screen and (max-width:768px) { 
+  
+  .header-bar {
+    display: none;
+  }
 
-.create-live {
-  width: 12%;
-}
-
-.invite { 
-  width: 10%;
 }

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './navbar.css';
 
 const NavBar = () => {
@@ -7,7 +7,7 @@ const NavBar = () => {
       <a href="/" className="logo">
         Dashboard
       </a>
-      <div className="power-plug">
+      <div className="light-plug">
       </div>
     </nav>
   )
