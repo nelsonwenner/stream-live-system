@@ -41,13 +41,13 @@ const NewLiveModal = ({ openModal, closeModal }) => {
       isOpen={ openModal }
       onRequestClose={ closeModal }
       contentLabel="Example Modal">
-
+      
       <form method="post" onSubmit={ onSubmit }>
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26 }}>New live</h1>
+          <h1 className="title-modal">New live</h1>
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'Title'}
             value={title}
@@ -56,7 +56,7 @@ const NewLiveModal = ({ openModal, closeModal }) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'Description'}
             value={description}
@@ -65,7 +65,7 @@ const NewLiveModal = ({ openModal, closeModal }) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'date'}
             placeholder={''}
             value={date}
@@ -74,12 +74,17 @@ const NewLiveModal = ({ openModal, closeModal }) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
             type={'password'}
             placeholder={'Password'}
             value={password}
             name={'password'}
             onChange={ (event) => setPassword(event.target.value) }
+          />
+
+          <CreateButton
+            typeBtn="submit"
+            className={'btn btn-outlined purple-btn mt-30'}
+            children={'Create'}
           />
 
           {
@@ -91,12 +96,6 @@ const NewLiveModal = ({ openModal, closeModal }) => {
 
             )
           }
-
-          <CreateButton
-            typeBtn="submit"
-            className={'btn btn-outlined purple-btn'}
-            children={'Create'}
-          />
         </div>
       </form>
     </Modal>

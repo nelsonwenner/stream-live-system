@@ -85,6 +85,11 @@ const Dashboard = () => {
               lives={ [{id: '312316546446', title: 'dragon ball', status: 'pending', created_at: '2020-05-08T20:37:56.528Z'},
               {id: '312316546446', title: 'dragon ball', status: 'done', created_at: '2020-05-08T20:37:56.528Z'}] }
             />
+
+            <NewLiveModal 
+              openModal={ modal }
+              closeModal={ closeModal }
+            />
           </div>
         </div>
       </div>
