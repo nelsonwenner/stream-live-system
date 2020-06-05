@@ -4,8 +4,10 @@ import './dashboard.css';
 import LiveActiveCount from '../../components/common/live-active-count/LiveActiveCount';
 import CustomButton from '../../components/common/custom-button/CustomButton';
 import TableHeader from '../../components/common/table-header/table-header';
+import Backdrop from '../../components/toolbar/backdrop/backdrop';
 import Listlive from '../../components/common/list-live/Listlive';
 import Sidebar from '../../components/sidebar/sidebar';
+import Toolbar from '../../components/toolbar/toolbar';
 import NavBar from '../../components/navbar/navbar';
 import Api from '../../service/Api';
 import Modal from 'react-modal';
@@ -16,8 +18,9 @@ Modal.setAppElement('body');
 
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
+  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
   const [lives, setLives] = useState([]);
-
+  
   useEffect(() => {
    
     const data = async () => {
@@ -32,6 +35,14 @@ const Dashboard = () => {
     data();
   }, []);
 
+  const drawerToolbarHandler = () => {
+    setSideDrawerOpen((prevState) => !prevState);
+  }
+
+  const backdropClicked = () => {
+    setSideDrawerOpen((prevState) => false);
+  }
+
   const openModal = () => {
     setModal(true);
   }
@@ -44,11 +55,21 @@ const Dashboard = () => {
     <div className="full-container">
       <NavBar />
       <div className="row">
+        {
+          sideDrawerOpen && (
+            <>
+              <Toolbar />
+              <Backdrop clicked={ backdropClicked } />
+            </>
+          )
+        }
         <div className="column xlarge-2 large-3">
-          <Sidebar/>
+          <Sidebar />
         </div>
         <div className="column xlarge-10 large-9 medium-12 small-12">
-          <span className="hamburger" />
+          <span className="hamburger" 
+            onClick={ drawerToolbarHandler } 
+          />
           <div className="main">
             <div className="main-header">
               <LiveActiveCount 

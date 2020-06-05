@@ -7,8 +7,8 @@ const Listlive = ({ lives }) => {
   return (
     <div>
       {
-        lives.map(live => (
-          <div className="card" key={live.id}>
+        lives.map((live, index) => (
+          <div className="card" key={index}>
             <div className="uuid-live" data-label="UUID">{live.id}</div>
             <div className="title-live" data-label="TITLE">{live.title}</div>
             <div className="date-live" data-label="DATE" >{ format(parseISO(live.created_at), 'dd/MM/yyyy HH:mm')}</div>

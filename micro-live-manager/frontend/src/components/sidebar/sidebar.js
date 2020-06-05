@@ -13,7 +13,3 @@ const SideBar = () => {
 }
 
 export default SideBar;
-
-/**
- *  <Menu/>
- */
