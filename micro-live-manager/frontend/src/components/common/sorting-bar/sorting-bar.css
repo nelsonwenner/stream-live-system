@@ -1,15 +1,17 @@
 .header-bar {
   display: flex;
+  flex-direction: row;
   background-color: rgb(59, 56, 69);
-  padding: 0.4rem 1rem;
-  margin-top: 2rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  margin-top: 1.5rem;
   border-radius: 5px;
-  position: relative;
-  top: 180px;
 }
 
 .text {
-  font-size: 0.6rem;
+  font-size: 0.9rem;
   font-weight: 600;
   color: #FFF;
   display: block;

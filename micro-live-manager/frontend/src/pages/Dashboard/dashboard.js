@@ -44,12 +44,23 @@ const Dashboard = () => {
     <div className="full-container">
       <NavBar />
       <div className="row">
-        <div className="column xlarge-2 large-3 medium-4">
+        <div className="column xlarge-2 large-3">
           <Sidebar/>
         </div>
-        <div className="column xlarge-10 large-9 medium-8 small-12">
+        <div className="column xlarge-10 large-9 medium-12 small-12">
           <span className="hamburger" />
-          Main
+          <div className="main">
+            <div className="main-header">
+              <LiveActiveCount 
+                count={ lives.length } 
+              />
+              <CustomButton
+                onClick={ openModal }
+              />
+            </div>
+            <SortingBar />
+
+          </div>
         </div>
       </div>
     </div>

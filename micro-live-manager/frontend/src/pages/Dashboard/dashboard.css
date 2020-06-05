@@ -1,9 +1,3 @@
-.container-dashboard {
-  width: auto;
-  margin-left: 16rem;
-  position: relative;
-  padding: 0 4rem;
-}
 
 .ReactModal__Content {
   position: absolute;
@@ -56,8 +50,24 @@
   left: 10px;
 }
 
+.main {
+  box-sizing: border-box;
+  width: 100%;
+  padding-top: 5rem;
+  padding-right: 5rem;
+  padding-left: 5rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.main-header {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 /*Media query*/
-@media only screen and (min-width:600px) { 
+@media only screen and (min-width:993px) { 
   
   .hamburger {
     display: none;
