@@ -1,0 +1,55 @@
+.header-bar {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(59, 56, 69);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  padding-top: 0.4rem;
+  padding-bottom: 0.4rem;
+  margin-top: 1.5rem;
+  border-radius: 5px;
+}
+
+.text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #FFF;
+  display: block;
+  margin-block-start: 0.67em;
+  margin-block-end: 0.67em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+}
+
+.uuid {
+  width: 30%;
+}
+
+.title-bar {
+  width: 25%;
+}
+
+.date {
+  width: 20%;
+}
+
+.create-live {
+  width: 25%;
+}
+
+.invite { 
+  width: 20%;
+}
+
+.status {
+  width: 10%;
+}
+
+/*Media query*/
+@media only screen and (max-width:768px) { 
+  
+  .header-bar {
+    display: none;
+  }
+
+}

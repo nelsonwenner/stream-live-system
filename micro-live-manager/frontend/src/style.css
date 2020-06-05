@@ -1,6 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Poppins:200,300,400,500,600,700,800,900&display=swap');
 @import url('https://use.fontawesome.com/releases/v5.7.0/css/all.css');
 
+/*Basic reset*/
 * {
   margin: 0;
   padding: 0;
@@ -8,8 +9,28 @@
   font-family: 'Poppins', sans-serif;
 }
 
+/*Global styles*/
+
+html {
+  font-size: 10px;
+}
+
 body {
   background: #302C40;
+  font-size: 16px;
   color: #FFF;
   transition: all 0.25s linear;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+li {
+  list-style: none;
 }

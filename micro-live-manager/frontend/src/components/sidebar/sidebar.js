@@ -5,9 +5,8 @@ import Menu from './menu/menu';
 
 const SideBar = () => {
   return (
-    <div className="container">
-      <div className="icon-broadcast mt"></div>
-      <h1>Lives</h1>
+    <div className="container-board">
+      <span className="icon-broadcast"></span>
       <Menu/>
     </div>
   )
