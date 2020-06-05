@@ -55,12 +55,12 @@ const Dashboard = () => {
     <div className="full-container">
       <NavBar />
       <div className="row">
+        <Toolbar 
+          show={ sideDrawerOpen } 
+        />
         {
-          sideDrawerOpen && (
-            <>
-              <Toolbar />
-              <Backdrop clicked={ backdropClicked } />
-            </>
+          sideDrawerOpen  && (
+            <Backdrop clicked={ backdropClicked } />
           )
         }
         <div className="column xlarge-2 large-3">

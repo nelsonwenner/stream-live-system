@@ -14,7 +14,13 @@
   background-color: #302C40;
   border-right: 0.01rem solid rgb(72, 72, 72);
   box-shadow: 2px 0px 5px rgb(72, 72, 72);
-  z-index: 1001;
+  z-index: 1000;
+  transform: translateX(-100%);
+  transition: transform 0.3s ease-out;
+}
+
+.container-toolbar.open {
+  transform: translateX(0);
 }
 
 /*Media query*/
