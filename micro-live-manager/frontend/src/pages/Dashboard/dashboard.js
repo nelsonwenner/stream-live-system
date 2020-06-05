@@ -82,8 +82,7 @@ const Dashboard = () => {
             <TableHeader />
 
             <Listlive
-              lives={ [{id: '312316546446', title: 'dragon ball', status: 'pending', created_at: '2020-05-08T20:37:56.528Z'},
-              {id: '312316546446', title: 'dragon ball', status: 'done', created_at: '2020-05-08T20:37:56.528Z'}] }
+              lives={ lives }
             />
 
             <NewLiveModal 
