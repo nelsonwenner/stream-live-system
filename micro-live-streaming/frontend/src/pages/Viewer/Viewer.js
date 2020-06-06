@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import './viewer.css';
 
-import NavView from '../../components/common/nav/Nav';
+import NavView from '../../components/common/NavBar/NavBar';
 import ViewerModal from '../../components/ViewerModal/ViewerModal';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import Chat from '../../components/Chat/Chat';

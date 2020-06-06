@@ -4,7 +4,7 @@ import './broadcast.css';
 import ContainerVideo from '../../components/container-video/ContainerVideo';
 import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
 import DeviceModal from '../../components/DeviceModal/DeviceModal';
-import NavBroadcast from '../../components/common/nav/Nav';
+import NavBroadcast from '../../components/common/NavBar/NavBar';
 import useBroadcast from '../../hooks/useBroadcast';
 import Chat from '../../components/Chat/Chat';
 import Modal from 'react-modal';
@@ -49,7 +49,29 @@ const Broadcast = (props) => {
   }, [loadStream]);
   
   return (
-    <>
+    <div className="full-container">
+      <NavBroadcast
+        stopLive={ error }
+        setOpenDevicesDialog={ setOpenDevicesDialog }
+        titleLogo={ 'Streaming Broadcaster' }
+        isBroadcaster={ true }
+        closeLive={ (stop) => {
+          
+          if (stop) {
+            setStopLive(true);
+            setFinishRoom(true);
+          }
+
+        }}
+      />
+    </div>
+  )
+}
+
+export default Broadcast;
+
+/*
+ <>
       <NavBroadcast
         stopLive={ error }
         setOpenDevicesDialog={ setOpenDevicesDialog }
@@ -83,7 +105,7 @@ const Broadcast = (props) => {
         onChange={ onDevicesChange }
         onClose={ () => (setOpenDevicesDialog(false)) }
       />
-
+      
       <BroadcastModal
         errorRequests={ error }
         open={ openBroadcasterDialog }
@@ -95,8 +117,6 @@ const Broadcast = (props) => {
 
         }}
       />
-    </>
-  )
-}
+    </div>
 
-export default Broadcast;
+*/

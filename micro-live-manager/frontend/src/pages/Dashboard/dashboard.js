@@ -97,27 +97,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
-
-/*
-<Sidebar/>
- <div className="container-dashboard"> 
-        <div className="container-live">
-          <CustomButton
-            onClick={ openModal }
-          />
-          <LiveActiveCount 
-            count={ lives.length } 
-          />
-        </div>
-        <SortingBar/>
-        
-        <Listlive
-          lives={ lives }
-        />
-
-        <NewLiveModal 
-          openModal={ modal }
-          closeModal={ closeModal }
-        />
-      </div>
- */
