@@ -12,8 +12,9 @@ const ContainerVideo = ({ videoRef, countViews, titleVideo, live }) => {
   
   return (
     <div className="video">
-      <video id='video' width='1000px'height='600px' autoPlay muted controls style={{display: 'inline-block', verticalAlign: 'top', marginLeft: 0}} />
-
+      <div className="responsive-video">
+        <video width="1000" height="600" id='video' autoPlay muted controls />
+      </div>
       {
         live && live.status === 'done'
         ? (
@@ -36,6 +37,7 @@ const ContainerVideo = ({ videoRef, countViews, titleVideo, live }) => {
           </>
         )
       }
+     
     </div>
   )
 }

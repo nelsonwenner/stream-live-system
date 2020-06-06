@@ -47,6 +47,13 @@ const Broadcast = (props) => {
     loadStream(devices);
 
   }, [loadStream]);
+
+  const closeLive = (stop) => {
+    if (stop) {
+      setStopLive(true);
+      setFinishRoom(true);
+    }
+  }
   
   return (
     <div className="full-container">
@@ -55,15 +62,21 @@ const Broadcast = (props) => {
         setOpenDevicesDialog={ setOpenDevicesDialog }
         titleLogo={ 'Streaming Broadcaster' }
         isBroadcaster={ true }
-        closeLive={ (stop) => {
-          
-          if (stop) {
-            setStopLive(true);
-            setFinishRoom(true);
-          }
-
-        }}
+        closeLive={ (stop) => closeLive(stop) }
       />
+      <div className="row">
+        <div className="column xlarge-7 large-6 medium-12 small-12 test">
+        <ContainerVideo
+          live={ live }
+          titleVideo={ live.title } 
+          videoRef={ videoRef.current }
+          countViews={ usersConnected }
+        />
+        </div>
+        <div className="column xlarge-5 large-6 medium-12 small-12 test">
+          <h1>Chat</h1>
+        </div>
+      </div>
     </div>
   )
 }
