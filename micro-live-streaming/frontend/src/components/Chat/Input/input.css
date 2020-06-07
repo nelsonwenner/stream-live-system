@@ -28,7 +28,7 @@
   content: '\f061';
   font-weight: 900;
   position: relative;
-  font-size: 22px;
+  font-size: 2.2rem;
   right: 25px;
   top: 25px;
   color: #fff;
@@ -36,7 +36,7 @@
 
 .name-input {
   position: absolute;
-  left: 55px;
+  padding-left: 5.7rem;
   margin-top: 5px;
   font-size: 12px;
   font-weight: 500;
