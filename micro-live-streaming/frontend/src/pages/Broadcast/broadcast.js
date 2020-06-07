@@ -51,6 +51,12 @@ const Broadcast = (props) => {
       setFinishRoom(true);
     }
   }
+
+  const closeBroadcast = (formData) => {
+    if (live.status !== 'done') {
+      setUserInfo((prevState) => ({...prevState, ...formData}));
+    }
+  }
   
   return (
     <div className="full-container">
@@ -82,60 +88,14 @@ const Broadcast = (props) => {
         open={ openDevicesDialog }
         onChange={ onDevicesChange }
         onClose={ () => (setOpenDevicesDialog(false)) }
+      />
+      <BroadcastModal
+        errorRequests={ error }
+        open={ openBroadcasterDialog }
+        onClose={ (formData) => closeBroadcast(formData) }
       />  
     </div>
   )
 }
 
 export default Broadcast;
-
-/*
- <>
-      <NavBroadcast
-        stopLive={ error }
-        setOpenDevicesDialog={ setOpenDevicesDialog }
-        titleLogo={ 'Streaming Broadcaster' }
-        isBroadcaster={ true }
-        closeLive={ (stop) => {
-          
-          if (stop) {
-            setStopLive(true);
-            setFinishRoom(true);
-          }
-
-        }}
-      />
-
-      <ContainerVideo
-        live={ live }
-        titleVideo={ live.title } 
-        videoRef={ videoRef.current }
-        countViews={ usersConnected }
-      />
-
-      <Chat 
-        user={ userInfo }
-        room={ slug }
-        finishRoom={ finishRoom }
-      />
-
-      <DeviceModal 
-        open={ openDevicesDialog }
-        onChange={ onDevicesChange }
-        onClose={ () => (setOpenDevicesDialog(false)) }
-      />
-      
-      <BroadcastModal
-        errorRequests={ error }
-        open={ openBroadcasterDialog }
-        onClose={ (formData) => {
-
-          if (live.status !== 'done') {
-            setUserInfo((prevState) => ({...prevState, ...formData}));
-          }
-
-        }}
-      />
-    </div>
-
-*/

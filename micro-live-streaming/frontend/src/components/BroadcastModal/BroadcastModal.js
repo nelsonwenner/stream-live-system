@@ -28,14 +28,15 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
       className={"ReactModal__Content_Broadcast"}
       overlayClassName={"ReactModal__Overlay_Broadcast"}
       onRequestClose={ handlerClose }
+      style={ style }
       contentLabel="Modal">
       
       <form >
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center', marginBottom: 19 }}>Broadcast live</h1>
+          <h1 className="title-broadcast-modal">Broadcast live</h1>
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'Name'}
             name={'name'}
@@ -44,7 +45,7 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'E-mail'}
             name={'email'}
@@ -53,7 +54,7 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'password'}
             placeholder={'Password'}
             name={'password'}
@@ -61,9 +62,16 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
             onChange={ (event) => setPassword(event.target.value) }
           />
 
+          <CustomButton
+            typeBtn="button"
+            className={'btn btn-outlined purple-btn'}
+            children={'Done'}
+            onClick={ handlerClose }
+          />
+
           {
             error && (errorRequests === null) && (
-              <div className="error">
+              <div className="error-broadcast">
                 <p style={{color: 'red'}}>{ error }</p>
               </div>
             )
@@ -71,22 +79,40 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
 
           {
             errorRequests && (
-              <div className="error">
+              <div className="error-broadcast">
                 <p style={{color: 'red'}}>{ errorRequests.message } { errorRequests.name }</p>
               </div>
             )
           }
-
-          <CustomButton
-            typeBtn="button"
-            className={'btn btn-outlined purple-btn'}
-            children={'Done'}
-            onClick={ handlerClose }
-          />
         </div>
       </form>
     </Modal>
   )
+}
+
+const style = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  },
+  content: {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    bottom: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px'
+  }
 }
 
 export default BroadcastModal;
