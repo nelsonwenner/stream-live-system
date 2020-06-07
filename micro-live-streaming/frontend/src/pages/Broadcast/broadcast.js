@@ -74,7 +74,11 @@ const Broadcast = (props) => {
         />
         </div>
         <div className="column xlarge-5 large-6 medium-12 small-12 test">
-          <h1>Chat</h1>
+        <Chat 
+          user={ userInfo }
+          room={ slug }
+          finishRoom={ finishRoom }
+        />
         </div>
       </div>
     </div>
