@@ -1,4 +1,4 @@
-.ReactModal__Content {
+.ReactModal__Content_Broadcast {
   position: absolute;
   width: 700px;
   height: 450px;
@@ -16,7 +16,7 @@
   z-index: 1001;
 }
 
-.ReactModal__Overlay {
+.ReactModal__Overlay_Broadcast {
   z-index: 1000;
   position: absolute;
   left: 0;

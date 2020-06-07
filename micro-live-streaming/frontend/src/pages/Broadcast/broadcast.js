@@ -7,9 +7,6 @@ import DeviceModal from '../../components/DeviceModal/DeviceModal';
 import NavBroadcast from '../../components/common/NavBar/NavBar';
 import useBroadcast from '../../hooks/useBroadcast';
 import Chat from '../../components/Chat/Chat';
-import Modal from 'react-modal';
-
-Modal.setAppElement('body');
 
 const Broadcast = (props) => {
   const { slug } = props.match.params;
@@ -66,21 +63,26 @@ const Broadcast = (props) => {
       />
       <div className="row">
         <div className="column xlarge-7 large-6 medium-12 small-12 test">
-        <ContainerVideo
-          live={ live }
-          titleVideo={ live.title } 
-          videoRef={ videoRef.current }
-          countViews={ usersConnected }
-        />
+          <ContainerVideo
+            live={ live }
+            titleVideo={ live.title } 
+            videoRef={ videoRef.current }
+            countViews={ usersConnected }
+          />
         </div>
         <div className="column xlarge-5 large-6 medium-12 small-12 test">
-        <Chat 
-          user={ userInfo }
-          room={ slug }
-          finishRoom={ finishRoom }
-        />
+          <Chat 
+            user={ userInfo }
+            room={ slug }
+            finishRoom={ finishRoom }
+          />
         </div>
       </div>
+      <DeviceModal 
+        open={ openDevicesDialog }
+        onChange={ onDevicesChange }
+        onClose={ () => (setOpenDevicesDialog(false)) }
+      />  
     </div>
   )
 }

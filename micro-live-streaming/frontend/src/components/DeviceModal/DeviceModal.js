@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect } from 'react';
 import './device-modal.css';
 
 import CustomButton from '../common/CustomButton/CustomButton';
+import DeviceSelect from './DeviceSelect/DeviceSelect';
 
 import Modal from 'react-modal';
 
@@ -84,16 +85,19 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   const handlerClose = () => {
     onClose();
   }
-
+  
   return (
     <Modal
       isOpen={ open }
+      className={"ReactModal__Content_Device"}
+      overlayClassName={"ReactModal__Overlay_Device"}
       onRequestClose={ handlerClose }
+      style={ style }
       contentLabel="Modal">
       
-      <form >
+      <form>
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center' }}>Devices Audio and Video</h1>
+          <h1 className="title-device-modal">Devices Audio and Video</h1>
 
           <DeviceSelect
             label={'Microphone'}
@@ -120,42 +124,35 @@ const DeviceModal = ({ open, onChange, onClose }) => {
             children={'Done'}
             onClick={ handlerClose }
           />
-
         </div>
       </form>
     </Modal>
   )
 }
 
-const DeviceSelect = ({value, label ,devices, onChange}) => {
-  return (
-    <div>
-      <label>
-        <div className="label">{label}</div>
-        <select className="select mt-30" onChange={(event) => onChange(event.target.value) } value={ value }>
-          {
-            devices 
-              ? devices.map((device, key) => (
-                <option value={ device.deviceId } key={ key }>
-                  { device.label }
-                </option>
-              ))
-
-              : (
-                  <>
-                    <option defaultValue={'Not selected'} value={ 'Not selected' }>
-                      { 'Not selected' }
-                    </option>
-                    <option value={ value }>
-                      { label }
-                    </option>
-                  </>
-                )
-          }
-        </select>
-      </label>
-    </div>
-  )
+const style = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  },
+  content: {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    bottom: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px'
+  }
 }
 
 export default DeviceModal;

@@ -12,7 +12,7 @@
   height: 100vh;
   overflow: auto;
   background-color: #302C40;
-  border-right: 0.01rem solid rgb(72, 72, 72);
+  border-right: 0.016rem solid rgba(204, 204, 204, 0.986);
   box-shadow: 2px 0px 5px rgb(72, 72, 72);
   z-index: 1000;
   transform: translateX(-100%);

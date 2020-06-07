@@ -25,6 +25,8 @@ const BroadcastModal = ({open, onClose, errorRequests}) => {
   return (
     <Modal
       isOpen={ open }
+      className={"ReactModal__Content_Broadcast"}
+      overlayClassName={"ReactModal__Overlay_Broadcast"}
       onRequestClose={ handlerClose }
       contentLabel="Modal">
       
