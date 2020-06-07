@@ -26,39 +26,41 @@ const Viewer = (props) => {
 
   }, [live, error, userInfo]);
 
+  const closeViewModal = (formData) => {
+    if (live.status !== 'done') {
+      setUserInfo((prevState) => ({...prevState, ...formData}));
+      setOpenUserInfoDialog(false);
+    }
+  } 
+
   return (
-    <>
+    <div className="full-container">
       <NavView 
         titleLogo={ 'Streaming Viewer' }
         isBroadcaster={ false }
       />
-    
-      <ContainerVideo
-        live={ live }
-        titleVideo={ live.title } 
-        videoRef={ videoRefViewer.current }
-        countViews={ usersConnected }
-      />
-
-      <Chat 
-        user={ userInfo }
-        room={ slug }
-      />
-
+      <div className="row">
+        <div className="column xlarge-7 large-6 medium-12 small-12 test">
+          <ContainerVideo
+            live={ live }
+            titleVideo={ live.title } 
+            videoRef={ videoRefViewer.current }
+            countViews={ usersConnected }
+          />
+        </div>
+        <div className="column xlarge-5 large-6 medium-12 small-12 test">
+          <Chat 
+            user={ userInfo }
+            room={ slug }
+          />
+        </div>
+      </div>
       <ViewerModal
         errorRequests={ error }
         open={ openUserInfoDialog }
-        onClose={ (formData) => {
-          
-          if (live.status !== 'done') {
-            setUserInfo((prevState) => ({...prevState, ...formData}));
-            setOpenUserInfoDialog(false);
-          }
-
-        }}
+        onClose={ (formData) => closeViewModal(formData) }
       />
-
-    </>
+    </div>
   )
 }
 
