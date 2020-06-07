@@ -24,17 +24,18 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
   return (
     <Modal
       isOpen={ open }
-      className={"ReactModal__Content_viewer"}
-      overlayClassName={"ReactModal__Overlay_viewer"}
+      className={"ReactModal__Content_Viewer"}
+      overlayClassName={"ReactModal__Overlay_Viewer"}
       onRequestClose={ handlerClose }
+      style={ style }
       contentLabel="Modal">
       
       <form >
         <div className="container-form">
-          <h1 style={{ fontWeight: 800, fontSize: 26, textAlign: 'center', marginBottom: 19, marginTop: 12 }}>Access live</h1>
+          <h1 className="title-view-modal">Access live</h1>
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'Name'}
             name={'name'}
@@ -43,7 +44,7 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
           />
 
           <CustomInput
-            classs={'mt-40'}
+            classs={'mt-17'}
             type={'text'}
             placeholder={'E-mail'}
             name={'email'}
@@ -51,9 +52,15 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
             onChange={ (event) => setEmail(event.target.value) }
           />
 
+          <CustomButton
+            typeBtn="button"
+            className={'btn btn-outlined purple-btn'}
+            children={'Done'}
+            onClick={ handlerClose }
+          />
           {
             error && (errorRequests === null) && (
-              <div className="error">
+              <div className="error-view">
                 <p style={{color: 'red'}}>{ error }</p>
               </div>
             )
@@ -61,22 +68,40 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
 
           {
             errorRequests && (
-              <div className="error">
+              <div className="error-view">
                 <p style={{color: 'red'}}>{ errorRequests.message } { errorRequests.name }</p>
               </div>
             )
           }
-
-          <CustomButton
-            typeBtn="button"
-            className={'btn btn-outlined purple-btn'}
-            children={'Done'}
-            onClick={ handlerClose }
-          />
         </div>
       </form>
     </Modal>
   )
+}
+
+const style = {
+  overlay: {
+    position: 'fixed',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    backgroundColor: 'rgba(255, 255, 255, 0.75)'
+  },
+  content: {
+    position: 'absolute',
+    top: '40px',
+    left: '40px',
+    right: '40px',
+    bottom: '40px',
+    border: '1px solid #ccc',
+    background: '#fff',
+    overflow: 'auto',
+    WebkitOverflowScrolling: 'touch',
+    borderRadius: '4px',
+    outline: 'none',
+    padding: '20px'
+  }
 }
 
 export default ViewerModal;

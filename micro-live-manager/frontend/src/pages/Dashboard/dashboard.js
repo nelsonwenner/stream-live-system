@@ -2,6 +2,7 @@ import React, {useEffect, useState } from 'react';
 import './dashboard.css';
 
 import LiveActiveCount from '../../components/common/live-active-count/LiveActiveCount';
+import NewLiveModal from '../../components/common/new-live-modal/NewLiveModal';
 import CustomButton from '../../components/common/custom-button/CustomButton';
 import TableHeader from '../../components/common/table-header/table-header';
 import Backdrop from '../../components/toolbar/backdrop/backdrop';
@@ -10,11 +11,6 @@ import Sidebar from '../../components/sidebar/sidebar';
 import Toolbar from '../../components/toolbar/toolbar';
 import NavBar from '../../components/navbar/navbar';
 import Api from '../../service/Api';
-import Modal from 'react-modal';
-
-import NewLiveModal from '../../components/common/new-live-modal/NewLiveModal';
-
-Modal.setAppElement('body');
 
 const Dashboard = () => {
   const [modal, setModal] = useState(false);
@@ -97,27 +93,3 @@ const Dashboard = () => {
 }
 
 export default Dashboard;
-
-/*
-<Sidebar/>
- <div className="container-dashboard"> 
-        <div className="container-live">
-          <CustomButton
-            onClick={ openModal }
-          />
-          <LiveActiveCount 
-            count={ lives.length } 
-          />
-        </div>
-        <SortingBar/>
-        
-        <Listlive
-          lives={ lives }
-        />
-
-        <NewLiveModal 
-          openModal={ modal }
-          closeModal={ closeModal }
-        />
-      </div>
- */

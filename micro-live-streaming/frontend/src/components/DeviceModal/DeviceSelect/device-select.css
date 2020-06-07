@@ -1,9 +1,12 @@
-.input-field {
+.container-select {
+  width: 100%;
+}
+
+.select {
   padding: 0.375rem 0.75rem;
   font-size: 1.4rem;
   font-weight: 400;
   line-height: 1;
-  max-width: 55rem;
   width: 100%;
   color: #495057;
   background-color: #e9ecef;
@@ -14,4 +17,14 @@
 
 .mt-17 {
   margin-bottom: 1.7rem;
+}
+
+.label {
+  display: block;
+  font-size: 1.2rem;
+}
+
+.position-label {
+  position: relative;
+  text-align: start;
 }
