@@ -34,9 +34,12 @@
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   content: '\f04d';
+  position: relative;
   font-weight: 900;
   color: #fff;
-  font-size: 2.5rem;
+  position: relative;
+  top: 3px;
+  font-size: 2.1rem;
 }
 
 .options .start-icon:before {
@@ -45,5 +48,7 @@
   content: '\f04b';
   font-weight: 900;
   color: #fff;
-  font-size: 2.5rem;
+  position: relative;
+  top: 3px;
+  font-size: 2.1rem;
 }

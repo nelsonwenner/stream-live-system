@@ -89,11 +89,7 @@ const Broadcast = (props) => {
         onChange={ onDevicesChange }
         onClose={ () => (setOpenDevicesDialog(false)) }
       />
-      <BroadcastModal
-        errorRequests={ error }
-        open={ openBroadcasterDialog }
-        onClose={ (formData) => closeBroadcast(formData) }
-      />  
+    
     </div>
   )
 }
