@@ -3,7 +3,7 @@
   cursor: pointer;
   content: '\f519';
   font-weight: 900;
-  color: #FFF;
+  color: var(--bg-icons);
   font-size: 40px;
 }
 
@@ -21,7 +21,7 @@
   width: 100%;
   height: 100vh;
   overflow: auto;
-  border-right: 0.016rem solid rgba(204, 204, 204, 0.986);
+  border-right: 0.016rem solid var(--border-color);
 }
 
 .icon-broadcast {

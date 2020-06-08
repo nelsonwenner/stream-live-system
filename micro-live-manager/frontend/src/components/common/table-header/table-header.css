@@ -1,7 +1,7 @@
 .header-bar {
   display: flex;
   flex-direction: row;
-  background-color: rgb(59, 56, 69);
+  background-color: var(--bg-table-header);
   padding-left: 1rem;
   padding-right: 1rem;
   padding-top: 0.4rem;
@@ -13,7 +13,7 @@
 .text {
   font-size: 1rem;
   font-weight: 600;
-  color: #FFF;
+  color: var(--text);
   display: block;
   margin-block-start: 0.67em;
   margin-block-end: 0.67em;
