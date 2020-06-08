@@ -16,9 +16,9 @@ html {
 }
 
 body {
-  background: #302C40;
+  background: var(--bg);
+  color: var(--text);
   font-size: 16px;
-  color: #FFF;
   transition: all 0.25s linear;
 }
 
@@ -34,3 +34,47 @@ ul {
 li {
   list-style: none;
 }
+
+/*Themes*/
+:root {
+  --theme-colors0-bg: #FFFFFF;
+  --theme-colors1-bg: #302C40;
+  --theme-colors0-nav: #F5F6F7;
+  --theme-colors1-nav: #302C40;;
+  --theme-colors0-icon: rgba(0,0,0,.8);
+  --theme-colors1-icon: #FFFFFF;
+  --theme-colors0-text: rgba(0,0,0,.8);
+  --theme-colors1-text: #FFFFFF;
+  --theme-colors0-borders: rgb(204, 204, 204);
+  --theme-colors1-borders: rgba(204, 204, 204, 0.986);
+  --theme-colors0-table-header: rgb(248, 248, 248);
+  --theme-colors1-table-header: rgb(59, 56, 69);
+  --theme-colors0-card: #FFFFFF;
+  --theme-colors1-card: rgb(48, 44, 64);
+  --theme-colors0-effect: rgba(138, 153, 192, 0.068);;
+  --theme-colors1-effect: rgba(0, 0, 0, 0.1);
+
+}
+
+.dark {
+  --bg: var(--theme-colors1-bg);
+  --bg-nav: var(--theme-colors1-nav);
+  --text: var(--theme-colors1-text);
+  --border-color: var(--theme-colors1-borders);
+  --bg-table-header: var(--theme-colors1-table-header);
+  --bg-card: var(--theme-colors1-card);
+  --bg-icons: var(--theme-colors1-icon);
+  --bg-effect: var(--theme-colors1-effect);
+}
+
+.light {
+  --bg: var(--theme-colors0-bg);
+  --bg-nav: var(--theme-colors0-nav);
+  --text: var(--theme-colors0-text);
+  --border-color: var(--theme-colors0-borders);
+  --bg-table-header: var(--theme-colors0-table-header);
+  --bg-card: var(--theme-colors0-card);
+  --bg-icons: var(--theme-colors0-icon);
+  --bg-effect: var(--theme-colors0-effect);
+}
+

@@ -7,7 +7,8 @@
   height: 6rem;
   padding-left: 5rem;
   padding-right: 5rem;
-  border-bottom: 0.016rem solid rgba(204, 204, 204, 0.986);
+  border-bottom: 0.016rem solid var(--border-color);
+  background-color: var(--bg-nav);
 }
 
 .logo {
@@ -15,20 +16,20 @@
   font-weight: 600;
 }
 
-.light-plug::before {
+.dark-plug::before {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   content: '\f185';
   font-weight: 900;
-  color: #FFF;
+  color: var(--bg-icons);
   font-size: 2.5rem;
 }
 
-.dark-plug::before {
+.light-plug::before {
   font-family: "Font Awesome 5 Free";
   cursor: pointer;
   content: '\f186';
   font-weight: 900;
-  color: #FFF;
+  color: var(--bg-icons);
   font-size: 2.5rem;
 }

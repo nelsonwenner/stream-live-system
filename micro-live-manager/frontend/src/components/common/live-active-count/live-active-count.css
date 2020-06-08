@@ -1,6 +1,6 @@
 .title {
   font-weight: 400;
-  color: #fff;
+  color: var(--text);
   font-size: 1.7rem;
   display: flex;
   flex-direction: row;

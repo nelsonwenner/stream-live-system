@@ -21,7 +21,7 @@
   cursor: pointer;
   content: '\f015';
   font-weight: 900;
-  color: #FFF;
+  color: var(--bg-icons);
   font-size: 14px;
 }
 

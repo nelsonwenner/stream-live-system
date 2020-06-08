@@ -1,7 +1,7 @@
 .uuid-live {
   font-size: 1rem;
   font-weight: 500;
-  color: #FFF;
+  color: var(--text);
   margin: 0;
   width: 24%;
   padding-left: 1rem;
@@ -9,25 +9,25 @@
 
 .title-live {
   font-size: 1rem;
-  color: #FFF;
+  color: var(--text);
   width: 19.500%;
 }
 
 .date-live {
   font-size: 1rem;
-  color: #FFF;
+  color: var(--text);
   width: 16%;
 }
 
 .create-link-live {
   font-size: 1rem;
-  color: #FFF;
+  color: var(--text);
   width: 19.500%;
 }
 
 .invite-live {
   font-size: 1rem;
-  color: #FFF;
+  color: var(--text);
   width: 14%;
 }
 
@@ -41,7 +41,7 @@
 
 .status-live {
   font-size: 0.8rem;
-  color: #FFF;
+  color: var(--text);
   width: 10%;
 }
 
@@ -50,13 +50,13 @@
   flex-direction: row;
   align-items: center;
   cursor: pointer;
-  background-color: rgb(48, 44, 64);
+  background-color: var(--bg-card);
   padding: 1rem 0px;
   border-bottom: 1px solid rgba(190, 190, 190, 0.22);
 }
 
 .card:hover {
-  background-color: rgba(0, 0, 0, 0.1)
+  background-color: var(--bg-effect);
 }
 
 .create-link-live a {
