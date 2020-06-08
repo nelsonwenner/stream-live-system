@@ -2,14 +2,19 @@
   Microservice live streaming
 </h1>
 
-### Diagram
-<h1 align="center">
-  <img src="" />
-</h1>
+### :memo: Info
 
-### Frontend
+  - **Frontend**
+    - ReactJS
+      * SocketIO
+      * peerJS
+      * WebRTC
 
-- Reactjs
-- WebRTC
-- SocketIO
-- Peerjs
+## :information_source: Getting Started
+
+1. At the terminal, run:
+
+```bash
+$ docker-compose up -d
+```
+---
