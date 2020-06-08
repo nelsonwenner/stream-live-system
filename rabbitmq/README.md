@@ -1,14 +1,6 @@
 <h1 align="center">
-  Microservice live streaming
+  Queue - RabbitMQ
 </h1>
-
-### :memo: Info
-
-  - **Frontend**
-    - ReactJS
-      * SocketIO
-      * peerJS
-      * WebRTC
 
 ## :information_source: Getting Started
 
@@ -17,4 +9,5 @@
 ```bash
 $ docker-compose up -d
 ```
+
 ---

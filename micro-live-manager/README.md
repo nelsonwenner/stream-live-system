@@ -2,22 +2,25 @@
   Microservice live manager
 </h1>
 
-### Diagram
-<h1 align="center">
-  <img src="https://user-images.githubusercontent.com/40550247/82124650-e1e46c00-9776-11ea-8e36-4614ccad90a1.png" />
-</h1>
+### :memo: Info
+  - **Backend**
+    - NestJS
+      * API REST
+      * SocketIO
+      * PeerServer
+      * PostgreSQL
+      * Redis
+      * gRPC
 
-### Backend
+  - **Frontend**
+    - ReactJS
+      * Single Page Application
 
-- Nestjs
-  * API REST
-  * SocketIO
-  * PeerServer
-  * PostgreSQL
-  * Redis
-  * gRPC
+## :information_source: Getting Started
 
-### Frontend
+1. At the terminal, run:
 
-- Reactjs
-  * Single Page Application
+```bash
+$ docker-compose up -d
+```
+---

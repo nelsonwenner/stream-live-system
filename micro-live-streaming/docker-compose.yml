@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  frontend:
+    container_name: micro-live-streaming
+    image: node:10.16-slim
+    working_dir: /frontend/src
+    entrypoint: ./.docker/entrypoint.sh
+    ports:
+      - 4000:4000
+    volumes:
+      - ./frontend:/frontend/src
+    tty: true
