@@ -20,6 +20,7 @@
 * [RabbitMQ](https://www.cloudamqp.com/)
 * [WebRTC](https://webrtc.org/)
 * [gRPC](https://grpc.io/docs/)
+* [peerJS](https://peerjs.com/)
 
 ## :toolbox: Prerequisites
 * Docker Compose version (1.25.4)
@@ -53,3 +54,18 @@
     * Real-time communication between participants
     * Stores messages
     * Sends messages to a queue
+
+## :information_source: Getting Started
+
+The application was built using the concepts of microservices and architected with Docker. To run, it will be necessary to run or command the docker-compose up.
+Access each microservice respectively and read **README.md** to see more details on how to run the microservice.
+
+1. [Queue rabbitMQ](https://github.com/nelsonwenner/stream-live-system/tree/master/rabbitmq)
+2. [Microservice live manager](https://github.com/nelsonwenner/stream-live-system/tree/master/micro-live-manager)
+3. [Microservice live chat](https://github.com/nelsonwenner/stream-live-system/tree/master/micro-live-chat)
+4. [Microservice live streaming](https://github.com/nelsonwenner/stream-live-system/tree/master/micro-live-streaming)
+
+## :memo: License
+This project is under the MIT license. See the [LICENSE](LICENSE.md) for more information.
+
+---
