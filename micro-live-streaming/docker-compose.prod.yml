@@ -1,0 +1,13 @@
+version: "3.7"
+
+services:
+  frontend:
+    container_name: micro-live-streaming
+    build:
+        context: ./frontend
+    entrypoint: ./.docker/entrypoint.sh
+    ports:
+      - 4000:4000
+    volumes:
+      - ./frontend:/frontend/src
+    tty: true
