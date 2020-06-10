@@ -2,7 +2,7 @@
   Microservice live streaming
 </h1>
 
-### :memo: Info
+## :memo: Info
 
   - **Frontend**
     - ReactJS

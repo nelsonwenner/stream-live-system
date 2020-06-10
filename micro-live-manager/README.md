@@ -2,7 +2,7 @@
   Microservice live manager
 </h1>
 
-### :memo: Info
+## :memo: Info
   - **Backend**
     - NestJS
       * API REST

@@ -2,7 +2,7 @@
   Microservice live chat
 </h1>
 
-### :memo: Info
+## :memo: Info
   - **Backend**
     - NestJS
       * SocketIO
