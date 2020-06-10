@@ -2,7 +2,7 @@
   Microservice live streaming
 </h1>
 
-### :memo: Info
+## :memo: Info
 
   - **Frontend**
     - ReactJS
@@ -16,5 +16,11 @@
 
 ```bash
 $ docker-compose up -d
+```
+
+## :hammer_and_wrench: Build
+
+```bash
+$ docker-compose -f docker-compose.prod.yml build
 ```
 ---

@@ -2,7 +2,7 @@
   Microservice live chat
 </h1>
 
-### :memo: Info
+## :memo: Info
   - **Backend**
     - NestJS
       * SocketIO
@@ -17,5 +17,11 @@
 
 ```bash
 $ docker-compose up -d
+```
+
+## :hammer_and_wrench: Build
+
+```bash
+$ docker-compose -f docker-compose.prod.yml build
 ```
 ---
