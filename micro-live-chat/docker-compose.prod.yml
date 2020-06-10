@@ -1,0 +1,50 @@
+version: "3.7"
+
+services:
+  backend:
+    container_name: "micro-live-chat-backend"
+    build:
+      context: .
+    entrypoint: ./.docker/entrypoint.sh
+    volumes:
+      - ./:/backend/src
+    ports: 
+      - "4444:4444"
+    depends_on: 
+      - database
+    networks:
+      - app-network
+      - micro-live-manager_app-network
+      - rabbitmq_queue-live
+  
+  database:
+    container_name: "micro-live-chat-database"
+    image: library/postgres:9.6-alpine
+    ports: 
+      - "5433:5432"
+    volumes: 
+      - ./.docker/database/data:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=root@123
+      - POSTGRES_DB=database
+    restart: always
+    tty: true
+    networks: 
+      - app-network
+      
+  redis:
+    image: redis:alpine
+    container_name: micro-live-chat-redis
+    volumes:
+      - ./.docker/redisdata:/data
+    networks:
+      - app-network
+    
+networks:
+  app-network:
+    driver: bridge
+  micro-live-manager_app-network:
+    external: true
+  rabbitmq_queue-live:
+    external: true
