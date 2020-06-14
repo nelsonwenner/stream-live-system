@@ -8,7 +8,7 @@
     "@testing-library/user-event": "^7.2.1",
     "axios": "^0.19.2",
     "date-fns": "^2.13.0",
-    "rainbowed": "^1.0.4",
+    "rainbowed": "^1.10.4",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-modal": "^3.11.2",
