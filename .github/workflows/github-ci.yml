@@ -13,35 +13,19 @@ jobs:
         cd rabbitmq
         docker-compose up -d
         cd ..
-    
-    - name: checkout container rabbitmq
-      run: |
-        docker ps -a
-        docker logs container-rabbitmq-queue
 
+    - name: Test container rabbitmq
+      run: |
+        docker run --network container:container-rabbitmq-queue appropriate/curl -s --retry 10 --retry-connrefused http://localhost:15672
+   
     - name: docker run micro live manager
       run: |
         cd micro-live-manager
         docker-compose up -d
         cd ..
 
-    - name: checkout container micro-live-manager-backend
-      run: |
-        docker ps -a
-        docker logs micro-live-manager-backend
-
-    - name: checkout container micro-live-manager-frontend
-      run: |
-        docker ps -a
-        docker logs micro-live-manager-frontend
-
     - name: docker run micro live streaming
       run: |
         cd micro-live-streaming
         docker-compose up -d
         cd ..
-
-    - name: checkout container micro-live-streaming
-      run: |
-        docker ps -a
-        docker logs micro-live-streaming
