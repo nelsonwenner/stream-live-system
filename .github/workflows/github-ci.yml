@@ -1,6 +1,6 @@
 name: CI
 
-on: [push]
+on: [pull_request, push]
 
 jobs:
   build:
@@ -8,29 +8,40 @@ jobs:
     steps:
     - uses: actions/checkout@v2
 
-    - name: docker build rabbitmq
+    - name: docker run rabbitmq
       run: |
-        cd rabbitmq && 
-        docker-compose up -d && 
+        cd rabbitmq
+        docker-compose up -d
         cd ..
     
     - name: checkout container rabbitmq
       run: |
-        docker ps -a && 
+        docker ps -a
         docker logs container-rabbitmq-queue
 
-    - name: docker build micro live manager
+    - name: docker run micro live manager
       run: |
-        cd micro-live-manager && 
-        docker-compose up -d && 
+        cd micro-live-manager
+        docker-compose up -d
         cd ..
 
     - name: checkout container micro-live-manager-backend
       run: |
-        docker ps -a && 
+        docker ps -a
         docker logs micro-live-manager-backend
 
     - name: checkout container micro-live-manager-frontend
       run: |
-        docker ps -a && 
+        docker ps -a
         docker logs micro-live-manager-frontend
+
+    - name: docker run micro live streaming
+      run: |
+        cd micro-live-streaming
+        docker-compose up -d
+        cd ..
+
+    - name: checkout container micro-live-streaming
+      run: |
+        docker ps -a
+        docker logs micro-live-streaming
