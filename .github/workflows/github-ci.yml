@@ -16,7 +16,7 @@ jobs:
 
     - name: Test container rabbitmq
       run: |
-        docker run --network container:container-rabbitmq-queue jwilder/dockerize -wait http://localhost:15672 -timeout 120s -wait-retry-interval 5s
+        docker run --network container:container-rabbitmq-queue jwilder/dockerize -wait http://localhost:15672 -timeout 120s -wait-retry-interval 10s
 
     - name: docker run micro live manager
       run: |
@@ -26,11 +26,11 @@ jobs:
 
     - name: Test container micro-live-manager-backend
       run: |
-        docker run --network container:micro-live-manager-backend jwilder/dockerize -wait http://localhost:3333 -timeout 120s -wait-retry-interval 5s
+        docker run --network container:micro-live-manager-backend jwilder/dockerize -wait http://localhost:3333 -timeout 600s -wait-retry-interval 10s
 
     - name: Test container micro-live-manager-frontend
       run: |
-        docker run --network container:micro-live-manager-frontend jwilder/dockerize -wait http://localhost:8000 -timeout 120s -wait-retry-interval 5s
+        docker run --network container:micro-live-manager-frontend jwilder/dockerize -wait http://localhost:8000 -timeout 120s -wait-retry-interval 10s
     
     - name: docker run micro live streaming
       run: |
@@ -40,5 +40,5 @@ jobs:
 
     - name: Test container micro-live-streaming
       run: |
-        docker run --network container:micro-live-streaming jwilder/dockerize -wait http://localhost:4000 -timeout 120s -wait-retry-interval 5s
+        docker run --network container:micro-live-streaming jwilder/dockerize -wait http://localhost:4000 -timeout 120s -wait-retry-interval 10s
   
