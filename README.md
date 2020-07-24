@@ -3,6 +3,9 @@
 </h1>
 
 <p align="center">
+
+  <img alt="Workflow" src="https://github.com/nelsonwenner/stream-live-system/workflows/CI/badge.svg">
+  
   <img alt="GitHub language count" src="https://img.shields.io/github/languages/count/nelsonwenner/stream-live-system?color=%2304D361">
 
   <a href="https://github.com/nelsondiaas">
@@ -14,6 +17,7 @@
   <a href="https://github.com/nelsondiaas/react-hotel-web/stargazers">
     <img alt="Stargazers" src="https://img.shields.io/github/stars/nelsonwenner/stream-live-system?style=social">
   </a>
+  
 </p>
 
 <p align="center">
