@@ -13,35 +13,32 @@ jobs:
         cd rabbitmq
         docker-compose up -d
         cd ..
-    
-    - name: checkout container rabbitmq
+
+    - name: Test container rabbitmq
       run: |
-        docker ps -a
-        docker logs container-rabbitmq-queue
+        docker run --network container:container-rabbitmq-queue jwilder/dockerize -wait http://localhost:15672 -timeout 120s -wait-retry-interval 5s
 
     - name: docker run micro live manager
       run: |
         cd micro-live-manager
         docker-compose up -d
         cd ..
-
-    - name: checkout container micro-live-manager-backend
+    
+    - name: Test container micro-live-manager-backend
       run: |
-        docker ps -a
-        docker logs micro-live-manager-backend
+        docker run --network container:micro-live-manager-backend jwilder/dockerize -wait http://localhost:3333/api/lives -timeout 300s -wait-retry-interval 5s
 
-    - name: checkout container micro-live-manager-frontend
+    - name: Test container micro-live-manager-frontend
       run: |
-        docker ps -a
-        docker logs micro-live-manager-frontend
-
+        docker run --network container:micro-live-manager-frontend jwilder/dockerize -wait http://localhost:8000 -timeout 120s -wait-retry-interval 5s
+    
     - name: docker run micro live streaming
       run: |
         cd micro-live-streaming
         docker-compose up -d
         cd ..
 
-    - name: checkout container micro-live-streaming
+    - name: Test container micro-live-streaming
       run: |
-        docker ps -a
-        docker logs micro-live-streaming
+        docker run --network container:micro-live-streaming jwilder/dockerize -wait http://localhost:4000 -timeout 120s -wait-retry-interval 5s
+  
