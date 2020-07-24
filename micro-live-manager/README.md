@@ -24,6 +24,8 @@
 $ docker-compose up -d
 ```
 
+2. Open frontend: The host [localhost:8000](http://localhost:8000) and start using it.
+
 ## :warning: Warning
 
 If you have a permission error when running the docker, run these commands below to apply the permissions to the file ``.docker/entrypoint.sh``, for windows use [Git Bash](https://gitforwindows.org/).
