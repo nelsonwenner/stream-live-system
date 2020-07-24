@@ -7,11 +7,30 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
-      
+
     - name: docker build rabbitmq
       run: |
-        cd rabbitmq && docker-compose up && cd ..
+        cd rabbitmq && 
+        docker-compose build && 
+        cd ..
+    
+    - name: checkout container rabbitmq
+      run: |
+        docker ps -a && 
+        docker logs container-rabbitmq-queue
 
     - name: docker build micro live manager
       run: |
-        cd micro-live-manager && docker-compose up && cd ..
+        cd micro-live-manager && 
+        docker-compose build && 
+        cd ..
+
+    - name: checkout container micro-live-manager-backend
+      run: |
+        docker ps -a && 
+        docker logs micro-live-manager-backend
+
+    - name: checkout container micro-live-manager-frontend
+      run: |
+        docker ps -a && 
+        docker logs micro-live-manager-frontend
