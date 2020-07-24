@@ -24,6 +24,10 @@ jobs:
         docker-compose up -d
         cd ..
 
+    - name: Test container micro-live-manager-frontend
+    run: |
+      docker run --network container:micro-live-manager-frontend appropriate/curl -s --retry 10 --retry-connrefused http://localhost:8000
+  
     - name: docker run micro live streaming
       run: |
         cd micro-live-streaming
