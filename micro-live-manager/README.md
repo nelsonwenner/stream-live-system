@@ -39,6 +39,6 @@ $ dos2unix .docker/entrypoint.sh
 ## :hammer_and_wrench: Build
 
 ```bash
-$ docker-compose -f docker-compose.prod.yaml build
+$ docker-compose -f docker-compose.prod.yml build
 ```
 ---
