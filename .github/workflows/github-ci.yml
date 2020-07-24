@@ -11,7 +11,7 @@ jobs:
     - name: docker build rabbitmq
       run: |
         cd rabbitmq && 
-        docker-compose build && 
+        docker-compose up -d && 
         cd ..
     
     - name: checkout container rabbitmq
@@ -22,7 +22,7 @@ jobs:
     - name: docker build micro live manager
       run: |
         cd micro-live-manager && 
-        docker-compose build && 
+        docker-compose up -d && 
         cd ..
 
     - name: checkout container micro-live-manager-backend
