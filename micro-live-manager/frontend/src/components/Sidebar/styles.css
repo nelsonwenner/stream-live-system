@@ -1,0 +1,41 @@
+.sidebar {
+  position: relative;
+  max-width: 30rem;
+  width: 100%;
+  height: 100vh;
+  padding-top: 6.2rem;
+  z-index: 1000;
+  background-color: var(--bg);
+  border-right: 0.016rem solid var(--border-color);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.toolbar-open {
+  transform: translateX(0%);
+}
+
+.icon-broadcast {
+  text-align: center;
+}
+
+.icon-broadcast::before {
+  font-family: "Font Awesome 5 Free";
+  cursor: pointer;
+  content: '\f519';
+  font-weight: 900;
+  color: var(--bg-icons);
+  font-size: 40px;
+}
+
+/*Media query*/
+@media only screen and (max-width:992px) { 
+   
+  .sidebar {
+    position: absolute;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-out;
+  }
+
+}

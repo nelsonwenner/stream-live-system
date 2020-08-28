@@ -2,6 +2,11 @@
   Microservice live manager
 </h1>
 
+## :movie_camera: Preview
+<div align="center">
+  <img src="../micro-live-manager/frontend/screens/dashboard.gif" />
+</div>
+
 ## :memo: Info
   - **Backend**
     - NestJS
@@ -36,11 +41,5 @@ $ chmod +x .docker/entrypoint.sh
 
 /* Windows only (works on Git Bash terminal only) */
 $ dos2unix .docker/entrypoint.sh 
-```
-
-## :hammer_and_wrench: Build
-
-```bash
-$ docker-compose -f docker-compose.prod.yml build
 ```
 ---
