@@ -1,7 +1,7 @@
 import React from 'react';
-import './custom-button.css';
+import './styles.css';
 
-const CustomButton = ({onClick}) => {
+const CustomButton = ({ onClick }) => {
   return (
     <div className="btn-circle" onClick={ onClick }>
       <span className="iconify cruz" data-inline='false' data-icon='mdi-light:plus'></span>

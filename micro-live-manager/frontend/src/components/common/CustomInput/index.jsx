@@ -1,5 +1,5 @@
 import React from 'react';
-import './custom-input.css';
+import './styles.css';
 
 const CustomInput = ({classs, type, placeholder, value, name, onChange, error}) => (
     <div>

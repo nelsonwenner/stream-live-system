@@ -1,5 +1,5 @@
 import React from 'react';
-import './live-active-count.css';
+import './styles.css';
 
 const LiveActiveCount = ({ count }) => {
   return (

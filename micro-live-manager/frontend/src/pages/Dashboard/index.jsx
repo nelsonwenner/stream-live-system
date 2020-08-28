@@ -1,13 +1,13 @@
 import React, {useEffect, useState } from 'react';
 import './styles.css';
 
-import LiveActiveCount from '../../components/common/live-active-count/LiveActiveCount';
-import NewLiveModal from '../../components/common/new-live-modal/NewLiveModal';
-import CustomButton from '../../components/common/custom-button/CustomButton';
-import TableHeader from '../../components/common/table-header/table-header';
-import Listlive from '../../components/common/list-live/Listlive';
+import LiveActiveCount from '../../components/common/LiveActiveCount';
+import NewLiveModal from '../../components/common/NewLiveModal';
+import CustomButton from '../../components/common/CustomButton';
+import TableHeader from '../../components/common/TableHeader';
+import Listlive from '../../components/common/ListLive';
 import Layout from '../../components/common/Layout';
-import Sidebar from '../../components/sidebar';
+import Sidebar from '../../components/Sidebar';
 import Api from '../../service/Api';
 import { Overlay } from './styles';
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import './list-live.css';
+import './styles.css';
 
 import {format, parseISO} from 'date-fns';
 

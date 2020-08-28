@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import MenuItem from './menu-item';
+import MenuItem from './MenuItem';
 
 const Menu = () => {
   return (

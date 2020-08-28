@@ -1,7 +1,7 @@
 import React from 'react';
 import './styles.css';
 
-import Menu from './menu';
+import Menu from './Menu';
 
 const SideBar = ({ isToolbar }) => {
   return (

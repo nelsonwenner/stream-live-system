@@ -1,5 +1,5 @@
 import React from 'react'
-import './create-button.css';
+import './styles.css';
 
 const CreateButton = ({ typeBtn, onClick, children, className = '' }) => (
   <div>

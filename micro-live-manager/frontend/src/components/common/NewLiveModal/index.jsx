@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
-import './new-live-modal.css';
+import './styles.css';
 
-import CreateButton from '../../common/create-button/CreateButton';
-import CustomInput from '../../common/custom-input/CustomInput';
 import redirect from '../../../routes/redirect';
+import CreateButton from '../CreateButton';
+import CustomInput from '../CustomInput';
 import Api from '../../../service/Api';
 import Modal from 'react-modal';
 
