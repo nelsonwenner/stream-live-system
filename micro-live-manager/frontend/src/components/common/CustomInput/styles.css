@@ -10,3 +10,11 @@
   transition: all .2s ease;
   background-color: #e9ecef;
 }
+
+.mt-25 {
+  margin-bottom: 2.5rem;
+}
+
+.width-80 {
+  width: 80%;
+}
