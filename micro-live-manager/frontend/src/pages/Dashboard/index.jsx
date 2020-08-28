@@ -1,43 +1,29 @@
 import React, {useEffect, useState } from 'react';
-import './dashboard.css';
+import './styles.css';
 
 import LiveActiveCount from '../../components/common/live-active-count/LiveActiveCount';
 import NewLiveModal from '../../components/common/new-live-modal/NewLiveModal';
 import CustomButton from '../../components/common/custom-button/CustomButton';
 import TableHeader from '../../components/common/table-header/table-header';
-import Backdrop from '../../components/toolbar/backdrop/backdrop';
 import Listlive from '../../components/common/list-live/Listlive';
-import Sidebar from '../../components/sidebar/sidebar';
-import Toolbar from '../../components/toolbar/toolbar';
-import NavBar from '../../components/navbar/navbar';
+import Layout from '../../components/common/Layout';
+import Sidebar from '../../components/sidebar';
 import Api from '../../service/Api';
+import { Overlay } from './styles';
 
 const Dashboard = () => {
+  const [sidebar, setSidebar] = useState(false);
   const [modal, setModal] = useState(false);
-  const [sideDrawerOpen, setSideDrawerOpen] = useState(false);
   const [lives, setLives] = useState([]);
   
   useEffect(() => {
    
-    const data = async () => {
-      try {
-        const { data } = await Api.get('/api/lives');
-        setLives(data);
-      } catch (error) {
-        console.log("Error: ", error);
-      }
-    }
-
-    data();
+    Api.get('/api/lives')
+    .then(({ data }) => {
+      setLives(data);
+    });
+        
   }, []);
-
-  const drawerToolbarHandler = () => {
-    setSideDrawerOpen((prevState) => !prevState);
-  }
-
-  const backdropClicked = () => {
-    setSideDrawerOpen((prevState) => false);
-  }
 
   const openModal = () => {
     setModal(true);
@@ -47,24 +33,20 @@ const Dashboard = () => {
     setModal(false);
   }
 
+  const showSidebar = () => setSidebar(!sidebar);
+
   return (
-    <div className="full-container">
-      <NavBar />
+    <Layout>
+      <Overlay sidebar={ sidebar } onClick={ showSidebar } />
       <div className="row">
-        <Toolbar 
-          show={ sideDrawerOpen } 
-        />
-        {
-          sideDrawerOpen  && (
-            <Backdrop clicked={ backdropClicked } />
-          )
-        }
-        <div className="column xlarge-2 large-3">
-          <Sidebar />
+        <div className="column xlarge-2 large-3 medium-0 small-0">
+          <Sidebar 
+            isToolbar={ sidebar }
+          />
         </div>
         <div className="column xlarge-10 large-9 medium-12 small-12">
           <span className="hamburger" 
-            onClick={ drawerToolbarHandler } 
+            onClick={ showSidebar }
           />
           <div className="main">
             <div className="main-header">
@@ -88,7 +70,7 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
-    </div>
+    </Layout>
   )
 }
 

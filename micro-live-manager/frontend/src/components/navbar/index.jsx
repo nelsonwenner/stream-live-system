@@ -1,5 +1,5 @@
 import React from 'react';
-import './navbar.css';
+import './styles.css';
 
 import usePersistedState from '../../hooks/usePersistedState';
 
