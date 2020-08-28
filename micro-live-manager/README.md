@@ -2,6 +2,11 @@
   Microservice live manager
 </h1>
 
+## :movie_camera: Preview
+<div align="center">
+  <img src="../micro-live-manager/frontend/screens/dashboard.gif" />
+</div>
+
 ## :memo: Info
   - **Backend**
     - NestJS
