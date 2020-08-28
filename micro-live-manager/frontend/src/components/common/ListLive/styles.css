@@ -60,15 +60,31 @@
 }
 
 .create-link-live a {
-  color: rgb(6, 255, 213);
+  color: rgb(84, 84, 84);
   font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
+  transition: all 0.3s ease;
+
+  padding: 0.5rem;
+  border-radius: 5%;
+  background-color: rgb(6, 255, 213);
 }
 
 .invite-live a {
-  color: rgb(6, 255, 213);
+  color: rgb(84, 84, 84);
   font-weight: 600;
+  cursor: pointer;
   text-decoration: none;
+  transition: all 0.3s ease;
+
+  padding: 0.5rem;
+  border-radius: 5%;
+  background-color: rgb(6, 255, 213);
+}
+
+.effect-in:hover a { 
+  font-size: 1.3rem;
 }
 
 @media only screen and (max-width:768px) { 
