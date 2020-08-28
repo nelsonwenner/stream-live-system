@@ -42,10 +42,4 @@ $ chmod +x .docker/entrypoint.sh
 /* Windows only (works on Git Bash terminal only) */
 $ dos2unix .docker/entrypoint.sh 
 ```
-
-## :hammer_and_wrench: Build
-
-```bash
-$ docker-compose -f docker-compose.prod.yml build
-```
 ---
