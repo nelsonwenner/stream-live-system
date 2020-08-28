@@ -1,6 +1,6 @@
 import React from 'react';
 
-import NavBar from '../../navbar';
+import NavBar from '../../Navbar';
 import { Wrapper } from './styles';
 
 const Layout = ({ children }) => {

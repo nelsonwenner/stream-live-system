@@ -1,17 +1,12 @@
 .input-field {
-  padding: 0.375rem 0.75rem;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1;
-  max-width: 55rem;
   width: 100%;
-  color: #495057;
-  background-color: #e9ecef;
-  border: 1px solid #ced4da;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.2rem;
+  line-height: 2;
+  border: 1px solid #cdd4da;
   border-radius: 4px;
   border-width: 1px;
-}
-
-.mt-17 {
-  margin-bottom: 1.7rem;
+  color: #495057;
+  transition: all .2s ease;
+  background-color: #e9ecef;
 }

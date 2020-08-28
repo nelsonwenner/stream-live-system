@@ -1,27 +1,19 @@
 import React from 'react';
 import './styles.css';
 
-const CustomInput = ({classs, type, placeholder, value, name, onChange, error}) => (
-    <div>
-      <input className={`input-field ${classs}`}
-        type={type}
-        placeholder={placeholder}
-        value={value}
-        onChange={onChange}
-        name={name}
-      />
-
-      {
-        error && (
-
-          <div className="error">
-            <p style={{color: 'red'}}>{ error }</p>
-          </div>
-
-        )
-      }
-
+const CustomInput = ({classs, type, placeholder, errors, name, register}) => (
+  <div className={`${classs}`}>
+    <input 
+      className={'input-field form-controll' + (errors ? ' is-invalid' : '') }
+      type={type}
+      placeholder={placeholder}
+      ref={register}
+      name={name}
+    />
+    <div className="invalid-feedback">
+      { errors && errors.message }
     </div>
+  </div>
 )
 
 export default CustomInput;

@@ -15,7 +15,7 @@ const NewLiveModal = ({ openModal, closeModal }) => {
   const [date, setDate] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-
+  
   const onSubmit = (event) => {
     event.preventDefault();
 
