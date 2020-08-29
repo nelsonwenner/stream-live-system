@@ -16,10 +16,10 @@ const Broadcaster = (props) => {
   const videoRef = useRef(null);
 
   const [userInfo, setUserInfo] = useState({
-  name: '', 
-  email: '', 
-  password: '', 
-  is_broadcaster: true
+    name: '', 
+    email: '', 
+    password: '', 
+    is_broadcaster: true
   });
   
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({

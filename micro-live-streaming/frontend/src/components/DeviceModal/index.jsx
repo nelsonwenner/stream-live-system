@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import './styles.css';
 
 import DeviceSelect from './DeviceSelect';
-
 import Modal from 'react-modal';
 
 Modal.setAppElement('body');
@@ -25,15 +24,11 @@ const DeviceModal = ({ open, onChange, onClose }) => {
   }, []);
 
   const loadDevices = async () => {
-    try {
       const devices = await navigator.mediaDevices.enumerateDevices();
       const audioInputs = devices.filter(device => device.kind === 'audioinput');
       const videos = devices.filter(device => device.kind === 'videoinput');
       
       setDevices({audioInputs: audioInputs, videos: videos});
-    } catch (error) {
-      console.log(error);
-    }
   }
 
   useEffect(() => {
@@ -115,7 +110,12 @@ const DeviceModal = ({ open, onChange, onClose }) => {
               event.target.value === 'Capture Screen Streaming') }
           />
 
-          <button className="btn btn-rounded btn-outlined purple-btn" onClick={ handlerClose }>Done</button>
+          <button 
+            className="btn btn-rounded btn-outlined purple-btn" 
+            onClick={ handlerClose }
+          >
+            Done
+          </button>
         </div>
       </form>
     </Modal>
