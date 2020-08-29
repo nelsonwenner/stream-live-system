@@ -4,7 +4,7 @@ export const handleLiveError = (error) => {
   if ('request' in error) {
     newError = {message: 'Error detected', name: 'HttpError'};
   } else {
-      newError = {message: error.message, name: error.name};
+    newError = {message: error.message, name: error.name};
   }
   return newError;
 }

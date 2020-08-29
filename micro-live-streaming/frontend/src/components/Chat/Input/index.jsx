@@ -1,7 +1,7 @@
 import React from 'react';
-import './input.css';
+import './styles.css';
 
-import Avatar from '../Avatar/Avatar';
+import Avatar from '../Avatar';
 
 const Input = ({ sendMessage, messageRef, name, email }) => (
   <form className="form">
@@ -9,7 +9,7 @@ const Input = ({ sendMessage, messageRef, name, email }) => (
       classes={ 'circle' } 
       email={ email }
     />
-    <a className="name-input">{ name }</a>
+    <p className="name-input">{ name }</p>
     <input
       className="input-line"
       type="text"

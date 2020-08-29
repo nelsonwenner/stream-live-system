@@ -6,17 +6,18 @@ import { useForm } from "react-hook-form";
 import Modal from 'react-modal';
 import * as yup from 'yup';
 
+Modal.setAppElement('body');
+
 const validationSchema = yup.object().shape({
   name: yup.string().label('Name').required(),
   email: yup.string().label('Email').required(),
-  password: yup.string().label('Password').required(),
 });
 
-const BroadcasterModal = ({open, onClose, errorRequests}) => {
+const ViewerModal = ({open, onClose, errorRequests }) => {
   const { register, handleSubmit, errors } = useForm({
     validationSchema: validationSchema,
   });
-  
+
   const onSubmit = (data) => { 
     onClose(data);
   }
@@ -26,10 +27,10 @@ const BroadcasterModal = ({open, onClose, errorRequests}) => {
       isOpen={ open }
       onRequestClose={ onClose }
       contentLabel="Modal"
-    >
-      
-      <form onSubmit={ handleSubmit(onSubmit) } className="form-broadcaster">
-        <h1 className="title-broadcast">Broadcaster live</h1>
+    > 
+
+      <form onSubmit={ handleSubmit(onSubmit) } className="form-viewer">
+        <h1 className="title-view">Access live</h1>
         <div className="container-input">
           <CustomInput
             classs={'width-80 mt-17'}
@@ -41,20 +42,11 @@ const BroadcasterModal = ({open, onClose, errorRequests}) => {
           />
 
           <CustomInput
-            classs={'width-80 mt-17'}
+            classs={'width-80'}
             type={'email'}
             name={'email'}
             placeholder={'Email'}
             errors={ errors.email }
-            register={ register }
-          />
-
-          <CustomInput
-            classs={'width-80'}
-            type={'password'}
-            name={'password'}
-            placeholder={'password'}
-            errors={ errors.password }
             register={ register }
           />
 
@@ -66,7 +58,7 @@ const BroadcasterModal = ({open, onClose, errorRequests}) => {
 
           {
             errorRequests && (
-              <div className="error-broadcast">
+              <div className="error-viewer">
                 <p style={{color: 'red'}}>
                   { errorRequests.message } { errorRequests.name }
                 </p>
@@ -79,4 +71,4 @@ const BroadcasterModal = ({open, onClose, errorRequests}) => {
   )
 }
 
-export default BroadcasterModal;
+export default ViewerModal;

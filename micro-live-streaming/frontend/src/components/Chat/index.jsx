@@ -1,14 +1,13 @@
 import React, { useState, useRef, useMemo, useEffect } from 'react';
-import './chat.css';
+import './styles.css';
 
-import ScrollToBottom from 'react-scroll-to-bottom';
-import Message from './Message/Message';
-import Input from './Input/Input';
 import io from "socket.io-client";
+import Message from './Message';
+import Input from './Input';
 
 const Chat = (props) => {
-  const { user, room, finishRoom } = props;
   const [chatMessages, setChatMessages] = useState([]);
+  const { user, room, finishRoom } = props;
   const messageRef = useRef();
   
   const socket = useMemo(() => {
@@ -19,7 +18,11 @@ const Chat = (props) => {
   }, [user]);
 
   useEffect(() => {
-    if (!socket || socket.connected || !user || user.name === "" || user.email === "") {
+    if (user.email === "" || 
+        user.name === ""  || 
+        socket.connected  || 
+        !socket           || 
+        !user) {
       return;
     }
 
@@ -91,14 +94,15 @@ const Chat = (props) => {
   return (
     <div className="container-chat">
       <div className="card">
-        <div className="card-header">
+        <p className="card-header">
           Chat
-        </div>
-        <ScrollToBottom className="scroll-message">
+        </p>
+
+        <div className="wrapper-message">
           { 
-            chatMessages.map((message, key ) => (
+            chatMessages.map((message, index) => (
               <Message
-                key={ key } 
+                key={ index } 
                 user_name={ message.user_name }
                 email={ message.email }
                 content={ message.content }
@@ -106,7 +110,8 @@ const Chat = (props) => {
               />
             ))
           }
-        </ScrollToBottom>
+        </div>
+      
         {
           <Input
             name={ user.name }

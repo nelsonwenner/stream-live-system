@@ -1,9 +1,9 @@
 import React,{ useState, useEffect } from 'react';
-import './navbar.css';
+import './styles.css';
 
 const NavBar = ({setOpenDevicesDialog, titleLogo, isBroadcaster, closeLive, stopLive}) => {
   const [handlerIcon, setHandlerIcon] = useState('stop-icon');
-
+  
   const handleClose = (stop) => {
     setHandlerIcon('start-icon');
     closeLive(stop);

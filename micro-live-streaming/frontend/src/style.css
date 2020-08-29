@@ -109,3 +109,12 @@ textarea:focus {
   bottom: 0;
   background-color: rgba(59, 56, 69, 0.664) !important;
 }
+
+/*Media query*/
+@media only screen and (max-width:768px) { 
+  
+  .ReactModal__Content {
+    width: 70%;
+  }
+
+}

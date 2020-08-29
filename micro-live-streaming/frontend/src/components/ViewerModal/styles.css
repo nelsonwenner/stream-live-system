@@ -1,4 +1,4 @@
-.form-broadcaster {
+.form-viewer {
   max-width: 60rem;
   width: 100%;
   padding-bottom: 6.5rem;
@@ -13,7 +13,7 @@
   align-items: center;
 }
 
-.title-broadcast {
+.title-view {
   font-size: 2.6rem;
   font-weight: 800;
   margin-top: 2rem;
@@ -26,7 +26,7 @@
   margin-top: 4rem;
 }
 
-.error-broadcast { 
+.error-viewer { 
  position: relative;
  top: 2rem;
 }

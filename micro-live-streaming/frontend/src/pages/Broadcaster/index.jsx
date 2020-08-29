@@ -1,11 +1,11 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-import NavBroadcast from '../../components/common/NavBar/NavBar';
 import BroadcasterModal from '../../components/BroadcasterModal';
 import ContainerVideo from '../../components/ContainerVideo';
+import NavBroadcast from '../../components/common/NavBar';
 import DeviceModal from '../../components/DeviceModal';
 import useBroadcast from '../../hooks/useBroadcast';
-import Chat from '../../components/Chat/Chat';
+import Chat from '../../components/Chat';
 
 const Broadcaster = (props) => {
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
@@ -96,16 +96,12 @@ const Broadcaster = (props) => {
         onChange={ onDevicesChange }
         onClose={ () => (setOpenDevicesDialog(false)) }
       />
-      
-      {
-      /*
+
       <BroadcasterModal
         errorRequests={ error }
         open={ openBroadcasterDialog }
         onClose={ (formData) => closeBroadcast(formData) }
       />
-      */  
-      }
     </div>
   )
 }

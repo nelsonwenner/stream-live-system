@@ -1,11 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react';
-import './viewer.css';
 
-import NavView from '../../components/common/NavBar/NavBar';
-import ViewerModal from '../../components/ViewerModal/ViewerModal';
 import ContainerVideo from '../../components/ContainerVideo';
-import Chat from '../../components/Chat/Chat';
+import ViewerModal from '../../components/ViewerModal';
+import NavView from '../../components/common/NavBar';
 import useViewer from '../../hooks/useViewer';
+import Chat from '../../components/Chat';
 
 const Viewer = (props) => {
   const [openUserInfoDialog, setOpenUserInfoDialog] = useState(false);
@@ -13,10 +12,16 @@ const Viewer = (props) => {
   const videoRefViewer = useRef(null);
     
   const [userInfo, setUserInfo] = useState({
-  name: '', email: '', is_broadcaster: false});
+    is_broadcaster: false,
+    name: '', 
+    email: '', 
+  });
   
   const { live, error, usersConnected } = useViewer({
-  start: true, liveSlug: slug, videoRefViewer: videoRefViewer});
+    videoRefViewer: videoRefViewer,
+    liveSlug: slug,
+    start: true, 
+  });
 
   useEffect(() => {
 

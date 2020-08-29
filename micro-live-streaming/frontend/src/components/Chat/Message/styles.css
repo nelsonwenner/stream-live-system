@@ -1,7 +1,5 @@
 .container-message {
-  padding-top: 15px;
-  padding-left: 10px;
-  padding-bottom: 3px;
+  width: 100%;
 }
 
 .name-chat {
@@ -9,13 +7,20 @@
   top: 15px;
   left: 15px;
   font-weight: 500;
+  display: inline-block;
 }
 
 .text-chat {
   position: relative;
+  padding: 0.5rem;
   top: 15px;
   left: 25px;
   font-weight: 300;
+  display: inline-block;
+
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  white-space: normal;
 }
 
 .circle-avatar {

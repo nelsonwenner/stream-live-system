@@ -17,16 +17,19 @@
 }
 
 .card-header {
+  position: relative;
   font-size: 1.8rem;
   font-weight: 400;
-  height: 35px;
-  width: 100%;
   text-align: center;
   background-color: rgb(25, 25, 25);
   border-bottom: 1px solid #dbdbdb;
 }
 
-.scroll-message {
-  height: 640px;
+.wrapper-message {
+  width: 100%;
+  max-height: 64rem;
+  height: 100%;
+  overflow-y: scroll;
+  overflow-x: hidden;
 }
 
