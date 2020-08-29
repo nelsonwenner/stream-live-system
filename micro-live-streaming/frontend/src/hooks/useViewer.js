@@ -6,20 +6,20 @@ import Peer from "peerjs";
 
 const useViewer = (data) => {
 
-  const { start, liveSlug, videoRefViewer } = data;
   const [usersConnected, setUserConnected] = useState(0);
+  const { start, liveSlug, videoRefViewer } = data;
   const [error, setError] = useState(null);
   const [live, setLive] = useState({});
   const peerRef = useRef();
   
   const socket = useMemo(() => {
-    if (!start) { return null; }
+    if (!start) { return null }
     return io(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
   }, [start]);
 
   const connectBroadcaster = useCallback((data) => {
-    console.log(data);
-    if (!data.peer_id) { return; }
+ 
+    if (!data.peer_id) { return }
 
     console.log('New broadcaster', data.peer_id);
 
@@ -33,14 +33,14 @@ const useViewer = (data) => {
     _peer.on('open', (peer_id) => {
 
       console.log('Viewer_id', peer_id);
-      const coonect = _peer.connect(data.peer_id);
+      const connect = _peer.connect(data.peer_id);
 
-      if (coonect) {
-        coonect.on('error', (error) => {
+      if (connect) {
+        connect.on('error', (error) => {
           console.log('Error peer: ', error);
         });
 
-        coonect.on('open', () => {
+        connect.on('open', () => {
           console.log('Connetion opened with broadcaster: ', _peer.id);
         })
       }
@@ -52,7 +52,9 @@ const useViewer = (data) => {
       call.on('stream', (stream) => {
         console.log('New stream received: ', stream);
 
-        if (!videoRefViewer.current || videoRefViewer.current.id !== stream.id) {
+        if (!videoRefViewer.current || 
+          videoRefViewer.current.id !== stream.id) {
+
           videoRefViewer.current = stream;
           const video = document.getElementById('video');
           video.srcObject = stream; 
@@ -62,33 +64,28 @@ const useViewer = (data) => {
   }, [peerRef, videoRefViewer]);
 
   useEffect(() => {
-
     if (error) { return }
     
-    const load = async () => {
-      try {
-        
-        const data = await getLive(liveSlug);
-        
-        setLive(data);
+    getLive(liveSlug)
+    .then(data => {
+      setLive(data);
 
-        if (data.status === 'done') {
-          throw new Error('This live has already been held');
-        }
-
-      } catch (error) {
-        console.log(error);
-        setError(handleLiveError(error));
+      if (data.status === 'done') {
+        throw new Error(
+          'This live has already been held'
+        );
       }
-    }
-
-    load();
+    }).catch(error => {
+      console.log(error);
+      stopStream();
+      setError(handleLiveError(error));
+    })
 
   }, [liveSlug, error]);
   
   useEffect(() => {
 
-    if (!start || !socket) { return; }
+    if (!start || !socket) { return }
     
     socket.on('connect', () => {
       socket.on('get-broadcaster', (data) => {
@@ -117,7 +114,7 @@ const useViewer = (data) => {
 
   useEffect(() => {
 
-    if (error || !socket) { return; }
+    if (error || !socket) { return }
 
     socket.on('error', (error) => {
       console.log(error);
