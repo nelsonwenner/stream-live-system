@@ -1,0 +1,28 @@
+.form-device {
+  max-width: 60rem;
+  width: 100%;
+  height: 70%;
+  padding-bottom: 6.5rem;
+  border-radius: 2%;
+  background-color: #302C40;
+}
+
+.title-device-modal {
+  font-size: 2.6rem;
+  font-weight: 800;
+  padding-bottom: 3rem;
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.container-devices {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.container-devices .btn {
+  width: 40%;
+  margin-top: 4rem;
+}

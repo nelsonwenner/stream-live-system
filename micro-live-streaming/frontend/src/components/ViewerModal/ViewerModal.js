@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import './viewer-modal.css';
 
-import CustomButton from '../common/CustomButton/CustomButton';
-import CustomInput from '../common/CustomInput/CustomInput';
+import CustomInput from '../common/CustomInput';
 
 import Modal from 'react-modal';
 Modal.setAppElement('body');
@@ -34,30 +33,7 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
         <div className="container-form">
           <h1 className="title-view-modal">Access live</h1>
 
-          <CustomInput
-            classs={'mt-17'}
-            type={'text'}
-            placeholder={'Name'}
-            name={'name'}
-            value={name}
-            onChange={ (event) => setName(event.target.value) }
-          />
-
-          <CustomInput
-            classs={'mt-17'}
-            type={'text'}
-            placeholder={'E-mail'}
-            name={'email'}
-            value={email}
-            onChange={ (event) => setEmail(event.target.value) }
-          />
-
-          <CustomButton
-            typeBtn="button"
-            className={'btn btn-outlined purple-btn'}
-            children={'Done'}
-            onClick={ handlerClose }
-          />
+      
           {
             error && (errorRequests === null) && (
               <div className="error-view">

@@ -1,7 +1,7 @@
 import React, { lazy, Suspense } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 
-const Broadcast = lazy(() => import('../pages/Broadcast/broadcast'));
+const Broadcaster = lazy(() => import('../pages/Broadcaster'));
 const Viewer = lazy(() => import('../pages/Viewer/Viewer'));
 
 const Routes = () => {
@@ -9,8 +9,7 @@ const Routes = () => {
     <Suspense fallback={<div>Loading...</div>}>
       <BrowserRouter basename={process.env.REACT_APP_BASE_URL}>
         <Switch>
-          <Route exact path="/broadcast/:slug" component={ Broadcast } />
-          <Route exact path="/viewer/:slug" component={ Viewer } />
+          <Route exact path="/broadcaster/:slug" component={ Broadcaster } />
         </Switch>
       </BrowserRouter>
     </Suspense>
@@ -18,3 +17,5 @@ const Routes = () => {
 }
 
 export default Routes;
+
+/* <Route exact path="/viewer/:slug" component={ Viewer } /> */

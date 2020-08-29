@@ -1,5 +1,5 @@
-.container-select {
-  width: 100%;
+.wrapper-select {
+  width: 80%;
 }
 
 .select {
@@ -22,9 +22,4 @@
 .label {
   display: block;
   font-size: 1.2rem;
-}
-
-.position-label {
-  position: relative;
-  text-align: start;
 }

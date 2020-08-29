@@ -1,0 +1,41 @@
+.form-broadcaster {
+  max-width: 60rem;
+  width: 100%;
+  padding-bottom: 6.5rem;
+  border-radius: 2%;
+  background-color: #302C40;
+}
+
+.container-input {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.title-broadcast {
+  font-size: 2.6rem;
+  font-weight: 800;
+  margin-top: 2rem;
+  padding-bottom: 3rem;
+  text-align: center;
+}
+
+.container-input .btn {
+  width: 40%;
+  margin-top: 4rem;
+}
+
+.error-broadcast { 
+ position: relative;
+ top: 2rem;
+}
+
+/*Media query*/
+@media only screen and (max-width:768px) { 
+  
+  .ReactModal__Content_Broadcast {
+    width: 70%;
+  }
+
+}

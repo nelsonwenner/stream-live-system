@@ -1,28 +1,35 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
-import './broadcast.css';
 
 import ContainerVideo from '../../components/container-video/ContainerVideo';
-import BroadcastModal from '../../components/BroadcastModal/BroadcastModal';
-import DeviceModal from '../../components/DeviceModal/DeviceModal';
 import NavBroadcast from '../../components/common/NavBar/NavBar';
+import BroadcasterModal from '../../components/BroadcasterModal';
+import DeviceModal from '../../components/DeviceModal';
 import useBroadcast from '../../hooks/useBroadcast';
 import Chat from '../../components/Chat/Chat';
 
-const Broadcast = (props) => {
-  const { slug } = props.match.params;
-  const videoRef = useRef(null);
+const Broadcaster = (props) => {
   const [openBroadcasterDialog, setOpenBroadcasterDialog] = useState(false);
   const [openDevicesDialog, setOpenDevicesDialog] = useState(false);
   const [finishRoom, setFinishRoom] = useState(false);
   const [stopLive, setStopLive] = useState(false);
+  const { slug } = props.match.params;
+  const videoRef = useRef(null);
 
   const [userInfo, setUserInfo] = useState({
-  name: '', email: '', password: '', is_broadcaster: true});
+  name: '', 
+  email: '', 
+  password: '', 
+  is_broadcaster: true
+  });
   
   const { isAuth, live, error, usersConnected, loadStream } = useBroadcast({
-  start: userInfo.name !== '', stop: stopLive, password: userInfo.password, 
-  liveSlug: slug, videoRef: videoRef });
-
+    start: userInfo.name, 
+    stop: stopLive, 
+    password: userInfo.password, 
+    liveSlug: slug, 
+    videoRef: videoRef 
+  });
+  
   useEffect(() => {
 
     if (live) {
@@ -68,7 +75,7 @@ const Broadcast = (props) => {
         closeLive={ (stop) => closeLive(stop) }
       />
       <div className="row">
-        <div className="column xlarge-7 large-6 medium-12 small-12 test">
+        <div className="column xlarge-7 large-6 medium-12 small-12">
           <ContainerVideo
             live={ live }
             titleVideo={ live.title } 
@@ -76,7 +83,7 @@ const Broadcast = (props) => {
             countViews={ usersConnected }
           />
         </div>
-        <div className="column xlarge-5 large-6 medium-12 small-12 test">
+        <div className="column xlarge-5 large-6 medium-12 small-12">
           <Chat 
             user={ userInfo }
             room={ slug }
@@ -89,13 +96,18 @@ const Broadcast = (props) => {
         onChange={ onDevicesChange }
         onClose={ () => (setOpenDevicesDialog(false)) }
       />
-      <BroadcastModal
+      
+      {
+      /*
+      <BroadcasterModal
         errorRequests={ error }
         open={ openBroadcasterDialog }
         onClose={ (formData) => closeBroadcast(formData) }
-      />  
+      />
+      */  
+      }
     </div>
   )
 }
 
-export default Broadcast;
+export default Broadcaster;

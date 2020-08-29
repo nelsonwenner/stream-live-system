@@ -1,0 +1,20 @@
+.input-field {
+  width: 100%;
+  padding: 0.375rem 0.75rem;
+  font-size: 1.2rem;
+  line-height: 2;
+  border: 1px solid #cdd4da;
+  border-radius: 4px;
+  border-width: 1px;
+  color: #495057;
+  transition: all .2s ease;
+  background-color: #e9ecef;
+}
+
+.mt-17 {
+  margin-bottom: 1.7rem;
+}
+
+.width-80 {
+  width: 80%;
+}
