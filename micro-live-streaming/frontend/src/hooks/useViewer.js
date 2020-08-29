@@ -77,7 +77,6 @@ const useViewer = (data) => {
       }
     }).catch(error => {
       console.log(error);
-      stopStream();
       setError(handleLiveError(error));
     })
 

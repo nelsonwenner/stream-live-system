@@ -3,7 +3,7 @@ import './viewer.css';
 
 import NavView from '../../components/common/NavBar/NavBar';
 import ViewerModal from '../../components/ViewerModal/ViewerModal';
-import ContainerVideo from '../../components/container-video/ContainerVideo';
+import ContainerVideo from '../../components/ContainerVideo';
 import Chat from '../../components/Chat/Chat';
 import useViewer from '../../hooks/useViewer';
 
@@ -11,7 +11,7 @@ const Viewer = (props) => {
   const [openUserInfoDialog, setOpenUserInfoDialog] = useState(false);
   const { slug } = props.match.params;
   const videoRefViewer = useRef(null);
-  
+    
   const [userInfo, setUserInfo] = useState({
   name: '', email: '', is_broadcaster: false});
   

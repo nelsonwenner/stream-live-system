@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 
-import ContainerVideo from '../../components/container-video/ContainerVideo';
 import NavBroadcast from '../../components/common/NavBar/NavBar';
 import BroadcasterModal from '../../components/BroadcasterModal';
+import ContainerVideo from '../../components/ContainerVideo';
 import DeviceModal from '../../components/DeviceModal';
 import useBroadcast from '../../hooks/useBroadcast';
 import Chat from '../../components/Chat/Chat';
@@ -14,7 +14,7 @@ const Broadcaster = (props) => {
   const [stopLive, setStopLive] = useState(false);
   const { slug } = props.match.params;
   const videoRef = useRef(null);
-
+  
   const [userInfo, setUserInfo] = useState({
     name: '', 
     email: '', 
