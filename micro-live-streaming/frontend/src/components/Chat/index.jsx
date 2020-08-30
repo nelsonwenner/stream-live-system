@@ -112,14 +112,12 @@ const Chat = (props) => {
           }
         </div>
       
-        {
-          <Input
-            name={ user.name }
-            email={ user.email }
-            messageRef={ messageRef }
-            sendMessage={ sendMessage }
-          />
-        }
+        <Input
+          name={ user.name }
+          email={ user.email }
+          messageRef={ messageRef }
+          sendMessage={ sendMessage }
+        />
       </div>
     </div>
   )

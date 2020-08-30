@@ -4,9 +4,9 @@ import './styles.css';
 import Avatar from '../Avatar';
 
 const Input = ({ sendMessage, messageRef, name, email }) => (
-  <form className="form">
+  <form className="form-input-message">
     <Avatar
-      classes={ 'circle' } 
+      classes={ 'avatar-input' } 
       email={ email }
     />
     <p className="name-input">{ name }</p>

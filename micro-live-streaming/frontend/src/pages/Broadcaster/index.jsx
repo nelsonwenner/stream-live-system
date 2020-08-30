@@ -97,11 +97,15 @@ const Broadcaster = (props) => {
         onClose={ () => (setOpenDevicesDialog(false)) }
       />
 
+      {
+      /*
       <BroadcasterModal
         errorRequests={ error }
         open={ openBroadcasterDialog }
         onClose={ (formData) => closeBroadcast(formData) }
       />
+      */
+      }
     </div>
   )
 }

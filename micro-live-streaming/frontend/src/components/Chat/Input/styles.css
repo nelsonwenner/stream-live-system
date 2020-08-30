@@ -1,7 +1,12 @@
-.form {
+.form-input-message {
   display: flex;
   flex-direction: row;
   border-top: 1px solid #D3D3D3;
+}
+
+.avatar-input {
+  top: 22px;
+  left: 15px;
 }
 
 .input-line {
