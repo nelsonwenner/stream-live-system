@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef, useCallback, useMemo } from 'react';
 import { handleLiveError } from '../utils/handler.error';
+import getIceServers from '../utils/get.ice.server';
 import { getLive } from '../service/Api';
 import io from "socket.io-client";
 import Peer from "peerjs";
@@ -23,7 +24,14 @@ const useViewer = (data) => {
 
     console.log('New broadcaster', data.peer_id);
 
+    const iceServers = getIceServers();
+    
     peerRef.current = new Peer({
+      ...(iceServers && {
+        config: {
+          iceServers: [...iceServers]
+        }
+      }),
       host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
       port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
     });

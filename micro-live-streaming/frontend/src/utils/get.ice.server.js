@@ -1,9 +1,9 @@
 const getIceServers = () => {
-  const envVar = process.env.REACT_APP_ICE_SERVERS;
+  const envVar = `${process.env.REACT_APP_ICE_SERVERS}`;
   try {
-    return JSON.parse(envVar || '');
+    return envVar.split(',');
   } catch (e) {
-    return null;
+    return [];
   }
 };
 
