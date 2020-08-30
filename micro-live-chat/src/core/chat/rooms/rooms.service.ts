@@ -29,7 +29,6 @@ export class RoomsService implements OnGatewayInit {
 
   afterInit(instance: any) {
     const origins = this.config.get('SOCKET_IO_ALLOW_ORIGINS').split(',');
-    console.log("\n TEST => ", origins)
     const server = instance.server;
     server.origins(origins);
   }
