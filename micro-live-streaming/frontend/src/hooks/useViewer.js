@@ -54,10 +54,8 @@ const useViewer = (data) => {
 
         if (!videoRefViewer.current || 
           videoRefViewer.current.id !== stream.id) {
-
+          
           videoRefViewer.current = stream;
-          const video = document.getElementById('video');
-          video.srcObject = stream; 
         }
       });
     });
@@ -97,7 +95,7 @@ const useViewer = (data) => {
 
       socket.on('finish-live', (live) => {
         setLive(live);
-        peerRef.current.disconnect();
+        peerRef.current.destroy();
         socket.disconnect();
       });
 
@@ -111,6 +109,7 @@ const useViewer = (data) => {
     }
   }, [start, socket, peerRef, liveSlug, connectBroadcaster]);
 
+ 
   useEffect(() => {
 
     if (error || !socket) { return }
@@ -123,17 +122,19 @@ const useViewer = (data) => {
       }
 
       if (peerRef.current) {
-        peerRef.current.disconnect();
+        console.log("peer Disconnect")
+        peerRef.current.destroy();
       }
 
       if (videoRefViewer.current) {
         videoRefViewer.current = null;
+        document.getElementById('video')
+        .srcObject = null; 
       }
     });
   }, [socket, peerRef, videoRefViewer, error]);
 
   const unload = useCallback(() => {
-    
     if (socket && socket.connected) {
       socket.emit('leave');
     }

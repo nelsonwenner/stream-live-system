@@ -85,14 +85,24 @@ const useBroadcast = (data) => {
         password: password
       });
     });
-
+    
     peerRef.current.on('connection', (connect) => {
       const call = peerRef.current.call(connect.peer, streamRef.current);
       if (call) {
         console.log('new call: ', call);
         setViewers((prevState) => [...prevState, call]);
       }
+     
     });
+
+    peerRef.current.on('disconnected', (event) => {
+      console.log("Peer disconnected")
+    });
+    
+    peerRef.current.on('close', (event) => {
+      console.log("Peer closed")
+    });
+
   }, [start, password, stream, socket, peerRef]);
 
   useEffect(() => {
@@ -188,7 +198,7 @@ const useBroadcast = (data) => {
 
     viewers.forEach(viewer => viewer.close());
 
-    peerRef.current.disconnect();
+    peerRef.current.destroy();
 
   }, [peerRef, stop, socket, password, viewers]);
 
@@ -204,9 +214,9 @@ const useBroadcast = (data) => {
       }
 
       stopStream();
-
+      
       if (peerRef.current) {
-        peerRef.current.disconnect();
+        peerRef.current.destroy();
       }
 
       if (videoRef.current) {

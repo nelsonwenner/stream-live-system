@@ -38,7 +38,7 @@ const Chat = (props) => {
         socket.disconnect();
         window.location.reload(false);
       });
-
+      
       socket.emit('join', {
         user_name: user.name,
         email: user.email,
