@@ -21,7 +21,7 @@ const useBroadcast = (data) => {
     if (!start) { return null }
     return io(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
   }, [start, password]);
-
+  
   useEffect(() => {
     if (error) { return }
     
