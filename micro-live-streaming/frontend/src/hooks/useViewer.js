@@ -25,9 +25,9 @@ const useViewer = (data) => {
     console.log('New broadcaster', data.peer_id);
 
     const iceServers = getIceServers();
-    
+   
     peerRef.current = new Peer({
-      ...(iceServers && {
+      ...(iceServers.length && {
         config: {
           iceServers: [...iceServers]
         }

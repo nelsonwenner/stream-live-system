@@ -77,7 +77,7 @@ const useBroadcast = (data) => {
     const iceServers = getIceServers();
     
     peerRef.current = new Peer({
-      ...(iceServers && {
+      ...(iceServers.length && {
         config: {
           iceServers: [...iceServers]
         }
