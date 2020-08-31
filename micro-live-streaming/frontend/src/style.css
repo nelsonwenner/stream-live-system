@@ -15,9 +15,9 @@ html {
 }
 
 body {
-  background: #302C40;
+  background: #ffffff;
   font-size: 16px;
-  color: #FFF;
+  color: rgb(84, 84, 84);
   transition: all 0.25s linear;
 }
 

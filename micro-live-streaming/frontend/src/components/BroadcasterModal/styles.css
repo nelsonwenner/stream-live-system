@@ -1,9 +1,10 @@
 .form-broadcaster {
+  position: relative;
   max-width: 60rem;
   width: 100%;
   padding-bottom: 6.5rem;
   border-radius: 2%;
-  background-color: #302C40;
+  background-color: #FFFFFF;
 }
 
 .container-input {

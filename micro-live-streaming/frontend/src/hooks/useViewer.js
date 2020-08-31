@@ -103,7 +103,7 @@ const useViewer = (data) => {
 
       socket.on('finish-live', (live) => {
         setLive(live);
-        peerRef.current.destroy();
+        peerRef.current.disconnect();;
         socket.disconnect();
       });
 
@@ -131,7 +131,7 @@ const useViewer = (data) => {
 
       if (peerRef.current) {
         console.log("peer Disconnect")
-        peerRef.current.destroy();
+        peerRef.current.disconnect();
       }
 
       if (videoRefViewer.current) {

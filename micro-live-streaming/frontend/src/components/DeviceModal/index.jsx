@@ -111,7 +111,7 @@ const DeviceModal = ({ open, onChange, onClose }) => {
           />
 
           <button 
-            className="btn btn-rounded btn-outlined purple-btn" 
+            className="btn btn-rounded btn-outlined black-btn" 
             onClick={ handlerClose }
           >
             Done

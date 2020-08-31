@@ -1,0 +1,31 @@
+.flag {
+  position: absolute;
+  bottom: 0;
+  margin: 4.5rem;
+  padding: 2.5rem 5rem;
+  background-color: #d2322d;
+  box-shadow: 0px 1px 6px rgba(0,0,0,0.3);
+  color: #ffffff;
+  animation: show .5s;
+  z-index: 10;
+}
+
+@keyframes show {
+  0% { opacity: 0; }
+  20% { opacity: 0; }
+  40% { opacity: 0.3; }
+  60% { opacity: 0.5; }
+  80% { opacity: 0.9; }
+  100% { opacity: 1; }
+}
+
+.flag .flag-close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin-right: 0.5rem;
+  color: #ffff;
+  font-size: 2rem;
+  cursor: pointer;
+  background-color: #d2322d;
+}

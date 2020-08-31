@@ -17,14 +17,14 @@
   border-bottom: 2px solid #9b9b9b;
   outline: none;
   font-size: 14px;
-  color: #fff;
+  color: rgb(84, 84, 84);
   padding: 5px 0;
   background: transparent;
   transition: border-color 0.2s;
 }
 
 .input-line:focus {
-  border-bottom: 2px solid #fff;
+  border-bottom: 2px solid rgb(117, 115, 115);
 }
 
 .send-icon:before  {
@@ -36,7 +36,7 @@
   font-size: 2.2rem;
   right: 25px;
   top: 25px;
-  color: #fff;
+  color: rgb(84, 84, 84);
 }
 
 .name-input {

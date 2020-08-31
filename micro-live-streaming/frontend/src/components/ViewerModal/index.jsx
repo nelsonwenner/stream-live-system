@@ -51,7 +51,7 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
           />
 
           <button 
-            className="btn btn-rounded btn-outlined purple-btn"
+            className="btn btn-rounded btn-outlined black-btn"
           >
             Done
           </button>
