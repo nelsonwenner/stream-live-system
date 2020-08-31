@@ -3,6 +3,7 @@ import './styles.css';
 
 import CustomInput from '../common/CustomInput';
 import { useForm } from "react-hook-form";
+import Flag from '../common/Flag';
 import Modal from 'react-modal';
 import * as yup from 'yup';
 
@@ -55,15 +56,11 @@ const ViewerModal = ({open, onClose, errorRequests }) => {
           >
             Done
           </button>
-
+          
           {
-            errorRequests && (
-              <div className="error-viewer">
-                <p style={{color: 'red'}}>
-                  { errorRequests.message } { errorRequests.name }
-                </p>
-              </div>
-            )
+            errorRequests 
+            ? <Flag message={errorRequests.message} /> 
+            : null
           }
         </div>
       </form>
