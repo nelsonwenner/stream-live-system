@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useCallback, useMemo, useRef } from 'react';
 import { handleLiveError } from '../utils/handler.error';
+import getIceServers from '../utils/get.ice.server';
 import { getLive } from '../service/Api';
 import io from "socket.io-client";
 import Peer from "peerjs";
@@ -8,59 +9,56 @@ const useBroadcast = (data) => {
   
   const { start, stop, liveSlug, password, videoRef } = data;
 
-  const [error, setError] = useState(null);
   const [usersConnected, setUserConnected] = useState(0);
-  const [viewers, setViewers] = useState([]);
   const [isAuth, setIsAuth] = useState(false);
+  const [viewers, setViewers] = useState([]);
+  const [error, setError] = useState(null);
   const [stream, setStream] = useState();
   const [live, setLive] = useState({});
-  const peerRef = useRef();
   const streamRef = useRef();
+  const peerRef = useRef();
 
   const socket = useMemo(() => {
-    if (!start) { return null; }
+    if (!start) { return null }
     return io(`${process.env.REACT_APP_MICRO_BACKEND_MANAGER_URL}/live`);
   }, [start, password]);
-
+  
   useEffect(() => {
-
     if (error) { return }
     
-    const load = async () => {
-      try {
-        const data = await getLive(liveSlug);
-        
-        setLive(data);
+    getLive(liveSlug)
+    .then(data => {
+      setLive(data);
 
-        if (data.status === 'done') {
-          throw new Error('This live has already been held');
-        }
-
-      } catch (error) {
-        console.log(error);
-        stopStream();
-        setError(handleLiveError(error));
+      if (data.status === 'done') {
+        throw new Error(
+          'This live has already been held'
+        );
       }
-    }
-
-    load();
+    }).catch(error => {
+      console.log(error);
+      stopStream();
+      setError(handleLiveError(error));
+    })
 
   }, [liveSlug, error]);
   
   useEffect(() => {
 
-    if (!socket) { return; }
+    if (!socket) { return }
 
     socket.on('connect', () => {
 
-      socket.emit('join', {slug: liveSlug, password: password, isBroadcaster: true});
+      socket.emit('join', {
+        slug: liveSlug, 
+        password: password, 
+        isBroadcaster: true
+      });
     
       socket.on('authorization', (data) => {
-      
         if (data.socket === socket.id) {
           setIsAuth(data.auth);
         }
-
       });
 
       socket.on('count-users', (count) => {
@@ -76,23 +74,43 @@ const useBroadcast = (data) => {
 
     console.log('Initialized peer connection...');
 
+    const iceServers = getIceServers();
+    
     peerRef.current = new Peer({
+      ...(iceServers.length && {
+        config: {
+          iceServers: [...iceServers]
+        }
+      }),
       host: process.env.REACT_APP_MICRO_GENERATOR_PEER_DOMAIN,
       port: parseInt(process.env.REACT_APP_MICRO_GENERATOR_PEER_PORT)
     });
 
     peerRef.current.on('open', (peer_id) => {
       console.log('BoradcastPeer id: ', peer_id);
-      socket.emit('set-broadcaster', {client_id: peer_id, password: password});
+      socket.emit('set-broadcaster', {
+        client_id: peer_id, 
+        password: password
+      });
     });
-
+    
     peerRef.current.on('connection', (connect) => {
       const call = peerRef.current.call(connect.peer, streamRef.current);
       if (call) {
         console.log('new call: ', call);
         setViewers((prevState) => [...prevState, call]);
       }
+     
     });
+
+    peerRef.current.on('disconnected', (event) => {
+      console.log("Peer disconnected")
+    });
+    
+    peerRef.current.on('close', (event) => {
+      console.log("Peer closed")
+    });
+
   }, [start, password, stream, socket, peerRef]);
 
   useEffect(() => {
@@ -127,7 +145,10 @@ const useBroadcast = (data) => {
   const loadStream = useCallback((props) => {
     const {audioInputId, videoId, captureStream} = props;
     
-    if ((audioInputId === undefined || videoId === undefined) && !!captureStream.captureStream.id) {
+    if ((audioInputId === undefined ||
+        videoId === undefined)      && 
+        !!captureStream.captureStream.id) {
+
       videoRef.current = captureStream.captureStream;
       streamRef.current = captureStream.captureStream;
       setStream(captureStream.captureStream);
@@ -141,13 +162,20 @@ const useBroadcast = (data) => {
         deviceId: {exact: audioInputId}
       },
       video: {
-        deviceId: {exact: videoId}, width: {ideal: 1280}, height: {ideal: 720}
+        deviceId: {
+          exact: videoId
+        }, width: {
+          ideal: 1280
+        }, height: {
+          ideal: 720
+        }
       }
     })
     .then((streaming => {
 
-      if (!streaming) { return }
+      if (error || !streaming) { return }
 
+      stopStream();
       streamRef.current = streaming;
       videoRef.current = streaming;
       setStream(streaming);
@@ -156,18 +184,21 @@ const useBroadcast = (data) => {
       console.log(error);
     });
 
-  }, [videoRef]);
+  }, [error, videoRef]);
 
   const stopStream = () => {
     if (streamRef.current) {
       const tracks = streamRef.current.getTracks();
-      tracks.forEach((track) => track.strop());
+      tracks.forEach((track) => track.stop());
     }
   }
 
   useEffect(() => {
 
-    if (!peerRef.current || !stop || peerRef.current.disconnected || !socket) {
+    if (!peerRef.current           || 
+      !stop                        || 
+      peerRef.current.disconnected || 
+      !socket) {
       return;
     }
 
@@ -175,13 +206,13 @@ const useBroadcast = (data) => {
 
     viewers.forEach(viewer => viewer.close());
 
-    peerRef.current.disconnect();
+    peerRef.current.destroy();
 
   }, [peerRef, stop, socket, password, viewers]);
 
   useEffect(() => {
 
-    if (error || !socket) { return; }
+    if (error || !socket) { return }
 
     socket.on('error', (error) => {
       console.log(error);
@@ -191,9 +222,9 @@ const useBroadcast = (data) => {
       }
 
       stopStream();
-
+      
       if (peerRef.current) {
-        peerRef.current.disconnect();
+        peerRef.current.destroy();
       }
 
       if (videoRef.current) {

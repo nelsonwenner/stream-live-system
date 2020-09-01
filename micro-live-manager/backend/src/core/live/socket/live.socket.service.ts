@@ -64,7 +64,7 @@ export class LiveSocketService implements OnGatewayInit {
     }
   }
 
-  @SubscribeMessage('exit')
+  @SubscribeMessage('leave')
   async onExit(@ConnectedSocket() client: Socket) {
 
     try {
@@ -77,7 +77,7 @@ export class LiveSocketService implements OnGatewayInit {
 
       this.validadeView(slug);
 
-      client.exit(slug);
+      client.leave(slug);
 
       client.broadcast.to(slug).emit('count-users', this.getUsersConnected(client, slug));
 
