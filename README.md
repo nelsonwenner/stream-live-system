@@ -30,6 +30,11 @@
 
 #### This project is a simple live broadcast system, the whole project is based on microservices. Warning, this project is an example where it can be used as a basis for building a more complex live system.
 
+## :movie_camera: Preview
+<div align="center">
+  <img src="../stream-live-system/screens/stream-live.gif" />
+</div>
+
 ## :telescope: System architecture
 ![export](https://user-images.githubusercontent.com/40550247/83696432-dc8a7c80-a5d2-11ea-81f1-85f67142654e.png)
 
