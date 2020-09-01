@@ -32,7 +32,7 @@
 
 ## :movie_camera: Preview
 <div align="center">
-  <img src="../stream-live-system/screens/stream-live.gif" />
+  <img src="./screens/stream-live.gif" />
 </div>
 
 ## :telescope: System architecture
