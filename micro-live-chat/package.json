@@ -34,7 +34,7 @@
     "@nestjs/websockets": "^7.1.0",
     "@types/amqplib": "^0.5.13",
     "dotenv": "^8.2.0",
-    "grpc": "^1.24.2",
+    "grpc": "^1.24.9",
     "pg": "^8.2.1",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
