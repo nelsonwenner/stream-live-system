@@ -17,7 +17,7 @@
     "react-modal": "^3.11.2",
     "react-player": "^2.0.1",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.1",
+    "react-scripts": "5.0.1",
     "socket.io-client": "^2.3.0",
     "yup": "^0.29.3"
   },
